@@ -1,0 +1,165 @@
+.auth-wrapper{
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	margin: 0 auto;
+	max-width: 1200px;
+	.auth-card{
+		display: flex;
+		flex-direction: column;
+		max-width: 500px;
+		.auth-input{
+			margin-top: 5px;
+		}
+		.auth-password-length{
+			margin-top: 5px;
+		}
+		.auth-buttons-wrapper{
+			margin-top: 5px;
+			display: flex;
+			justify-content: space-around;
+		}
+		.auth-without-reg{
+			margin-top: 5px;
+		}
+	}
+}
+.home-wrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	max-width: 1200px;
+	.home-title{
+		margin-top: 5px;
+		font-size: 2rem;
+	}
+	.cards-wrapper{
+		display: flex;
+		flex-wrap: wrap;
+	}
+}
+.card-wrapper{
+	width: 288px;
+	height: 384px;
+	border: 1px solid black;
+	margin: 5px;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	:hover{
+		border: 1px solid red;
+	}
+
+	.card-description{
+font-size: 2rem;
+	}
+}
+
+.header-wrapper{
+	display: flex;
+	justify-content: space-between;
+	max-width: 1200px; //паддинги считает почему-то в эту величину потом пофиксить
+	padding: 0 10px;
+	margin: 0 auto;
+}
+
+.serch-wrapper{
+	display: flex;
+	justify-content: flex-start;
+}
+
+.footer-wrapper{
+	padding: 0 10px;
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.footer-rs-logo{
+		height: 30px;
+		&:hover{
+			transform: scale(1.1);
+			transition: all .3s ;
+		}
+	}
+	.footer-git-logo{
+		max-height: 30px;
+		height: 15px;
+		width: 15px;
+		margin-right: 5px;
+		background-color: #000;
+		border-radius: 50%;
+	}
+	.footer-autor-name{
+		display: flex;
+		align-items: center;
+		margin: 10px;
+		text-decoration: none;
+		color: black;
+		&:hover{
+			transform: scale(1.1);
+			transition: all .3s ;
+			color: black;
+		}
+	}
+	
+}
+
+.country-about-wrapper{
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	.country-photo-wrapper{
+		flex-shrink: 0;
+	width: 288px;
+	height: 384px;
+	border: 1px solid black;
+	margin: 5px;
+	}
+	.country-about{
+		margin-left: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
+	}
+}
+
+.country-wrapper{
+	max-width: 1200px;
+	margin: 0 auto ;
+	margin-top: 10px;
+	position: relative;
+	.country-widjets-wrapper{
+		position: absolute;
+		border: 1px solid black;
+		top: 50%;
+		right: 10px;
+	}
+	.country-media-wrapper{
+		margin-top: 10px;
+		display: flex;
+		justify-content: space-between;
+		.country-photo-wrapper{
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			border: 1px solid black;
+		}
+	}
+}
+
+.video-wrapper{
+	border: 1px solid black;
+}
+.reaction-wrapper{
+	border: 1px solid red;
+}
+.map-wrapper{
+	margin-top: 10px;
+	border: 1px solid black;
+}
+
