@@ -1,3 +1,9 @@
+a {
+  text-decoration-skip-ink: auto;   // ссылки в хедере 
+	text-decoration:none;
+	color: inherit;
+}
+
 .auth-wrapper{
 	display: flex;
 	justify-content: center;
@@ -49,11 +55,18 @@
 	display: flex;
 	justify-content: flex-end;
 	flex-direction: column;
-	:hover{
-		border: 1px solid red;
+	position: relative;
+	background-color: rgb(13, 211, 230);
+	&:hover{
+		//border: 1px solid red;
+		box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.959);
 	}
 
 	.card-description{
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform:translate(-50%, 0);
 font-size: 2rem;
 	}
 }
