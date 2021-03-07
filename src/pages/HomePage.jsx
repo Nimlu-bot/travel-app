@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { CountryCard } from './../components/CountryCard';
-import Paralax from '../components/Paralax'
+import Paralax from '../components/Paralax';
 
 import { useHttp } from './../hooks/httpHook'; //потом удалить
 
@@ -11,6 +11,7 @@ export const HomePage = () => {
     const { loading, request, error, clearError } = useHttp(); // потом удалить
 
     const regHandler = async () => {
+        //потом удалить
         try {
             const data = await request('http://localhost:4000/api/country/generate', 'POST', { ...cards });
             console.log(data);

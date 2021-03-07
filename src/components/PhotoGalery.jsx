@@ -19,7 +19,7 @@ const getimages = function getStaticImages() {
 };
 
 const sliderImages = getimages();
-console.log(sliderImages);
+//console.log(sliderImages);
 // const images = [
 //     {
 //         original: img.GB1,
