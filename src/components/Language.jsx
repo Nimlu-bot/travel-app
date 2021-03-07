@@ -5,9 +5,7 @@ export default function Language() {
         <div className='language-wrapper'>
             <form>
                 <select size='1' required name='language[]'>
-                    <option selected value='EN'>
-                        EN
-                    </option>
+                    <option value='EN'>EN</option>
                     <option value='RU'>RU</option>
                     <option value='BY'>BY</option>
                 </select>
