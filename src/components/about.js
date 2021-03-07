@@ -14,6 +14,9 @@ const countryesSet = [
         videoLink: '',
         timeZone: 0,
         images: ['', '', '', '', '', ''],
+        imagesDiscr: ['', '', '', '', '', ''],
+        imagesDiscrRU: ['', '', '', '', '', ''],
+        imagesDiscrBY: ['', '', '', '', '', ''],
         currency: '',
     },
     {
@@ -31,6 +34,9 @@ const countryesSet = [
         videoLink: '',
         timeZone: 0,
         images: ['', '', '', '', '', ''],
+        imagesDiscr: ['', '', '', '', '', ''],
+        imagesDiscrRU: ['', '', '', '', '', ''],
+        imagesDiscrBY: ['', '', '', '', '', ''],
         currency: '',
     },
     {
@@ -48,6 +54,9 @@ const countryesSet = [
         videoLink: '',
         timeZone: 0,
         images: ['', '', '', '', '', ''],
+        imagesDiscr: ['', '', '', '', '', ''],
+        imagesDiscrRU: ['', '', '', '', '', ''],
+        imagesDiscrBY: ['', '', '', '', '', ''],
         currency: '',
     },
     {
@@ -65,6 +74,9 @@ const countryesSet = [
         videoLink: '',
         timeZone: 0,
         images: ['', '', '', '', '', ''],
+        imagesDiscr: ['', '', '', '', '', ''],
+        imagesDiscrRU: ['', '', '', '', '', ''],
+        imagesDiscrBY: ['', '', '', '', '', ''],
         currency: '',
     },
     {
@@ -82,6 +94,9 @@ const countryesSet = [
         videoLink: '',
         timeZone: 0,
         images: ['', '', '', '', '', ''],
+        imagesDiscr: ['', '', '', '', '', ''],
+        imagesDiscrRU: ['', '', '', '', '', ''],
+        imagesDiscrBY: ['', '', '', '', '', ''],
         currency: '',
     },
     {
@@ -99,6 +114,9 @@ const countryesSet = [
         videoLink: '',
         timeZone: 0,
         images: ['', '', '', '', '', ''],
+        imagesDiscr: ['', '', '', '', '', ''],
+        imagesDiscrRU: ['', '', '', '', '', ''],
+        imagesDiscrBY: ['', '', '', '', '', ''],
         currency: '',
     },
     {
@@ -116,6 +134,9 @@ const countryesSet = [
         videoLink: '',
         timeZone: 0,
         images: ['', '', '', '', '', ''],
+        imagesDiscr: ['', '', '', '', '', ''],
+        imagesDiscrRU: ['', '', '', '', '', ''],
+        imagesDiscrBY: ['', '', '', '', '', ''],
         currency: '',
     },
     {
@@ -133,6 +154,9 @@ const countryesSet = [
         videoLink: '',
         timeZone: 0,
         images: ['', '', '', '', '', ''],
+        imagesDiscr: ['', '', '', '', '', ''],
+        imagesDiscrRU: ['', '', '', '', '', ''],
+        imagesDiscrBY: ['', '', '', '', '', ''],
         currency: '',
     },
 ];
