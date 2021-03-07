@@ -57,13 +57,30 @@ font-size: 2rem;
 	}
 }
 
-.header-wrapper{
+.header-wrapper,
+.footer-wrapper{
 	display: flex;
-	justify-content: space-between;
+	align-items: center;
+	justify-content: space-around;
+
 	max-width: 1200px; //паддинги считает почему-то в эту величину потом пофиксить
-	padding: 0 10px;
+	min-height: 150px;
+
 	margin: 0 auto;
-	margin-top: 10px;
+	background-color: #433f3f;
+
+	color: #fff;
+	font-size: 16px;
+	line-height: 19px;
+}
+
+.paralax{
+	height: 500px;
+	width: 100%; 
+	background-image: url(../assets/img/paralax_img.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: bottom;
 }
 
 .serch-wrapper{
@@ -72,13 +89,6 @@ font-size: 2rem;
 }
 
 .footer-wrapper{
-	padding: 0 10px;
-	max-width: 1200px;
-	margin: 0 auto;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-
 	.footer-rs-logo{
 		height: 30px;
 		&:hover{
@@ -99,11 +109,11 @@ font-size: 2rem;
 		align-items: center;
 		margin: 10px;
 		text-decoration: none;
-		color: black;
+		color: #fff;
 		&:hover{
 			transform: scale(1.1);
 			transition: all .3s ;
-			color: black;
+			color: rgb(255, 132, 18);
 		}
 	}
 	
