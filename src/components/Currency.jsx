@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHttp } from './../hooks/httpHook';
 
 export default function Currency() {
@@ -47,6 +47,9 @@ export default function Currency() {
             setExchangeRate((exchangeRate) => ({ ...exchangeRate, eur: values[0], usd: values[1], rate: values[2] }));
         });
     };
+    useEffect(() => {
+        currencyHandler();
+    }, []);
 
     console.log(exchangeRate);
     return (
@@ -54,9 +57,7 @@ export default function Currency() {
             <div className='currency-rate'>1€={(exchangeRate.eur / exchangeRate.rate).toFixed(2)}</div>
             <div className='currency-rate'>1$={(exchangeRate.usd / exchangeRate.rate).toFixed(2)}</div>
             <div className='currency-rate'>1BYN={(1 / exchangeRate.rate).toFixed(2)}</div>
-            <button className='wether-button' onClick={currencyHandler}>
-                get
-            </button>
+            <button className='wether-button'>get</button>
         </div>
     );
 }

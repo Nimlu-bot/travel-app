@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHttp } from './../hooks/httpHook';
 
 export default function Wether() {
@@ -22,6 +22,10 @@ export default function Wether() {
             });
         } catch (e) {}
     };
+
+    useEffect(() => {
+        wetherHandler();
+    }, []);
     return (
         <div className='wether-wrapper'>
             <i className={`weather-icon owf owf-3x ${wether.icon ? 'owf-' + wether.icon : ''}`}></i>
