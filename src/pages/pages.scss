@@ -1,4 +1,5 @@
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
+@import "../assets/owfont-regular.css";
 
 a {
   text-decoration-skip-ink: auto;   // ссылки в хедере 
@@ -163,7 +164,7 @@ font-size: 2rem;
 	.country-widjets-wrapper{
 		position: absolute;
 		border: 1px solid black;
-		top: 50%;
+		top: 10%;
 		right: 10px;
 	}
 	.country-media-wrapper{
@@ -198,3 +199,19 @@ max-width: 100%;
 	border: 1px solid black;
 }
 
+.wether-wrapper{
+	background-color: burlywood;
+	display: flex;
+	
+	.weather-icon{
+		width: 50px;
+		height: 50px;
+	}
+	.whether-descr-wrapper{
+		display: flex;
+		flex-direction: column;
+		.wether-temp{
+			font-size: 2rem;
+		}
+	}
+}
