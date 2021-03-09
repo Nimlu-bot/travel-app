@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useHttp } from './../hooks/httpHook';
 
 export default function Currency() {
-    const [cur, setCur] = useState('gbp');
-    const curencies = ['usd', 'eur', 'czk', 'gbp', 'uah'];
+    const [cur] = useState('gbp');
+    // const curencies = ['usd', 'eur', 'czk', 'gbp', 'uah'];
     const [exchangeRate, setExchangeRate] = useState({
         rate: 1,
         usd: 1,
         eur: 1,
     });
-    const { loading, request, error, clearError } = useHttp();
+    const { request } = useHttp();
     const urlUSD = `https://www.nbrb.by/api/exrates/rates/usd?parammode=2 `;
     const urlEUR = `https://www.nbrb.by/api/exrates/rates/eur?parammode=2 `;
     const url = `https://www.nbrb.by/api/exrates/rates/${cur}?parammode=2 `;

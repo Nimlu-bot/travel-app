@@ -161,4 +161,8 @@ const countryesSet = [
     },
 ];
 
-export default countryesSet;
+function setCountry(ShortName, set) {
+    const number = set.filter((el) => el.countryShort === ShortName);
+    return number;
+}
+export { countryesSet, setCountry };

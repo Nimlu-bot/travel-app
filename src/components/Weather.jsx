@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useHttp } from './../hooks/httpHook';
+//import { useCountry } from './../context/codeContext';
 
-export default function Weather() {
-    const [city, setCity] = useState('london');
-    const [lang, setLang] = useState('en');
+export default function Weather(props) {
+    // const [city] = useState('london');
+    const [lang] = useState('en');
     const [weather, setWeather] = useState({
         icon: null,
         temp: null,
         descr: null,
     });
-    const { loading, request, error, clearError } = useHttp();
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${lang}&appid=7c599ba528ac05000344261f5479e8de&units=metric`;
+
+    const { request } = useHttp();
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${props.country.capital}&lang=${lang}&appid=7c599ba528ac05000344261f5479e8de&units=metric`;
 
     const weatherHandler = async () => {
         try {
@@ -25,6 +27,8 @@ export default function Weather() {
 
     useEffect(() => {
         weatherHandler();
+        //setCity(countryParams.capital);
+        //console.log(countryParams.capital);
     }, []);
     return (
         <div className='weather-wrapper'>

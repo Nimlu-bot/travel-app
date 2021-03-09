@@ -3,9 +3,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { useRouts } from './pages/routs';
 import { useAuth } from './hooks/authHook';
 import { AuthContext } from './context/AuthContext';
+import { CountryProvider } from './context/codeContext';
 
 function App() {
     const { token, login, logout, name, userId } = useAuth();
+
     const isAuthenticated = !!token;
     const routes = useRouts(isAuthenticated);
     return (
@@ -19,9 +21,11 @@ function App() {
                 isAuthenticated,
             }}
         >
-            <Router>
-                <div className='App'>{routes}</div>
-            </Router>
+            <CountryProvider>
+                <Router>
+                    <div className='App'>{routes}</div>
+                </Router>
+            </CountryProvider>
         </AuthContext.Provider>
     );
 }

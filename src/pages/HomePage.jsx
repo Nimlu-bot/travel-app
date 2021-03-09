@@ -4,14 +4,12 @@ import Header from '../components/Header';
 import { CountryCard } from './../components/CountryCard';
 import Paralax from '../components/Paralax';
 
-
 import { useHttp } from './../hooks/httpHook'; //потом удалить
 
 export const HomePage = () => {
-    const [cards, setCards] = useState(['GB', 'FR', 'IT', 'UA', 'DE', 'CZ', 'AT', 'ES']);
-    const { loading, request, error, clearError } = useHttp(); // потом удалить
+    const [cards] = useState(['GB', 'FR', 'IT', 'UA', 'DE', 'CZ', 'AT', 'ES']);
+    const { request } = useHttp(); // потом удалить
 
-		
     const regHandler = async () => {
         //потом удалить
         try {

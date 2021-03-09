@@ -17,7 +17,7 @@ export default function Header() {
     return (
         <div className='header-wrapper'>
             <div className='header-logo'>
-                <NavLink to='/'>React Game</NavLink>
+                <NavLink to='/'>Travel app</NavLink>
             </div>
             <SearchField />
             <Language />
