@@ -6,7 +6,8 @@ import { AuthContext } from '../context/AuthContext';
 
 export const AuthPage = () => {
     const [sign, setSign] = useState(false);
-    const message = useMessage(); //поменять содержимое хука
+    const [message, setMessage] = useState();
+    //const message = useMessage(); //поменять содержимое хука
     const auth = useContext(AuthContext);
     const { loading, request, error, clearError } = useHttp();
     const [form, setForm] = useState({
@@ -17,14 +18,15 @@ export const AuthPage = () => {
 
     useEffect(() => {
         //разобраться с отображением ошибки
-        message(error);
-        clearError();
+        setMessage(error);
+        setTimeout(() => clearError(), 5000);
     }, [error, message, clearError]);
+
     const registerHandler = async () => {
         try {
             const data = await request('http://localhost:4000/api/auth/register', 'POST', { ...form });
 
-            message(data.message);
+            setMessage(data.message);
         } catch (e) {}
     };
 
@@ -74,6 +76,7 @@ export const AuthPage = () => {
                             SignUp
                         </button>
                     </div>
+                    <span className='auth-message'>1{message}</span>
                     <span className='auth-without-reg'>Продолжить без регистрации</span>
                 </div>
             </div>
@@ -113,13 +116,6 @@ export const AuthPage = () => {
                     required
                     onChange={changeHandler}
                 />
-                <input
-                    className='auth-card-password-confirm auth-input'
-                    autoComplete='off'
-                    placeholder='confirm'
-                    type='password'
-                    required
-                />
                 <span className='auth-password-length'>Мин длинна 6 символов</span>
                 <div className='auth-buttons-wrapper'>
                     <button className='auth-button login' onClick={registerHandler} disabled={loading}>
@@ -129,7 +125,7 @@ export const AuthPage = () => {
                         Cansel
                     </button>
                 </div>
-                <span className='auth-message'></span>
+                <span className='auth-message'>{message}</span>
             </div>
         </div>
     );
