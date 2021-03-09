@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHttp } from './../hooks/httpHook';
 
 export default function Wether() {
-    const [city, setcity] = useState('london');
-    const [lang, setLang] = useState('ru');
+    const [city, setCity] = useState('london');
+    const [lang, setLang] = useState('en');
     const [wether, setWether] = useState({
         icon: null,
         temp: null,
@@ -33,9 +33,6 @@ export default function Wether() {
                 <div className='wether-temp'>{wether.temp}°C</div>
                 <div className='wether-descr'>{wether.descr}</div>
             </div>
-            <button className='wether-button' onClick={wetherHandler}>
-                get
-            </button>
         </div>
     );
 }
