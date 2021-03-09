@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './pages.scss';
 import { useHttp } from './../hooks/httpHook';
-import { useMessage } from './../hooks/messageHook';
+//import { useMessage } from './../hooks/messageHook';
 import { AuthContext } from '../context/AuthContext';
 
 export const AuthPage = () => {
