@@ -1,5 +1,31 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+// import MapboxLanguageControl from 'react-mapbox-gl-language';
+
+import MapboxLanguage from '@mapbox/mapbox-gl-language';
+
+class MapboxLanguageControl extends Component {
+  componentWillMount(){
+    this.mapboxLanguage = new MapboxLanguage(({  defaultLanguage: 'ru'}));
+    this.context.map.addControl(this.mapboxLanguage);
+  }
+
+  componentWillUnmount(){
+    this.context.map.removeControl(this.mapboxLanguage);
+  }
+
+  render(){
+    return null;
+  }
+}
+MapboxLanguageControl.contextTypes = {
+  map: PropTypes.object.isRequired
+};
+ 
+
+
+MapboxLanguageControl.mapboxLanguage = 'ru';
 
 export default function Map() {
     const position = [51.509865, -0.118092];
@@ -16,6 +42,7 @@ export default function Map() {
         A pretty CSS3 popup. <br /> Easily customizable.
       </Popup>
     </Marker>
+    <MapboxLanguageControl/>
   </MapContainer>
     )
 }
