@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from './../components/Header';
 import Footer from './../components/Footer';
 import CountryAbout from './../components/CountryAbout';
@@ -9,17 +9,17 @@ import PhotoGallery from '../components/PhotoGalery';
 import Reaction from '../components/Reaction';
 import Video from '../components/Video';
 import Map from '../components/Map';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { useCountry } from './../context/codeContext';
 
 export const CountryPage = () => {
-    const { id } = useParams();
+    //const { id } = useParams();
     const countryParams = useCountry();
-    countryParams.setCountry(id);
+    //countryParams.setCountry(id);
     //const country = countryParams.country;
     // const [country, setCountry] = useState();
     // setCountry(countryParams.country);
-    console.log(countryParams.country);
+    // console.log(countryParams.country.currency);
     return (
         <>
             <Header />
@@ -28,8 +28,8 @@ export const CountryPage = () => {
                 <CountryAbout country={countryParams.country} />
                 <div className='country-widjets-wrapper'>
                     <Wether country={countryParams.country} />
-                    <Currency />
-                    <DateTime />
+                    <Currency currency={countryParams.country.currency} />
+                    <DateTime timeZone={countryParams.country.timeZone} />
                 </div>
                 <div className='country-media-wrapper'>
                     <div className='country-gallery-wrapper'>
