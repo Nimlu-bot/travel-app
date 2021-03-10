@@ -58,7 +58,8 @@ a {
 	justify-content: flex-end;
 	flex-direction: column;
 	position: relative;
-	background-color: rgb(13, 211, 230);
+	background-color: #433f3f;
+	color: rgb(255, 132, 18);
 	&:hover{
 		//border: 1px solid red;
 		box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.959);
@@ -90,6 +91,43 @@ font-size: 2rem;
 	line-height: 19px;
 }
 
+.header-logo{
+	svg{
+		height: 100px;
+		width: 100px;
+		cursor: pointer;
+		path{
+			stroke: rgb(0, 0, 0);
+			fill: transparent;
+			stroke-dasharray: 250;
+			stroke-dashoffset: 0;
+			stroke-width: 1px;
+
+		}
+	}
+	svg:hover path{
+		animation: logo 5s linear 0.2s 1;
+	}
+}
+@keyframes logo{
+	0%{
+		stroke-dashoffset: 0;
+	}
+	30%{
+		stroke: rgb(255, 153, 0);
+		stroke-dashoffset: 150;
+	}
+	50%{
+		stroke: transparent;
+		fill: #000;
+		stroke-dashoffset: 240;
+	}
+	100%{
+		fill: transparent;
+		stroke: rgb(0, 0, 0);
+	}
+}
+
 .paralax{
 	height: 500px;
 	width: 100%; 
@@ -97,12 +135,94 @@ font-size: 2rem;
 	background-size: cover;
 	background-attachment: fixed;
 	background-position: bottom;
+
+	margin: 20px 0 ;
 }
 
-.serch-wrapper{
-	display: flex;
-	justify-content: flex-start;
+.serch-box{
+	height: 30px;
+	width: 30px;
+
+	position: relative;
+
+	.serch-wrapper{
+		display: none;
+		justify-content: flex-start;
+		align-items: center;
+		border: 1px solid #000;
+		border-radius: 5px;
+		padding: 5px;
+
+		background-color: #433f3f;
+		position: absolute;
+		top: 0;
+		z-index: 3;
+
+		.serch{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 40px;
+			width: 200px;
+
+			background-color: transparent;
+			outline: none;
+			margin: 0;
+			padding: 0;
+			border: none;
+		}
+
+		.serch-button{
+			height: 30px;
+			width: 30px;
+			background-image: url(../assets/img/search.png);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			cursor: pointer;
+		}
+	}
+	.serch-wrapper:hover{
+		display: flex;
+	}
+	.toggle-search-button{
+		height: 20px;
+		width: 20px;
+		background-image: url(../assets/img/search.png);
+		background-position: center;
+		background-size: 90%;
+		background-repeat: no-repeat;
+	}
+	.toggle-search-button:hover{
+		transform: scale(1.1);
+	}
+	.toggle-search-button:hover ~ .serch-wrapper{
+		display: flex;
+	}
 }
+
+
+.language-wrapper{
+	position: relative;
+
+	select{
+		padding: 10px;
+		background: none;
+		appearance: none;
+		outline: none;
+		border: none;
+		cursor: pointer;
+		option{
+			outline: none;
+			appearance: none;
+			background-color: #433f3f;		
+		}
+	}	
+	select:hover{
+		text-shadow: 0 0 1px #fff;
+	}
+}
+
 
 .footer-wrapper{
 	.footer-rs-logo{
