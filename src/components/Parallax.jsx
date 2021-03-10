@@ -1,8 +1,8 @@
 import React from "react"
 
-function Paralax () {
+function Parallax () {
     return(
-        <div className="paralax">
+        <div className="parallax">
             <h3>
             «Ничто так не развивает ум, как путешествие» — Эмиль Золя.
             </h3>
@@ -11,4 +11,4 @@ function Paralax () {
     )
 }
 
-export default Paralax
+export default Parallax
