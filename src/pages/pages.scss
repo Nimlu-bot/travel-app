@@ -1,94 +1,99 @@
-@import "~react-image-gallery/styles/scss/image-gallery.scss";
+@import '~react-image-gallery/styles/scss/image-gallery.scss';
+@import '../assets/owfont-regular.css';
 
-a {
-  text-decoration-skip-ink: auto;   // ссылки в хедере 
-	text-decoration:none;
-	color: inherit;
+html{
+	scroll-behavior: smooth;
 }
 
-.auth-wrapper{
-	display: flex;
-	justify-content: center;
-	align-items: flex-end;
-	margin: 0 auto;
-	max-width: 1200px;
-	.auth-card{
-		display: flex;
-		flex-direction: column;
-		max-width: 500px;
-		.auth-input{
-			margin-top: 5px;
-		}
-		.auth-password-length{
-			margin-top: 5px;
-		}
-		.auth-buttons-wrapper{
-			margin-top: 5px;
-			display: flex;
-			justify-content: space-around;
-		}
-		.auth-without-reg{
-			margin-top: 5px;
-		}
-	}
+body{
+	background-color: #262626;
+	
 }
-.home-wrapper{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: 0 auto;
-	max-width: 1200px;
-	.home-title{
-		margin-top: 5px;
-		font-size: 2rem;
-	}
-	.cards-wrapper{
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-	}
-}
-.card-wrapper{
-	width: 288px;
-	height: 384px;
-	border: 1px solid black;
-	margin: 5px;
-	display: flex;
-	justify-content: flex-end;
-	flex-direction: column;
-	position: relative;
-	background-color: #433f3f;
-	color: rgb(255, 132, 18);
-	&:hover{
-		//border: 1px solid red;
-		box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.959);
-	}
 
-	.card-description{
-		position: absolute;
-		bottom: 0;
-		left: 50%;
-		transform:translate(-50%, 0);
-font-size: 2rem;
-	}
+
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 0 auto;
+    max-width: 1200px;
+    .auth-card {
+        display: flex;
+        flex-direction: column;
+        max-width: 500px;
+        .auth-input {
+            margin-top: 5px;
+        }
+        .auth-password-length {
+            margin-top: 5px;
+        }
+        .auth-buttons-wrapper {
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .auth-without-reg {
+            margin-top: 5px;
+        }
+    }
+}
+.home-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    .home-title {
+        margin-top: 5px;
+        font-size: 2rem;
+    }
+    .cards-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+.card-wrapper {
+    width: 288px;
+    height: 384px;
+    border: 1px solid black;
+    margin: 5px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    position: relative;
+    background-color:#433f3f;
+	cursor: pointer;
+    &:hover {
+        //border: 1px solid red;
+        box-shadow: inset 0px 0px 10px rgb(255, 132, 18);
+    }
+
+    .card-description {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        font-size: 2rem;
+    }
 }
 
 .header-wrapper,
-.footer-wrapper{
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
+.footer-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 
-	max-width: 1200px; //паддинги считает почему-то в эту величину потом пофиксить
-	min-height: 150px;
+    max-width: 1200px; //паддинги считает почему-то в эту величину потом пофиксить
+    min-height: 150px;
 
-	margin: 0 auto;
-	background-color: #433f3f;
+    margin: 0 auto;
+    background-color: #433f3fa3;
 
-	color: #fff;
-	font-size: 16px;
-	line-height: 19px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 19px;
 }
 
 .header-logo{
@@ -106,7 +111,7 @@ font-size: 2rem;
 		}
 	}
 	svg:hover path{
-		animation: logo 5s linear 0.2s 1;
+		animation: logo 1s linear 0.2s 1;
 	}
 }
 @keyframes logo{
@@ -128,15 +133,58 @@ font-size: 2rem;
 	}
 }
 
+nav{
+	ul{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		li{
+			margin: 8px;
+			padding: 2px;
+			cursor: pointer;
+			a{
+				text-decoration: none;
+				color: rgb(0, 0, 0);
+				font-size: 16px;
+				line-height: 19px;
+				text-transform: capitalize;
+				font-weight: 400;
+				
+			}
+		}
+		li:hover{
+			transition: all .2s;
+			border-bottom: 3px solid rgb(255, 153, 0);
+		}
+		.active{
+			border-bottom: 3px solid rgb(255, 153, 0);
+		}
+
+	}
+}
+
 .paralax{
-	height: 500px;
-	width: 100%; 
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	height: 600px;
+	max-width: 1450px; 
+	
 	background-image: url(../assets/img/paralax_img.jpg);
 	background-size: cover;
 	background-attachment: fixed;
 	background-position: bottom;
 
-	margin: 20px 0 ;
+	margin: 20px auto ;
+	h3{
+		font-size: 34px;
+		line-height: 36px;
+		opacity: 0.6;
+		color: rgb(255, 153, 0);
+	}
 }
 
 .serch-box{
@@ -155,7 +203,8 @@ font-size: 2rem;
 
 		background-color: #433f3f;
 		position: absolute;
-		top: 0;
+		bottom: 0;
+		right: 0;
 		z-index: 3;
 
 		.serch{
@@ -211,6 +260,8 @@ font-size: 2rem;
 		appearance: none;
 		outline: none;
 		border: none;
+		font-size: 18px;
+		line-height: 21px;
 		cursor: pointer;
 		option{
 			outline: none;
@@ -255,66 +306,90 @@ font-size: 2rem;
 	
 }
 
-.country-about-wrapper{
-	max-width: 1200px;
-	margin: 0 auto;
-	display: flex;
-	.country-photo-wrapper{
-		flex-shrink: 0;
-	width: 288px;
-	height: 384px;
-	border: 1px solid black;
-	margin: 5px;
-	}
-	.country-about{
-		margin-left: 10px;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		text-align: left;
-	}
+.country-about-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    .country-photo-wrapper {
+        flex-shrink: 0;
+        width: 288px;
+        height: 384px;
+        border: 1px solid black;
+        margin: 5px;
+    }
+    .country-about {
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
 }
 
-.country-wrapper{
-	max-width: 1200px;
-	margin: 0 auto ;
-	margin-top: 10px;
-	position: relative;
-	.country-widjets-wrapper{
-		position: absolute;
-		border: 1px solid black;
-		top: 50%;
-		right: 10px;
-	}
-	.country-media-wrapper{
-		margin-top: 10px;
-		display: flex;
-		justify-content: space-around;
-		.country-photo-wrapper{
-			max-width: 45%;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			border: 1px solid black;
-		}
-	}
+.country-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 10px;
+    position: relative;
+    .country-widjets-wrapper {
+        position: absolute;
+        border: 1px solid black;
+        top: 10%;
+        right: 10px;
+    }
+    .country-media-wrapper {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-around;
+        .country-photo-wrapper {
+            max-width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid black;
+        }
+    }
 }
-.photo-wrapper{
-max-width: 100%;
+.photo-wrapper {
+    max-width: 100%;
 }
-.video-wrapper{
-	width: 45%;
-	display: flex;
-	align-items: center;
-	//height: 40px;
-	//background-color: blueviolet;
-	border: 1px solid black;
+.video-wrapper {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    //height: 40px;
+    //background-color: blueviolet;
+    border: 1px solid black;
 }
-.reaction-wrapper{
-	border: 1px solid red;
+.reaction-wrapper {
+    border: 1px solid red;
 }
-.map-wrapper{
-	margin-top: 10px;
-	border: 1px solid black;
+.map-wrapper {
+    margin-top: 10px;
+    border: 1px solid black;
 }
 
+.weather-wrapper {
+    background-color: burlywood;
+    display: flex;
+
+    .weather-icon {
+        width: 50px;
+        height: 50px;
+    }
+    .wheather-descr-wrapper {
+        display: flex;
+        flex-direction: column;
+        .weather-temp {
+            font-size: 2rem;
+        }
+    }
+}
+.currency-wrapper {
+    background-color: rgb(148, 222, 135);
+    display: flex;
+    flex-direction: column;
+    .currency-rate {
+        margin-right: 5px;
+    }
+}

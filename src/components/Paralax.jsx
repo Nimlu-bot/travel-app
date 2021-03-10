@@ -2,7 +2,12 @@ import React from "react"
 
 function Paralax () {
     return(
-        <div className="paralax"></div>
+        <div className="paralax">
+            <h3>
+            «Ничто так не развивает ум, как путешествие» — Эмиль Золя.
+            </h3>
+
+        </div>
     )
 }
 
