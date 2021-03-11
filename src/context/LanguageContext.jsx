@@ -1,16 +1,17 @@
 import React, { useContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const LanguageContext = React.createContext();
 
-export const useLanguage = () => {
+const useLanguage = () => {
     return useContext(LanguageContext);
 };
 
-export const LanguageProvider = ({ children }) => {
+const LanguageProvider = ({ children }) => {
     const [language, setLanguage] = useState(localStorage.getItem('lang') || 'en');
 
     const chooseLanguage = (lang) => {
-        setLanguage((prev) => (prev = lang));
+        setLanguage(lang);
     };
     useEffect(() => {
         localStorage.setItem('lang', language);
@@ -26,3 +27,9 @@ export const LanguageProvider = ({ children }) => {
         </LanguageContext.Provider>
     );
 };
+
+LanguageProvider.propTypes = {
+    children: PropTypes.object,
+};
+
+export { useLanguage, LanguageProvider };

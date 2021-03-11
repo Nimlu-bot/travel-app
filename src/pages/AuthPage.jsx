@@ -29,14 +29,18 @@ export const AuthPage = () => {
             const data = await request('http://localhost:4000/api/auth/register', 'POST', { ...form });
 
             setMessage(data.message);
-        } catch (e) {}
+        } catch (e) {
+            console.log('error');
+        }
     };
 
     const loginHandler = async () => {
         try {
             const data = await request('http://localhost:4000/api/auth/login', 'POST', { ...form });
             auth.login(data.name, data.token, data.userId);
-        } catch (e) {}
+        } catch (e) {
+            console.log('error');
+        }
     };
 
     const changeHandler = (event) => {

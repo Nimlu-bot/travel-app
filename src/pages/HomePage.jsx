@@ -17,7 +17,9 @@ export const HomePage = () => {
         try {
             const data = await request('http://localhost:4000/api/country/generate', 'POST', { ...cards });
             console.log(data);
-        } catch (e) {}
+        } catch (e) {
+            console.log('error');
+        }
     };
     return (
         <>
@@ -26,7 +28,7 @@ export const HomePage = () => {
 
             <div className='home-wrapper wrapper'>
                 <div className='home-title title'> Home Page {lang}</div>
-                <div id="country" className='cards-wrapper'>
+                <div id='country' className='cards-wrapper'>
                     {cards.map((el, i) => {
                         return <CountryCard key={i} text={el} />;
                     })}

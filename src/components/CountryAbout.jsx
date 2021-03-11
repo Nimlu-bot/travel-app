@@ -2,8 +2,9 @@ import React from 'react';
 //import { useCountry } from '../context/codeContext';
 import * as images from './countryImаges';
 //import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default function CountryAbout(props) {
+function CountryAbout(props) {
     return (
         <div className='country-about-wrapper'>
             <div
@@ -18,3 +19,9 @@ export default function CountryAbout(props) {
         </div>
     );
 }
+
+CountryAbout.propTypes = {
+    country: PropTypes.object,
+};
+
+export default CountryAbout;

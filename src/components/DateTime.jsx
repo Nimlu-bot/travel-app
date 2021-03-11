@@ -5,8 +5,9 @@ import 'moment/locale/fr';
 import 'moment/locale/ru';
 import 'moment/locale/uk';
 //import 'moment-timezone';
+import PropTypes from 'prop-types';
 
-export default function DateTime(props) {
+function DateTime(props) {
     const [date, setDate] = useState('');
     // const [date, setDate] = useState({
     //     date: null,
@@ -74,3 +75,9 @@ export default function DateTime(props) {
         </div>
     );
 }
+
+DateTime.propTypes = {
+    lang: PropTypes.string,
+};
+
+export default DateTime;

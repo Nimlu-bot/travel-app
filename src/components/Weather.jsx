@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useHttp } from './../hooks/httpHook';
 //import { useCountry } from './../context/codeContext';
+import PropTypes from 'prop-types';
 
-export default function Weather(props) {
+function Weather(props) {
     // const [city] = useState('london');
     //const [lang] = useState('en');
     const [weather, setWeather] = useState({
@@ -22,7 +23,9 @@ export default function Weather(props) {
                 temp: data.main.temp.toFixed(0),
                 descr: data.weather[0].description,
             });
-        } catch (e) {}
+        } catch (e) {
+            console.log('error');
+        }
     }, [url, request]);
 
     useEffect(() => {
@@ -40,3 +43,10 @@ export default function Weather(props) {
         </div>
     );
 }
+
+Weather.propTypes = {
+    lang: PropTypes.string,
+    country: PropTypes.object,
+};
+
+export default Weather;

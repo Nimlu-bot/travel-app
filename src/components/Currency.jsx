@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useHttp } from './../hooks/httpHook';
+import PropTypes from 'prop-types';
 
-export default function Currency(props) {
+function Currency(props) {
     //const [cur] = useState('gbp');
     // const curencies = ['usd', 'eur', 'czk', 'gbp', 'uah'];
     const [exchangeRate, setExchangeRate] = useState({
@@ -20,19 +21,25 @@ export default function Currency(props) {
             try {
                 const data = await request(urlEUR, 'GET');
                 return parseFloat(data.Cur_OfficialRate.toFixed(4));
-            } catch (e) {}
+            } catch (e) {
+                console.log('error');
+            }
         };
         const usdRate = async () => {
             try {
                 const data = await request(urlUSD, 'GET');
                 return parseFloat(data.Cur_OfficialRate.toFixed(4));
-            } catch (e) {}
+            } catch (e) {
+                console.log('error');
+            }
         };
         const currentRate = async () => {
             try {
                 const data = await request(url, 'GET');
                 return parseFloat((data.Cur_OfficialRate / data.Cur_Scale).toFixed(4));
-            } catch (e) {}
+            } catch (e) {
+                console.log('error');
+            }
         };
 
         Promise.all([euroRate(), usdRate(), currentRate()]).then((values) => {
@@ -51,3 +58,9 @@ export default function Currency(props) {
         </div>
     );
 }
+
+Currency.propTypes = {
+    currency: PropTypes.string,
+};
+
+export default Currency;
