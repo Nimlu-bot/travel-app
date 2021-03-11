@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Language() {
@@ -12,14 +12,11 @@ export default function Language() {
     };
     return (
         <div className='language-wrapper'>
-            <form>
-                <select size='1' value={lang.language} onChange={changeHandler}>
-                    {/* // required name='language[]' */}
-                    <option value='en'>EN</option>
-                    <option value='ru'>RU</option>
-                    <option value='by'>BY</option>
-                </select>
-            </form>
+            <select size='1' value={lang.language} onChange={changeHandler}>
+                <option value='en'>EN</option>
+                <option value='ru'>RU</option>
+                <option value='by'>BY</option>
+            </select>
         </div>
     );
 }
