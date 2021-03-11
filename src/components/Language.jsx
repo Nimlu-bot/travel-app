@@ -15,7 +15,7 @@ export default function Language() {
             <select size='1' value={lang.language} onChange={changeHandler}>
                 <option value='en'>EN</option>
                 <option value='ru'>RU</option>
-                <option value='by'>BY</option>
+                <option value='ua'>UA</option>
             </select>
         </div>
     );

@@ -22,7 +22,7 @@ export default function Header() {
                 <NavLink to='/'>
                     <svg
                         id='_x31_-outline-expand'
-                        enable-background='new 0 0 64 64'
+                        enableBackground='new 0 0 64 64'
                         height='512'
                         viewBox='0 0 64 64'
                         width='512'
