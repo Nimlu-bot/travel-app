@@ -10,11 +10,13 @@ import Reaction from '../components/Reaction';
 import Video from '../components/Video';
 import Map from '../components/Map';
 // import { useParams } from 'react-router-dom';
-import { useCountry } from './../context/codeContext';
+import { useCountry } from './../context/CountryContext';
+import { useLanguage } from './../context/LanguageContext';
 
 export const CountryPage = () => {
     //const { id } = useParams();
     const countryParams = useCountry();
+    const lang = useLanguage().language;
     //countryParams.setCountry(id);
     //const country = countryParams.country;
     // const [country, setCountry] = useState();
@@ -24,7 +26,7 @@ export const CountryPage = () => {
         <>
             <Header />
             <div className='country-wrapper wrapper'>
-                <div className='country-title title'> Country Page</div>
+                <div className='country-title title'> Country Page {lang}</div>
                 <CountryAbout country={countryParams.country} />
                 <div className='country-widjets-wrapper'>
                     <Wether country={countryParams.country} />

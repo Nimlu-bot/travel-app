@@ -1,6 +1,6 @@
 import React from 'react';
 import * as images from './countryImаges';
-import { useCountry } from '../context/codeContext';
+import { useCountry } from '../context/CountryContext';
 import { useHistory } from 'react-router-dom';
 
 export const CountryCard = (props) => {

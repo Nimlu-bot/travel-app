@@ -4,6 +4,7 @@ import SearchField from './SearchField';
 import { AuthContext } from './../context/AuthContext';
 import { useHistory } from 'react-router';
 import { NavLink } from 'react-router-dom';
+import { useLanguage } from './../context/LanguageContext';
 
 export default function Header() {
     const auth = useContext(AuthContext);
@@ -13,11 +14,12 @@ export default function Header() {
         auth.logout();
         history.push('/');
     };
+    const lang = useLanguage().language;
 
     return (
         <div className='header-wrapper'>
             <div className='header-logo'>
-                <NavLink to='/'>Travel app</NavLink>
+                <NavLink to='/'>Travel app {lang}</NavLink>
             </div>
             <SearchField />
             <Language />

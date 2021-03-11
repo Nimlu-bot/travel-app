@@ -5,11 +5,13 @@ import { CountryCard } from './../components/CountryCard';
 import Paralax from '../components/Paralax';
 
 import { useHttp } from './../hooks/httpHook'; //потом удалить
+import { useLanguage } from '../context/LanguageContext';
 
 export const HomePage = () => {
     const [cards] = useState(['GB', 'FR', 'IT', 'UA', 'DE', 'CZ', 'AT', 'ES']);
     const { request } = useHttp(); // потом удалить
-
+    const lang = useLanguage().language;
+    //console.log(lang.language);
     const regHandler = async () => {
         //потом удалить
         try {
@@ -23,7 +25,7 @@ export const HomePage = () => {
             <Paralax />
 
             <div className='home-wrapper wrapper'>
-                <div className='home-title title'> Home Page</div>
+                <div className='home-title title'> Home Page {lang}</div>
                 <div className='cards-wrapper'>
                     {cards.map((el, i) => {
                         return <CountryCard key={i} text={el} />;
