@@ -4,7 +4,7 @@ import gitLogo from '../assets/img/github.svg';
 
 export default function Footer() {
     return (
-        <footer className='footer-wrapper'>
+        <footer id="footer" className='footer-wrapper'>
             <a className='footer-logo-box' href='https://rs.school/js/'>
                 <img className='footer-rs-logo' src={logo} alt='rs-logo' />
             </a>

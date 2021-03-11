@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { CountryCard } from './../components/CountryCard';
-import Paralax from '../components/Paralax';
+import Parallax from '../components/Parallax';
 
 
 import { useHttp } from './../hooks/httpHook'; //потом удалить
@@ -22,11 +22,11 @@ export const HomePage = () => {
     return (
         <>
             <Header />
-            <Paralax />
+            <Parallax />
 
             <div className='home-wrapper wrapper'>
                 <div className='home-title title'> Home Page</div>
-                <div className='cards-wrapper'>
+                <div id="country" className='cards-wrapper'>
                     {cards.map((el, i) => {
                         return <CountryCard key={i} text={el} />;
                     })}
