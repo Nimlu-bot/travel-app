@@ -1,10 +1,12 @@
 import React from 'react';
 import logo from '../assets/img/rs_school_js.svg';
 import gitLogo from '../assets/img/github.svg';
+import { useLanguage } from './../context/LanguageContext';
 
 export default function Footer() {
+    const lang = useLanguage().language;
     return (
-        <footer id="footer" className='footer-wrapper'>
+        <footer id='footer' className='footer-wrapper'>
             <a className='footer-logo-box' href='https://rs.school/js/'>
                 <img className='footer-rs-logo' src={logo} alt='rs-logo' />
             </a>
@@ -24,7 +26,7 @@ export default function Footer() {
                 <img className='footer-git-logo' src={gitLogo} alt='git-logo' />
                 maksumov
             </a>
-            <div className='footer-year'>2021</div>
+            <div className='footer-year'>2021 {lang}</div>
         </footer>
     );
 }

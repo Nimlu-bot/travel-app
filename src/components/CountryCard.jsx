@@ -1,18 +1,26 @@
 import React from 'react';
 import * as images from './countryImаges';
-
+import { useCountry } from '../context/CountryContext';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export const CountryCard = (props) => {
+const CountryCard = (props) => {
+    const countryParams = useCountry();
     const history = useHistory();
     const name = props.text;
+    const action = () => {
+        history.push(`/country/${name}`);
+        countryParams.setCountry(name);
+    };
     return (
-        <div
-            className='card-wrapper card'
-            style={{ backgroundImage: `url(${images[name]})` }}
-            onClick={() => history.push(`/country/${name}`)}
-        >
+        <div className='card-wrapper card' style={{ backgroundImage: `url(${images[name]})` }} onClick={() => action()}>
             <div className='card-description'>{name}</div>
         </div>
     );
 };
+
+CountryCard.propTypes = {
+    text: PropTypes.string,
+};
+
+export { CountryCard };

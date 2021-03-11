@@ -3,6 +3,7 @@ import './pages.scss';
 import { useHttp } from './../hooks/httpHook';
 //import { useMessage } from './../hooks/messageHook';
 import { AuthContext } from '../context/AuthContext';
+import { useLanguage } from './../context/LanguageContext';
 
 export const AuthPage = () => {
     const [sign, setSign] = useState(false);
@@ -15,6 +16,7 @@ export const AuthPage = () => {
         email: '',
         password: '',
     });
+    const lang = useLanguage().language;
 
     useEffect(() => {
         //разобраться с отображением ошибки
@@ -27,14 +29,18 @@ export const AuthPage = () => {
             const data = await request('http://localhost:4000/api/auth/register', 'POST', { ...form });
 
             setMessage(data.message);
-        } catch (e) {}
+        } catch (e) {
+            console.log('error');
+        }
     };
 
     const loginHandler = async () => {
         try {
             const data = await request('http://localhost:4000/api/auth/login', 'POST', { ...form });
             auth.login(data.name, data.token, data.userId);
-        } catch (e) {}
+        } catch (e) {
+            console.log('error');
+        }
     };
 
     const changeHandler = (event) => {
@@ -46,7 +52,7 @@ export const AuthPage = () => {
         return (
             <div className='auth-wrapper wrapper'>
                 <div className='auth-card card'>
-                    <span className='auth-card-title'>Auth</span>
+                    <span className='auth-card-title'>Auth {lang}</span>
                     <input
                         className='auth-card-email auth-input'
                         autoComplete='off'

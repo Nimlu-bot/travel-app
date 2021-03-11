@@ -1,13 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-await-in-loop */
-const { Router } = require("express");
-const Stat = require("../models/Stat");
-const auth = require("../middleware/auth.middleware");
-const User = require("../models/User");
+const { Router } = require('express');
+const Stat = require('../models/Stat');
+const auth = require('../middleware/auth.middleware');
+const User = require('../models/User');
 
 const router = Router();
 
-router.post("/save", auth, async (req, res) => {
+router.post('/save', auth, async (req, res) => {
     const now = new Date();
     try {
         const { time, ducks, hits, kills, score } = req.body;
@@ -17,18 +17,18 @@ router.post("/save", auth, async (req, res) => {
             hits,
             kills,
             score,
-            owner: req.user.userId
+            owner: req.user.userId,
         });
         await stat.save();
         res.status(201).json({ stat });
 
         console.log(`${now} user with id ${req.user.userId} stat save`);
     } catch (e) {
-        res.status(500).json({ message: "SomethingWentWrongTryAgain" }); // Что-то пошло не так, попробуйте снова
+        res.status(500).json({ message: 'SomethingWentWrongTryAgain' }); // Что-то пошло не так, попробуйте снова
         console.log(`${now} Error user with id ${req.user.userId} stat save`);
     }
 });
-router.get("/", auth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
     const now = new Date();
     try {
         const stat = await Stat.find({ owner: req.user.userId });
@@ -36,11 +36,11 @@ router.get("/", auth, async (req, res) => {
 
         console.log(`${now} user with id ${req.user.userId} stat get`);
     } catch (e) {
-        res.status(500).json({ message: "SomethingWentWrongTryAgain" }); // Что-то пошло не так, попробуйте снова
+        res.status(500).json({ message: 'SomethingWentWrongTryAgain' }); // Что-то пошло не так, попробуйте снова
         console.log(`${now} Error user with id ${req.user.userId} stat get`);
     }
 });
-router.get("/all", async (req, res) => {
+router.get('/all', async (req, res) => {
     const now = new Date();
     try {
         const users = await User.find({}, { email: 1 });
@@ -54,7 +54,7 @@ router.get("/all", async (req, res) => {
         res.json(users);
         console.log(`${now} all stat get`);
     } catch (e) {
-        res.status(500).json({ message: "SomethingWentWrongTryAgain" }); // Что-то пошло не так, попробуйте снова
+        res.status(500).json({ message: 'SomethingWentWrongTryAgain' }); // Что-то пошло не так, попробуйте снова
         console.log(`${now}  Error all stat get`);
     }
 });
