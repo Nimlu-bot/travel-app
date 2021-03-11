@@ -5,8 +5,10 @@ import { AuthContext } from './../context/AuthContext';
 import { useHistory } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { useLanguage } from './../context/LanguageContext';
+import { useParams } from 'react-router-dom';
 
 export default function Header() {
+    const { id } = useParams();
     const auth = useContext(AuthContext);
     const history = useHistory();
     const logoutHandler = (e) => {
@@ -15,6 +17,7 @@ export default function Header() {
         history.push('/');
     };
     const lang = useLanguage().language;
+    console.log(id);
 
     return (
         <div className='header-wrapper'>
@@ -60,7 +63,7 @@ export default function Header() {
             </nav>
 
             <Language />
-            <SearchField />
+            {!id && <SearchField />}
 
             <div>
                 <div className='header-user'>User {lang} </div>
