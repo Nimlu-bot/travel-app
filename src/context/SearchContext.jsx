@@ -8,10 +8,13 @@ const useSearch = () => {
 };
 
 const SearchProvider = ({ children }) => {
-    const [search, setSearch] = useState(''); // localStorage.getItem('search') || '');
+    const [search, setSearch] = useState(localStorage.getItem('search') || '');
 
     const chooseSearch = (string) => {
         setSearch(string);
+    };
+    const clearSearch = () => {
+        setSearch('');
     };
 
     useEffect(() => {
@@ -23,6 +26,7 @@ const SearchProvider = ({ children }) => {
             value={{
                 search: search,
                 setSearch: chooseSearch,
+                clearSearch: clearSearch,
             }}
         >
             {children}

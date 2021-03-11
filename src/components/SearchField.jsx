@@ -24,7 +24,7 @@ export default function SearchField() {
                 value={search.search}
                 onChange={changeHandler}
             />
-            <div className='clear-button'></div>
+            <div className='clear-button' onClick={() => search.clearSearch()}></div>
         </div>
     );
 }
