@@ -17,7 +17,6 @@ export default function Header() {
         history.push('/');
     };
     const lang = useLanguage().language;
-    console.log(id);
 
     return (
         <div className='header-wrapper'>
