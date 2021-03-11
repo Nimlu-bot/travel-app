@@ -2,35 +2,32 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 // import MapboxLanguageControl from 'react-mapbox-gl-language';
-
 import MapboxLanguage from '@mapbox/mapbox-gl-language';
 
-class MapboxLanguageControl extends Component {
-  componentWillMount(){
-    this.mapboxLanguage = new MapboxLanguage(({  defaultLanguage: 'ru'}));
-    this.context.map.addControl(this.mapboxLanguage);
-  }
+import ReactMapboxGl from 'react-mapbox-gl';
+import MapboxLanguageControl from 'react-mapbox-gl-language';
 
-  componentWillUnmount(){
-    this.context.map.removeControl(this.mapboxLanguage);
-  }
-
-  render(){
-    return null;
-  }
-}
-MapboxLanguageControl.contextTypes = {
-  map: PropTypes.object.isRequired
-};
- 
+import { useHttp } from './../hooks/httpHook';
 
 
-MapboxLanguageControl.mapboxLanguage = 'ru';
+
 
 export default function Map() {
     const position = [51.509865, -0.118092];
 
-    // return <div className='map-wrapper'>Map ghvhfhfuhg</div>;
+    const { request } = useHttp();
+    const url = `https://nominatim.openstreetmap.org/search.php?q=Warsaw+Poland&polygon_geojson=1&format=geojson`;
+    
+    const getPoligon = async () => {
+            try {
+                const data = await request(url, 'GET');
+                console.log('!!!!!!!!!!!!!!!!!!!');
+                console.log(data);
+            } catch (e) {}
+        };
+
+
+ 
     return (
     <MapContainer className='map-wrapper' center={position} zoom={5} scrollWheelZoom={false}>
     <TileLayer
@@ -42,7 +39,71 @@ export default function Map() {
         A pretty CSS3 popup. <br /> Easily customizable.
       </Popup>
     </Marker>
-    <MapboxLanguageControl/>
+    {/* <MapboxLanguageControl/> */}
   </MapContainer>
     )
 }
+
+
+
+
+
+
+// class MapboxLanguageControl extends Component {
+//   componentWillMount(){
+//     this.mapboxLanguage = new MapboxLanguage(({  defaultLanguage: 'ru'}));
+//     this.context.map.addControl(this.mapboxLanguage);
+//   }
+
+//   componentWillUnmount(){
+//     this.context.map.removeControl(this.mapboxLanguage);
+//   }
+
+//   render(){
+//     return null;
+//   }
+// }
+// MapboxLanguageControl.contextTypes = {
+//   map: PropTypes.object.isRequired
+// };
+
+// MapboxLanguageControl.mapboxLanguage = 'ru';
+
+
+
+// const MapTok = ReactMapboxGl({
+//   accessToken: 'pk.eyJ1IjoidG9uZTRrYSIsImEiOiJja2l1NGxnZXMydjQ5MnlsYnJjMGtmdnA3In0.5ldaiECa7ofK34QR7SjPIQ'
+// });
+
+// const styles = {
+//   mapContainer: {
+//     height: '100vh',
+//     width: '100vw'
+//   }
+// };
+
+// const App = () => (
+
+  
+//   <MapTok
+//     style='mapbox://styles/mapbox/streets-v10'
+//     containerStyle={styles.mapContainer}
+//   >
+//     <MapboxLanguageControl/>
+//   </MapTok>
+// );
+
+// export default function Map() {
+//  return <App/>
+// }
+
+
+
+
+// const url = `https://nominatim.openstreetmap.org/search.php?q=Warsaw+Poland&polygon_geojson=1&format=geojson`;
+//  const currentRate = async () => {
+//             try {
+//                 const data = await request(url, 'GET');
+//                 return parseFloat((data.Cur_OfficialRate / data.Cur_Scale).toFixed(4));
+//             } catch (e) {}
+//         };
