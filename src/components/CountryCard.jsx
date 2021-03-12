@@ -8,7 +8,8 @@ const CountryCard = (props) => {
     const countryParams = useCountry();
     const history = useHistory();
     const id = props.id;
-    const name = props.text;
+    const name = props.name;
+    const capital = props.capital;
     const action = () => {
         history.push(`/country/${id}`);
         countryParams.setCountry(id);
@@ -16,12 +17,14 @@ const CountryCard = (props) => {
     return (
         <div className='card-wrapper card' style={{ backgroundImage: `url(${images[id]})` }} onClick={() => action()}>
             <div className='card-description'>{name}</div>
+            <div className='card-description'>{capital}</div>
         </div>
     );
 };
 
 CountryCard.propTypes = {
-    text: PropTypes.string,
+    name: PropTypes.string,
+    capital: PropTypes.string,
     id: PropTypes.string,
 };
 

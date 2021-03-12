@@ -50,7 +50,9 @@ export const HomePage = () => {
                             }
                         })
                         .map((el, i) => {
-                            return <CountryCard key={i} text={el.name[lang]} id={el.iso} />;
+                            return (
+                                <CountryCard key={i} name={el.name[lang]} capital={el.capital.name[lang]} id={el.iso} />
+                            );
                         })}
                 </div>
             </div>
