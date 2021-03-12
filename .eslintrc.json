@@ -20,7 +20,8 @@
             {
                 "endOfLine": "auto"
             }
-        ]
+        ],
+        "no-unused-vars": "warn"
     },
     "settings": {
         "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
