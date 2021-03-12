@@ -24,6 +24,11 @@ export const HomePage = () => {
     //         console.log('error');
     //     }
     // };
+    const pageName = {
+        en: 'Country Page',
+        ru: 'Главная Страница',
+        ua: 'Головна Сторінка',
+    };
 
     return (
         <>
@@ -31,7 +36,7 @@ export const HomePage = () => {
             <Parallax />
 
             <div className='home-wrapper wrapper'>
-                <div className='home-title title'> Home Page {lang}</div>
+                <div className='home-title title'> {pageName[lang]}</div>
                 <div id='country' className='cards-wrapper'>
                     {/* пока поиск по англ  потом поменять */}
                     {countries

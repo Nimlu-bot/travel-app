@@ -16,11 +16,16 @@ export const CountryPage = () => {
     const countryParams = useCountry();
     const lang = useLanguage().language;
     // console.log(countryParams.country);
+    const pageName = {
+        en: 'Country Page',
+        ru: 'Страница страны',
+        ua: 'Cторінка країни',
+    };
     return (
         <>
             <Header />
             <div className='country-wrapper wrapper'>
-                <div className='country-title title'> Country Page</div>
+                <div className='country-title title'> {pageName[lang]}</div>
                 <CountryAbout country={countryParams.country} lang={lang} />
                 <div className='country-widjets-wrapper'>
                     <Wether country={countryParams.country} lang={lang} />
