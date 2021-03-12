@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './pages.scss';
 import { useHttp } from './../hooks/httpHook';
-//import { useMessage } from './../hooks/messageHook';
 import { AuthContext } from '../context/AuthContext';
 import { useLanguage } from './../context/LanguageContext';
 
 export const AuthPage = () => {
     const [sign, setSign] = useState(false);
     const [message, setMessage] = useState();
-    //const message = useMessage(); //поменять содержимое хука
     const auth = useContext(AuthContext);
     const { loading, request, error, clearError } = useHttp();
     const [form, setForm] = useState({
@@ -19,7 +17,6 @@ export const AuthPage = () => {
     const lang = useLanguage().language;
 
     useEffect(() => {
-        //разобраться с отображением ошибки
         setMessage(error);
         setTimeout(() => clearError(), 5000);
     }, [error, message, clearError]);
