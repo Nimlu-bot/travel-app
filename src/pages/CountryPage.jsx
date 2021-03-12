@@ -24,7 +24,10 @@ export const CountryPage = () => {
                 <CountryAbout country={countryParams.country} lang={lang} />
                 <div className='country-widjets-wrapper'>
                     <Wether country={countryParams.country} lang={lang} />
-                    <Currency currency={countryParams.country.currency.iso} />
+                    <Currency
+                        iso={countryParams.country.currency.iso}
+                        currency={countryParams.country.currency.name[lang]}
+                    />
                     <DateTime timeZone={countryParams.country.capital.timezone.standard} lang={lang} />
                 </div>
                 <div className='country-media-wrapper'>
