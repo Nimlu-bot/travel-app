@@ -28,7 +28,7 @@ export const CountryPage = () => {
                 </div>
                 <div className='country-media-wrapper'>
                     <div className='country-gallery-wrapper'>
-                        <PhotoGallery />
+                        <PhotoGallery countryShort={countryParams.country.countryShort} lang={lang} />
                         <Reaction />
                     </div>
                     <Video video={countryParams.country.videoLink} />
