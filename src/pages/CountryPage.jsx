@@ -38,9 +38,11 @@ export const CountryPage = () => {
                         <PhotoGallery />
                         <Reaction />
                     </div>
-                    <Video />
+                    <div className='video-map'>
+                        <Video />
+                        <Map />
+                    </div>
                 </div>
-                <Map />
             </div>
 
             <Footer />

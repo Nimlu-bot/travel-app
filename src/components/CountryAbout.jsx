@@ -12,8 +12,8 @@ function CountryAbout(props) {
                 style={{ backgroundImage: `url(${images[props.country.countryShort]})` }}
             ></div>
             <div className='country-about'>
-                <p className='country-name'>{props.country.country}</p>
-                <p className='country-capital-name'>{props.country.capital}</p>
+                <h2 className='country-name'>{props.country.country}</h2>
+                <h3 className='country-capital-name'>{props.country.capital}</h3>
                 <p className='country-about-text'>{props.country.about}</p>
             </div>
         </div>

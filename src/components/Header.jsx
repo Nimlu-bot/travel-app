@@ -47,7 +47,7 @@ export default function Header() {
             </div>
             <nav>
                 <ul>
-                    <li className='active'>
+                    <li>
                         <a href='/#'>home page</a>
                     </li>
                     <li>
