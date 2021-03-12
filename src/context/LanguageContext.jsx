@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
+import { useLocalStorage } from '../hooks/localStorage';
 
 const LanguageContext = React.createContext();
 
@@ -8,11 +9,7 @@ const useLanguage = () => {
 };
 
 const LanguageProvider = ({ children }) => {
-    const [language, setLanguage] = useState(localStorage.getItem('lang') || 'en');
-
-    useEffect(() => {
-        localStorage.setItem('lang', language);
-    }, [language]);
+    const [language, setLanguage] = useLocalStorage('lang', 'en');
 
     return <LanguageContext.Provider value={{ language, setLanguage }}>{children}</LanguageContext.Provider>;
 };
