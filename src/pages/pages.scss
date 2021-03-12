@@ -204,12 +204,22 @@ nav {
         margin: 0;
         padding: 0;
         border: none;
+        padding-left: 10px;
     }
 
     .search-button {
         width: 30px;
         height: 30px;
         background-image: url(../assets/img/search.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        cursor: pointer;
+    }
+    .clear-button {
+        width: 30px;
+        height: 30px;
+        background-image: url(../assets/img/github.svg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
