@@ -15,23 +15,32 @@ import { useLanguage } from './../context/LanguageContext';
 export const CountryPage = () => {
     const countryParams = useCountry();
     const lang = useLanguage().language;
+    // console.log(countryParams.country);
+    const pageName = {
+        en: 'Country Page',
+        ru: 'Страница страны',
+        ua: 'Cторінка країни',
+    };
     return (
         <>
             <Header />
             <div className='country-wrapper wrapper'>
-                <div className='country-title title'> Country Page {lang}</div>
-                <CountryAbout country={countryParams.country} />
+                <div className='country-title title'> {pageName[lang]}</div>
+                <CountryAbout country={countryParams.country} lang={lang} />
                 <div className='country-widjets-wrapper'>
                     <Wether country={countryParams.country} lang={lang} />
-                    <Currency currency={countryParams.country.currency} />
-                    <DateTime timeZone={countryParams.country.timeZone} lang={lang} />
+                    <Currency
+                        iso={countryParams.country.currency.iso}
+                        currency={countryParams.country.currency.name[lang]}
+                    />
+                    <DateTime timeZone={countryParams.country.capital.timezone.standard} lang={lang} />
                 </div>
                 <div className='country-media-wrapper'>
                     <div className='country-gallery-wrapper'>
-                        <PhotoGallery countryShort={countryParams.country.countryShort} lang={lang} />
+                        <PhotoGallery countryShort={countryParams.country.iso} lang={lang} />
                         <Reaction />
                     </div>
-                    <Video video={countryParams.country.videoLink} />
+                    <Video video={countryParams.country.video.url} />
                 </div>
                 <Map />
             </div>

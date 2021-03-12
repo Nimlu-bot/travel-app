@@ -12,7 +12,7 @@ function Currency(props) {
     const { request } = useHttp();
     const urlUSD = `https://www.nbrb.by/api/exrates/rates/usd?parammode=2 `;
     const urlEUR = `https://www.nbrb.by/api/exrates/rates/eur?parammode=2 `;
-    const url = `https://www.nbrb.by/api/exrates/rates/${props.currency}?parammode=2 `;
+    const url = `https://www.nbrb.by/api/exrates/rates/${props.iso}?parammode=2 `;
 
     const currencyHandler = useCallback(async () => {
         const euroRate = async () => {
@@ -50,6 +50,7 @@ function Currency(props) {
 
     return (
         <div className='currency-wrapper'>
+            <div className='currency-name'>{props.currency}</div>
             <div className='currency-rate'>1€={(exchangeRate.eur / exchangeRate.rate).toFixed(2)}</div>
             <div className='currency-rate'>1$={(exchangeRate.usd / exchangeRate.rate).toFixed(2)}</div>
             <div className='currency-rate'>1BYN={(1 / exchangeRate.rate).toFixed(2)}</div>
@@ -59,6 +60,7 @@ function Currency(props) {
 
 Currency.propTypes = {
     currency: PropTypes.string,
+    iso: PropTypes.string,
 };
 
 export default Currency;

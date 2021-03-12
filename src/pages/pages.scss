@@ -58,7 +58,8 @@ body {
     border: 1px solid white;
     margin: 5px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+
     flex-direction: column;
     position: relative;
     background-color: #433f3f;
@@ -69,10 +70,10 @@ body {
     }
 
     .card-description {
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, 0);
+        //position: absolute;
+        // bottom: 0;
+        // left: 50%;
+        // transform: translate(-50%, 0);
         font-size: 2rem;
     }
 }

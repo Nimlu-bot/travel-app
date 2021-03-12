@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import { CountryCard } from './../components/CountryCard';
 import Parallax from '../components/Parallax';
 import { useSearch } from '../context/SearchContext';
-import { countryesSet } from '../components/about';
+import countries from '../components/countries';
 
 //import { useHttp } from './../hooks/httpHook'; //потом удалить
 import { useLanguage } from '../context/LanguageContext';
@@ -24,6 +24,11 @@ export const HomePage = () => {
     //         console.log('error');
     //     }
     // };
+    const pageName = {
+        en: 'Country Page',
+        ru: 'Главная Страница',
+        ua: 'Головна Сторінка',
+    };
 
     return (
         <>
@@ -31,20 +36,23 @@ export const HomePage = () => {
             <Parallax />
 
             <div className='home-wrapper wrapper'>
-                <div className='home-title title'> Home Page {lang}</div>
+                <div className='home-title title'> {pageName[lang]}</div>
                 <div id='country' className='cards-wrapper'>
-                    {countryesSet
+                    {/* пока поиск по англ  потом поменять */}
+                    {countries
                         .filter((data) => {
                             if (search.search == '') return data;
                             else if (
-                                data.country.toLowerCase().includes(search.search.toLowerCase()) ||
-                                data.capital.toLowerCase().includes(search.search.toLowerCase())
+                                data.name[lang].toLowerCase().includes(search.search.toLowerCase()) ||
+                                data.capital.name[lang].toLowerCase().includes(search.search.toLowerCase())
                             ) {
                                 return data;
                             }
                         })
                         .map((el, i) => {
-                            return <CountryCard key={i} text={el.country} id={el.countryShort} />;
+                            return (
+                                <CountryCard key={i} name={el.name[lang]} capital={el.capital.name[lang]} id={el.iso} />
+                            );
                         })}
                 </div>
             </div>

@@ -61,7 +61,7 @@ import ES6 from '../assets/img/es/triumf-arka.jpg';
 // Запорожская Сечь на острове Хортица.jpg
 // Свято-Никольский храм.jpg
 
-const ITattractions = [
+const attractions = [
     {
         id: 'IT1',
         name: {
@@ -1361,6 +1361,6 @@ const ITattractions = [
 ];
 
 function sortAttr(country) {
-    return ITattractions.filter((el) => el.coutryId === country);
+    return attractions.filter((el) => el.coutryId === country);
 }
 export { sortAttr };

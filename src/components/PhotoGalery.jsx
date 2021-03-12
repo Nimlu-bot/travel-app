@@ -1,6 +1,6 @@
 import React from 'react';
 import ImageGallery from 'react-image-gallery';
-import { sortAttr } from './ITImages';
+import { sortAttr } from './attractionImages';
 import PropTypes from 'prop-types';
 
 function PhotoGallery(props) {
