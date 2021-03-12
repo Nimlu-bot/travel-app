@@ -4,7 +4,8 @@ import Header from '../components/Header';
 import { CountryCard } from './../components/CountryCard';
 import Parallax from '../components/Parallax';
 import { useSearch } from '../context/SearchContext';
-import { countryesSet } from '../components/about';
+import countries from '../components/countries';
+// import { countryesSet } from '../components/about';
 
 //import { useHttp } from './../hooks/httpHook'; //потом удалить
 import { useLanguage } from '../context/LanguageContext';
@@ -33,18 +34,19 @@ export const HomePage = () => {
             <div className='home-wrapper wrapper'>
                 <div className='home-title title'> Home Page {lang}</div>
                 <div id='country' className='cards-wrapper'>
-                    {countryesSet
+                    {/* пока поиск по англ  потом поменять */}
+                    {countries
                         .filter((data) => {
                             if (search.search == '') return data;
                             else if (
-                                data.country.toLowerCase().includes(search.search.toLowerCase()) ||
-                                data.capital.toLowerCase().includes(search.search.toLowerCase())
+                                data.name.en.toLowerCase().includes(search.search.toLowerCase()) ||
+                                data.capital.name.en.toLowerCase().includes(search.search.toLowerCase())
                             ) {
                                 return data;
                             }
                         })
                         .map((el, i) => {
-                            return <CountryCard key={i} text={el.country} id={el.countryShort} />;
+                            return <CountryCard key={i} text={el.name.en} id={el.iso} />;
                         })}
                 </div>
             </div>
