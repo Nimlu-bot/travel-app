@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './pages.scss';
 import { useHttp } from './../hooks/httpHook';
-import { useMessage } from './../hooks/messageHook';
+//import { useMessage } from './../hooks/messageHook';
 import { AuthContext } from '../context/AuthContext';
+import { useLanguage } from './../context/LanguageContext';
 
 export const AuthPage = () => {
     const [sign, setSign] = useState(false);
-    const message = useMessage(); //поменять содержимое хука
+    const [message, setMessage] = useState();
+    //const message = useMessage(); //поменять содержимое хука
     const auth = useContext(AuthContext);
     const { loading, request, error, clearError } = useHttp();
     const [form, setForm] = useState({
@@ -14,25 +16,31 @@ export const AuthPage = () => {
         email: '',
         password: '',
     });
+    const lang = useLanguage().language;
 
     useEffect(() => {
         //разобраться с отображением ошибки
-        message(error);
-        clearError();
+        setMessage(error);
+        setTimeout(() => clearError(), 5000);
     }, [error, message, clearError]);
+
     const registerHandler = async () => {
         try {
             const data = await request('http://localhost:4000/api/auth/register', 'POST', { ...form });
 
-            message(data.message);
-        } catch (e) {}
+            setMessage(data.message);
+        } catch (e) {
+            console.log('error');
+        }
     };
 
     const loginHandler = async () => {
         try {
             const data = await request('http://localhost:4000/api/auth/login', 'POST', { ...form });
             auth.login(data.name, data.token, data.userId);
-        } catch (e) {}
+        } catch (e) {
+            console.log('error');
+        }
     };
 
     const changeHandler = (event) => {
@@ -44,7 +52,7 @@ export const AuthPage = () => {
         return (
             <div className='auth-wrapper wrapper'>
                 <div className='auth-card card'>
-                    <span className='auth-card-title'>Auth</span>
+                    <span className='auth-card-title'>Auth {lang}</span>
                     <input
                         className='auth-card-email auth-input'
                         autoComplete='off'
@@ -74,6 +82,7 @@ export const AuthPage = () => {
                             SignUp
                         </button>
                     </div>
+                    <span className='auth-message'>1{message}</span>
                     <span className='auth-without-reg'>Продолжить без регистрации</span>
                 </div>
             </div>
@@ -113,13 +122,6 @@ export const AuthPage = () => {
                     required
                     onChange={changeHandler}
                 />
-                <input
-                    className='auth-card-password-confirm auth-input'
-                    autoComplete='off'
-                    placeholder='confirm'
-                    type='password'
-                    required
-                />
                 <span className='auth-password-length'>Мин длинна 6 символов</span>
                 <div className='auth-buttons-wrapper'>
                     <button className='auth-button login' onClick={registerHandler} disabled={loading}>
@@ -129,7 +131,7 @@ export const AuthPage = () => {
                         Cansel
                     </button>
                 </div>
-                <span className='auth-message'></span>
+                <span className='auth-message'>{message}</span>
             </div>
         </div>
     );

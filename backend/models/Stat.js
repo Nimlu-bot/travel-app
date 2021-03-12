@@ -6,7 +6,7 @@ const schema = new Schema({
     hits: { type: Number, default: 0 },
     kills: { type: Number, default: 0 },
     score: { type: Number, default: 0 },
-    owner: { type: Types.ObjectId, ref: 'User' }
+    owner: { type: Types.ObjectId, ref: 'User' },
 });
 
 module.exports = model('Stat', schema);

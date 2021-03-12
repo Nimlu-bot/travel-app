@@ -10,7 +10,7 @@ export default function Video() {
                 frameBorder='0'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                 title='GreatBritain'
-                allowFullScreen='true'
+                allowFullScreen={true}
             ></iframe>
         </div>
     );

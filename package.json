@@ -1,49 +1,76 @@
 {
-  "name": "travel-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@mapbox/mapbox-gl-language": "^0.10.1",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.8.1",
-    "leaflet": "^1.7.1",
-    "mapbox-gl": "^2.1.1",
-    "node-sass": "^5.0.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-image-gallery": "^1.0.9",
-    "react-leaflet": "^3.1.0",
-    "react-mapbox-gl": "^5.1.1",
-    "react-mapbox-gl-language": "^1.0.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "redux": "^4.0.5",
-    "video-react": "^0.14.1",
-    "web-vitals": "^1.1.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "travel-app",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@testing-library/jest-dom": "^5.11.9",
+        "@testing-library/react": "^11.2.5",
+        "@testing-library/user-event": "^12.8.1",
+        "leaflet": "^1.7.1",
+        "moment": "^2.29.1",
+        "node-sass": "^5.0.0",
+        "prop-types": "^15.7.2",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-image-gallery": "^1.0.9",
+        "react-leaflet": "^3.1.0",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "4.0.3",
+        "redux": "^4.0.5",
+        "video-react": "^0.14.1",
+        "web-vitals": "^1.1.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "format": "prettier --write ."
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "eslint": "^7.21.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-prettier": "^3.3.1",
+        "eslint-plugin-react": "^7.22.0",
+        "husky": "^4.3.8",
+        "lint-staged": "^10.5.4",
+        "prettier": "2.2.1",
+        "stylelint": "^13.12.0",
+        "stylelint-config-prettier": "^8.0.2",
+        "stylelint-config-recommended": "^4.0.0",
+        "stylelint-order": "^4.1.0",
+        "stylelint-scss": "^3.19.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "!(_*).scss": [
+            "prettier --write",
+            "stylelint --fix --color --config ./.stylelintrc.json"
+        ],
+        "*.{js,jsx}": [
+            "eslint --fix --color"
+        ]
+    }
 }
