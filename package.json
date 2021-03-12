@@ -76,7 +76,7 @@
             "stylelint --fix --color --config ./.stylelintrc.json"
         ],
         "*.{js,jsx}": [
-            "eslint --fix --color"
+            "eslint --fix --color --config .eslintrc.prod.json"
         ]
     }
 }
