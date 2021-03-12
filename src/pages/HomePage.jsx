@@ -5,7 +5,6 @@ import { CountryCard } from './../components/CountryCard';
 import Parallax from '../components/Parallax';
 import { useSearch } from '../context/SearchContext';
 import countries from '../components/countries';
-// import { countryesSet } from '../components/about';
 
 //import { useHttp } from './../hooks/httpHook'; //потом удалить
 import { useLanguage } from '../context/LanguageContext';
@@ -39,14 +38,14 @@ export const HomePage = () => {
                         .filter((data) => {
                             if (search.search == '') return data;
                             else if (
-                                data.name.en.toLowerCase().includes(search.search.toLowerCase()) ||
-                                data.capital.name.en.toLowerCase().includes(search.search.toLowerCase())
+                                data.name[lang].toLowerCase().includes(search.search.toLowerCase()) ||
+                                data.capital.name[lang].toLowerCase().includes(search.search.toLowerCase())
                             ) {
                                 return data;
                             }
                         })
                         .map((el, i) => {
-                            return <CountryCard key={i} text={el.name.en} id={el.iso} />;
+                            return <CountryCard key={i} text={el.name[lang]} id={el.iso} />;
                         })}
                 </div>
             </div>

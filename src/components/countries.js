@@ -126,7 +126,7 @@ const countries = [
             },
             coords: [51.509865, -0.118092],
             timezone: {
-                standard: 'UTC+01',
+                standard: '1',
                 dst: {
                     type: 'northern',
                     value: 'UTC+02',
@@ -181,7 +181,7 @@ const countries = [
             },
             coords: [51.509865, -0.118092],
             timezone: {
-                standard: 'UTC+02',
+                standard: '2',
                 dst: {
                     type: 'northern',
                     value: 'UTC+03',
@@ -236,7 +236,7 @@ const countries = [
             },
             coords: [51.509865, -0.118092],
             timezone: {
-                standard: 'UTC+01',
+                standard: '1',
                 dst: {
                     type: 'northern',
                     value: 'UTC+02',
@@ -291,7 +291,7 @@ const countries = [
             },
             coords: [51.509865, -0.118092],
             timezone: {
-                standard: 'UTC+01',
+                standard: '1',
                 dst: {
                     type: 'northern',
                     value: 'UTC+02',
@@ -346,7 +346,7 @@ const countries = [
             },
             coords: [51.509865, -0.118092],
             timezone: {
-                standard: 'UTC+01',
+                standard: '1',
                 dst: {
                     type: 'northern',
                     value: 'UTC+02',
@@ -401,7 +401,7 @@ const countries = [
             },
             coords: [51.509865, -0.118092],
             timezone: {
-                standard: 'UTC+01',
+                standard: '1',
                 dst: {
                     type: 'northern',
                     value: 'UTC+01',

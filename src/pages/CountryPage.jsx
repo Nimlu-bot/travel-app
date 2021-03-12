@@ -2,9 +2,9 @@ import React from 'react';
 import Header from './../components/Header';
 import Footer from './../components/Footer';
 import CountryAbout from './../components/CountryAbout';
-// import Wether from '../components/Weather';
-// import Currency from '../components/Currency';
-// import DateTime from '../components/DateTime';
+import Wether from '../components/Weather';
+import Currency from '../components/Currency';
+import DateTime from '../components/DateTime';
 import PhotoGallery from '../components/PhotoGalery';
 import Reaction from '../components/Reaction';
 import Video from '../components/Video';
@@ -20,12 +20,12 @@ export const CountryPage = () => {
         <>
             <Header />
             <div className='country-wrapper wrapper'>
-                <div className='country-title title'> Country Page {lang}</div>
-                <CountryAbout country={countryParams.country} />
+                <div className='country-title title'> Country Page</div>
+                <CountryAbout country={countryParams.country} lang={lang} />
                 <div className='country-widjets-wrapper'>
-                    {/* <Wether country={countryParams.country} lang={lang} />
+                    <Wether country={countryParams.country} lang={lang} />
                     <Currency currency={countryParams.country.currency.iso} />
-                    <DateTime timeZone={countryParams.country.capital.timezone.standard} lang={lang} /> */}
+                    <DateTime timeZone={countryParams.country.capital.timezone.standard} lang={lang} />
                 </div>
                 <div className='country-media-wrapper'>
                     <div className='country-gallery-wrapper'>
