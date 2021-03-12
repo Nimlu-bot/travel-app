@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import React, { useContext, useEffect, useState } from 'react';
 
 const SearchContext = React.createContext();
 
@@ -35,7 +35,7 @@ const SearchProvider = ({ children }) => {
 };
 
 SearchProvider.propTypes = {
-    children: PropTypes.object,
+    children: PropTypes.node,
 };
 
 export { useSearch, SearchProvider };
