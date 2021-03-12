@@ -10,10 +10,8 @@ import { countryesSet } from '../components/about';
 import { useLanguage } from '../context/LanguageContext';
 
 export const HomePage = () => {
-    //const [cards] = useState(['GB', 'FR', 'IT', 'UA', 'DE', 'CZ', 'AT', 'ES']);
     const lang = useLanguage().language;
     const search = useSearch();
-    //console.log(cards);
     //const { request } = useHttp(); // потом удалить
 
     //console.log(lang.language);
@@ -48,11 +46,6 @@ export const HomePage = () => {
                         .map((el, i) => {
                             return <CountryCard key={i} text={el.country} id={el.countryShort} />;
                         })}
-
-                    {/* {countryesSet.map((el, i) => {
-                        console.log(el);
-                        return <CountryCard key={i} text={el.country} id={el.countryShort} />;
-                    })} */}
                 </div>
             </div>
             {/* <button className='reg' onClick={regHandler}>
@@ -62,12 +55,3 @@ export const HomePage = () => {
         </>
     );
 };
-// const items = countryesSet.filter((data) => {
-//     if (search.search == '') return data;
-//     else if (
-//         data.country.toLowerCase().includes(search.search.toLowerCase()) ||
-//         data.capital.toLowerCase().includes(search.search.toLowerCase())
-//     ) {
-//         return data;
-//     }
-// });

@@ -13,14 +13,14 @@ export default function SearchField() {
             search.setSearch(e.target.value);
         }
     };
-    const serchButtonHandler = () => {
+    const searchButtonHandler = () => {
         console.log('Нажал кнопку поиска, а получил ничего))');
         fieldRef.current.focus();
         search.setSearch(fieldRef.current.value);
     };
     return (
         <div className='search-wrapper'>
-            <div className='search-button' onClick={() => serchButtonHandler()}></div>
+            <div className='search-button' onClick={() => searchButtonHandler()}></div>
             <input
                 autoFocus
                 className='search'

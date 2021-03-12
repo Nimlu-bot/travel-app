@@ -9,19 +9,12 @@ import PhotoGallery from '../components/PhotoGalery';
 import Reaction from '../components/Reaction';
 import Video from '../components/Video';
 import Map from '../components/Map';
-// import { useParams } from 'react-router-dom';
 import { useCountry } from './../context/CountryContext';
 import { useLanguage } from './../context/LanguageContext';
 
 export const CountryPage = () => {
-    //const { id } = useParams();
     const countryParams = useCountry();
     const lang = useLanguage().language;
-    //countryParams.setCountry(id);
-    //const country = countryParams.country;
-    // const [country, setCountry] = useState();
-    // setCountry(countryParams.country);
-    // console.log(countryParams.country.currency);
     return (
         <>
             <Header />
@@ -38,7 +31,7 @@ export const CountryPage = () => {
                         <PhotoGallery />
                         <Reaction />
                     </div>
-                    <Video />
+                    <Video video={countryParams.country.videoLink} />
                 </div>
                 <Map />
             </div>

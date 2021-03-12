@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function Video() {
+function Video(props) {
     return (
         <div className='video-wrapper'>
             <iframe
                 width='100%'
                 height='315'
-                src='https://www.youtube.com/embed/Uy9sXRk7its'
+                src={props.video}
                 frameBorder='0'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                 title='GreatBritain'
@@ -15,3 +16,9 @@ export default function Video() {
         </div>
     );
 }
+
+Video.propTypes = {
+    video: PropTypes.string,
+};
+
+export default Video;
