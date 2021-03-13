@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { PageTitle } from '../components/PageTitle';
 import Parallax from '../components/Parallax';
+import Quote from '../components/Quote';
 
 const title = {
     en: 'Home Page',
@@ -15,11 +16,13 @@ export const HomePage = () => {
     return (
         <>
             <Header />
-            <Parallax />
+
             <div className='home-wrapper wrapper'>
                 <PageTitle title={title} />
                 <CountryList />
             </div>
+            <Parallax />
+            <Quote />
             <Footer />
         </>
     );

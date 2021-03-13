@@ -24,9 +24,11 @@ function DateTime(props) {
 
     return (
         <div className='time-wrapper'>
-            <p>{date[0]}</p>
-            <p>{date[1]}</p>
-            <p>{date[2]}</p>
+            <span>{date[0]}</span>
+            <span>{date[1]}</span>
+            <span>{date[2]}</span>
+            {/* <p>{date.date}</p>
+            <p>{`${date.hour}:${date.min}:${date.sec}`}</p> */}
         </div>
     );
 }
