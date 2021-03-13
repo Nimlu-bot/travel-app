@@ -16,6 +16,8 @@ export default function Header() {
         auth.logout();
         history.push('/');
     };
+
+    const name = auth.name || 'Аnonim';
     const lang = useLanguage().language;
 
     const logOutName = {
@@ -57,7 +59,7 @@ export default function Header() {
 
             <div className='header-user-wrapper'>
                 <div className='login-wrapper'>
-                    <div className='header-user'>User </div>
+                    <div className='header-user'>{name} </div>
                     <button className='header-logout' onClick={logoutHandler}>
                         {logOutName[lang]}
                     </button>

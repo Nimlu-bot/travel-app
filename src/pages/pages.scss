@@ -320,22 +320,17 @@ body {
             height: 384px;
             margin: 5px;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             flex-direction: column;
             position: relative;
             background-color: $colorCard;
             cursor: pointer;
 
             &:hover {
-                //border: 1px solid red;
                 box-shadow: inset 0px 0px 10px $colorHover;
             }
 
             .card-description {
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translate(-50%, 0);
                 font-size: 2rem;
             }
         }
