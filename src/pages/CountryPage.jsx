@@ -1,14 +1,15 @@
 import React from 'react';
-import Header from './../components/Header';
-import Footer from './../components/Footer';
-import CountryAbout from './../components/CountryAbout';
-import Wether from '../components/Weather';
 import Currency from '../components/Currency';
 import DateTime from '../components/DateTime';
+import Map from '../components/Map';
+import { PageTitle } from '../components/PageTitle';
 import PhotoGallery from '../components/PhotoGalery';
 import Reaction from '../components/Reaction';
 import Video from '../components/Video';
-import Map from '../components/Map';
+import Wether from '../components/Weather';
+import CountryAbout from './../components/CountryAbout';
+import Footer from './../components/Footer';
+import Header from './../components/Header';
 import { useCountry } from './../context/CountryContext';
 import { useLanguage } from './../context/LanguageContext';
 
@@ -16,7 +17,7 @@ export const CountryPage = () => {
     const countryParams = useCountry();
     const lang = useLanguage().language;
     // console.log(countryParams.country);
-    const pageName = {
+    const title = {
         en: 'Country Page',
         ru: 'Страница страны',
         ua: 'Cторінка країни',
@@ -25,7 +26,7 @@ export const CountryPage = () => {
         <>
             <Header />
             <div className='country-wrapper wrapper'>
-                <div className='country-title title'> {pageName[lang]}</div>
+                <PageTitle title={title} />
                 <CountryAbout country={countryParams.country} lang={lang} />
                 <div className='country-widjets-wrapper'>
                     <Wether country={countryParams.country} lang={lang} />

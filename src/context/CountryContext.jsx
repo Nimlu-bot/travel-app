@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import countries from '../components/countries';
+import { countries } from '../components/countries';
 import { useLocalStorage } from '../hooks/localStorage';
 
 const CountryContext = React.createContext();
