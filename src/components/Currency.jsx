@@ -51,9 +51,9 @@ function Currency(props) {
     return (
         <div className='currency-wrapper'>
             <div className='currency-name'>{props.currency}</div>
-            <div className='currency-rate'>1€={(exchangeRate.eur / exchangeRate.rate).toFixed(2)}</div>
-            <div className='currency-rate'>1$={(exchangeRate.usd / exchangeRate.rate).toFixed(2)}</div>
-            <div className='currency-rate'>1BYN={(1 / exchangeRate.rate).toFixed(2)}</div>
+            <div className='currency-rate euro'>1€={(exchangeRate.eur / exchangeRate.rate).toFixed(2)}</div>
+            <div className='currency-rate usd'>1$={(exchangeRate.usd / exchangeRate.rate).toFixed(2)}</div>
+            <div className='currency-rate byn'>1BYN={(1 / exchangeRate.rate).toFixed(2)}</div>
         </div>
     );
 }
