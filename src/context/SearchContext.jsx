@@ -1,5 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
+import { useLocalStorage } from '../hooks/localStorage';
 
 const SearchContext = React.createContext();
 
@@ -8,25 +9,18 @@ const useSearch = () => {
 };
 
 const SearchProvider = ({ children }) => {
-    const [search, setSearch] = useState(localStorage.getItem('search') || '');
+    const [search, setSearch] = useLocalStorage('search', '');
 
-    const chooseSearch = (string) => {
-        setSearch(string);
-    };
     const clearSearch = () => {
         setSearch('');
     };
 
-    useEffect(() => {
-        localStorage.setItem('search', search);
-    }, []);
-
     return (
         <SearchContext.Provider
             value={{
-                search: search,
-                setSearch: chooseSearch,
-                clearSearch: clearSearch,
+                search,
+                setSearch,
+                clearSearch,
             }}
         >
             {children}
@@ -35,7 +29,7 @@ const SearchProvider = ({ children }) => {
 };
 
 SearchProvider.propTypes = {
-    children: PropTypes.object,
+    children: PropTypes.node,
 };
 
 export { useSearch, SearchProvider };

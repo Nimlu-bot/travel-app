@@ -1,4 +1,26 @@
-const countries = [
+import PropTypes from 'prop-types';
+import * as images from './countryImаges';
+
+export const countryPropTypes = PropTypes.shape({
+    name: PropTypes.shape({
+        ru: PropTypes.string,
+        en: PropTypes.string,
+        ua: PropTypes.string,
+    }),
+    capital: PropTypes.shape({
+        name: PropTypes.shape({
+            ru: PropTypes.string,
+            en: PropTypes.string,
+            ua: PropTypes.string,
+        }),
+    }),
+    iso: PropTypes.string,
+    thumbnail: PropTypes.shape({
+        url: PropTypes.string,
+    }),
+});
+
+export const countries = [
     {
         id: '6e904621-4185-4357-8140-17198979f524',
         iso: 'GB',
@@ -34,7 +56,7 @@ const countries = [
             symbol: '£',
         },
         thumbnail: {
-            url: 'https://example.com/photo/gb.png',
+            url: images['GB'],
 
             width: 100,
             height: 100,
@@ -90,7 +112,7 @@ const countries = [
             symbol: '€',
         },
         thumbnail: {
-            url: 'https://example.com/photo/gb.png',
+            url: images['FR'],
 
             width: 100,
             height: 100,
@@ -145,7 +167,7 @@ const countries = [
             symbol: '€',
         },
         thumbnail: {
-            url: 'https://example.com/photo/gb.png',
+            url: images['IT'],
 
             width: 100,
             height: 100,
@@ -200,7 +222,7 @@ const countries = [
             symbol: '₴',
         },
         thumbnail: {
-            url: 'https://example.com/photo/gb.png',
+            url: images['UA'],
 
             width: 100,
             height: 100,
@@ -255,7 +277,7 @@ const countries = [
             symbol: '€',
         },
         thumbnail: {
-            url: 'https://example.com/photo/gb.png',
+            url: images['DE'],
 
             width: 100,
             height: 100,
@@ -310,7 +332,7 @@ const countries = [
             symbol: '',
         },
         thumbnail: {
-            url: 'https://example.com/photo/gb.png',
+            url: images['CZ'],
 
             width: 100,
             height: 100,
@@ -365,7 +387,7 @@ const countries = [
             symbol: '€',
         },
         thumbnail: {
-            url: 'https://example.com/photo/gb.png',
+            url: images['AT'],
 
             width: 100,
             height: 100,
@@ -420,7 +442,7 @@ const countries = [
             symbol: '€',
         },
         thumbnail: {
-            url: 'https://example.com/photo/gb.png',
+            url: images['ES'],
 
             width: 100,
             height: 100,
@@ -441,5 +463,3 @@ const countries = [
         },
     },
 ];
-
-export default countries;

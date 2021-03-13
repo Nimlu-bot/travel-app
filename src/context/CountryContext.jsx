@@ -1,6 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react';
-import countries from '../components/countries';
 import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
+import { countries } from '../components/countries';
+import { useLocalStorage } from '../hooks/localStorage';
 
 const CountryContext = React.createContext();
 
@@ -9,20 +10,17 @@ const useCountry = () => {
 };
 
 const CountryProvider = ({ children }) => {
-    const [country, setCountry] = useState(JSON.parse(localStorage.getItem('country')) || {});
+    const [country, setCountry] = useLocalStorage('country', {});
 
     const chooseCountry = (code) => {
         const number = countries.filter((el) => el.iso === code);
-        setCountry(number[0]);
+        setCountry(number[0] || {});
     };
-    useEffect(() => {
-        localStorage.setItem('country', JSON.stringify(country));
-    }, [country]);
 
     return (
         <CountryContext.Provider
             value={{
-                country: country,
+                country,
                 setCountry: chooseCountry,
             }}
         >
@@ -32,7 +30,7 @@ const CountryProvider = ({ children }) => {
 };
 
 CountryProvider.propTypes = {
-    children: PropTypes.object,
+    children: PropTypes.node,
 };
 
 export { useCountry, CountryProvider };
