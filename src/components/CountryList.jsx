@@ -24,8 +24,14 @@ export const CountryList = () => {
 
     return (
         <div id='country' className='cards-wrapper'>
-            {filteredCountries.map((el, i) => (
-                <CountryCard key={i} country={el} handleClick={() => action(el.iso)} />
+            {filteredCountries.map((el) => (
+                <CountryCard
+                    key={el.iso}
+                    name={el.name[language]}
+                    capital={el.capital.name[language]}
+                    imageUrl={el.thumbnail.url}
+                    handleClick={() => action(el.iso)}
+                />
             ))}
         </div>
     );

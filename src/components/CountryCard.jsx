@@ -1,15 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { countryPropTypes } from './countries';
 
-export const CountryCard = ({ country, handleClick }) => {
-    const { language } = useLanguage();
-
-    const name = country.name[language];
-    const capital = country.capital.name[language];
-    const imageUrl = country.thumbnail.url;
-
+export const CountryCard = ({ name, capital, imageUrl, handleClick }) => {
     return (
         <div className='card-wrapper card' style={{ backgroundImage: `url(${imageUrl})` }} onClick={handleClick}>
             <div className='card-description'>{name}</div>
@@ -19,6 +11,8 @@ export const CountryCard = ({ country, handleClick }) => {
 };
 
 CountryCard.propTypes = {
-    country: countryPropTypes,
-    handleClick: PropTypes.func,
+    name: PropTypes.string.isRequired,
+    capital: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    handleClick: PropTypes.func.isRequired,
 };
