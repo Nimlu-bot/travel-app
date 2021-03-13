@@ -11,7 +11,7 @@ function Weather(props) {
     });
 
     const { request } = useHttp();
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${props.country.capital}&lang=${props.lang}&appid=7c599ba528ac05000344261f5479e8de&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${props.country.capital.name.en}&lang=${props.lang}&appid=7c599ba528ac05000344261f5479e8de&units=metric`;
 
     const weatherHandler = useCallback(async () => {
         try {

@@ -18,6 +18,12 @@ export default function Header() {
     };
     const lang = useLanguage().language;
 
+    const logOutName = {
+        en: 'LogOut',
+        ru: 'выход',
+        ua: 'вихід',
+    };
+
     return (
         <div className='header-wrapper'>
             <div className='header-logo'>
@@ -65,9 +71,9 @@ export default function Header() {
             {!id && <SearchField />}
 
             <div>
-                <div className='header-user'>User {lang} </div>
+                <div className='header-user'>User </div>
                 <button className='header-logout' onClick={logoutHandler}>
-                    LogOut
+                    {logOutName[lang]}
                 </button>
             </div>
         </div>
