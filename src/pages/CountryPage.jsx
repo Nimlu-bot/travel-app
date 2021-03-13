@@ -41,9 +41,11 @@ export const CountryPage = () => {
                         <PhotoGallery countryShort={countryParams.country.iso} lang={lang} />
                         <Reaction />
                     </div>
-                    <Video video={countryParams.country.video.url} />
+                    <div className='video-map'>
+                        <Video video={countryParams.country.video.url} />
+                        <Map />
+                    </div>
                 </div>
-                <Map />
             </div>
 
             <Footer />

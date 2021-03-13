@@ -52,29 +52,17 @@ export default function Header() {
                         <path d='m5 57c-1.654 0-3 1.346-3 3s1.346 3 3 3c1.302 0 2.402-.839 2.816-2h9.184v-2h-9.184c-.414-1.161-1.514-2-2.816-2zm0 4c-.552 0-1-.449-1-1s.448-1 1-1 1 .449 1 1-.448 1-1 1z' />
                     </svg>
                 </NavLink>
+                <Language />
             </div>
-            <nav>
-                <ul>
-                    <li className='active'>
-                        <a href='/#'>home page</a>
-                    </li>
-                    <li>
-                        <a href='#country'>country</a>
-                    </li>
-                    <li>
-                        <a href='#footer'>contacts</a>
-                    </li>
-                </ul>
-            </nav>
 
-            <Language />
-            {!id && <SearchField />}
-
-            <div>
-                <div className='header-user'>User </div>
-                <button className='header-logout' onClick={logoutHandler}>
-                    {logOutName[lang]}
-                </button>
+            <div className='header-user-wrapper'>
+                <div className='login-wrapper'>
+                    <div className='header-user'>User </div>
+                    <button className='header-logout' onClick={logoutHandler}>
+                        {logOutName[lang]}
+                    </button>
+                </div>
+                {!id && <SearchField />}
             </div>
         </div>
     );
