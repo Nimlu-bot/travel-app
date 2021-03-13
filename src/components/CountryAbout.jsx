@@ -5,16 +5,20 @@ import * as images from './countryImаges';
 import PropTypes from 'prop-types';
 
 function CountryAbout(props) {
+    const lang = props.lang;
     return (
         <div className='country-about-wrapper'>
             <div
                 className='country-photo-wrapper'
-                style={{ backgroundImage: `url(${images[props.country.countryShort]})` }}
+                style={{ backgroundImage: `url(${images[props.country.iso]})` }}
             ></div>
             <div className='country-about'>
-                <h2 className='country-name'>{props.country.country}</h2>
+                {/* <h2 className='country-name'>{props.country.country}</h2>
                 <h3 className='country-capital-name'>{props.country.capital}</h3>
-                <p className='country-about-text'>{props.country.about}</p>
+                <p className='country-about-text'>{props.country.about}</p> */}
+                <h2 className='country-name'>{props.country.name[lang]}</h2>
+                <h3 className='country-capital-name'>{props.country.capital.name[lang]}</h3>
+                <p className='country-about-text'>{props.country.summary[lang]}</p>
             </div>
         </div>
     );
@@ -22,6 +26,7 @@ function CountryAbout(props) {
 
 CountryAbout.propTypes = {
     country: PropTypes.object,
+    lang: PropTypes.string,
 };
 
 export default CountryAbout;

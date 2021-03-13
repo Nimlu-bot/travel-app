@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
 import { useSearch } from '../context/SearchContext';
+import { useLanguage } from './../context/LanguageContext';
 
 export default function SearchField() {
     const fieldRef = useRef();
     const search = useSearch();
+    const lang = useLanguage().language;
     const changeHandler = (event) => {
         search.setSearch(event.target.value);
     };
@@ -18,6 +20,12 @@ export default function SearchField() {
         fieldRef.current.focus();
         search.setSearch(fieldRef.current.value);
     };
+
+    const placeholderName = {
+        en: 'search',
+        ru: 'поиск',
+        ua: 'пошук',
+    };
     return (
         <div className='search-wrapper'>
             <div className='search-button' onClick={() => searchButtonHandler()}></div>
@@ -25,7 +33,7 @@ export default function SearchField() {
                 autoFocus
                 className='search'
                 autoComplete='off'
-                placeholder='search'
+                placeholder={placeholderName[lang]}
                 type='text'
                 name='search'
                 value={search.search}

@@ -11,11 +11,11 @@ function DateTime(props) {
     const [date, setDate] = useState('');
 
     const lang = props.lang === 'ua' ? 'uk' : props.lang;
-    const offset = 3;
+    const offset = parseInt(props.timeZone);
     moment.locale(lang);
     const dateNow = moment()
         .utcOffset(60 * offset)
-        .format('dddd, MMMM DD YYYY, hh:mm:ss')
+        .format('dddd, MMMM DD YYYY, HH:mm:ss')
         .split(',');
     useEffect(() => {
         const intervalID = setInterval(() => setDate(dateNow), 1000);
@@ -35,6 +35,7 @@ function DateTime(props) {
 
 DateTime.propTypes = {
     lang: PropTypes.string,
+    timeZone: PropTypes.string,
 };
 
 export default DateTime;

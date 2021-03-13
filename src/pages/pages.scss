@@ -2,7 +2,7 @@
 @import '../assets/owfont-regular.css';
 
 $colorBody: #262626f1;
-$colorHeaderFooter: #433f3fa3;
+$colorHeaderFooter: #524848;
 $colorCard: #524848;
 $colorHover: rgb(255, 153, 0);
 $colorBlack: #000;
@@ -18,6 +18,87 @@ html {
 
 body {
     background-color: $colorBody;
+}
+
+// registration form
+.auth-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    .auth-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 300px;
+        background-color: $colorWidjets;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 2px $colorWhite;
+        cursor: default;
+        transition: all 0.2s;
+
+        .auth-card-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .auth-input {
+            outline: none;
+            border: none;
+            margin: 5px 0px;
+            font-size: 18px;
+            line-height: 21px;
+            padding: 2px 4px;
+            border-radius: 5px;
+        }
+        .auth-input:hover {
+            box-shadow: 0 0 3px $colorBlack;
+        }
+        .auth-password-length {
+            font-size: 12px;
+            line-height: 14px;
+            margin-bottom: 10px;
+            cursor: default;
+        }
+        .auth-buttons-wrapper {
+            margin-top: 10px;
+            .auth-button {
+                width: 80px;
+                height: 35px;
+                cursor: pointer;
+                outline: none;
+                margin: 0 5px;
+                border-radius: 5px;
+                border: none;
+                transition: all 0.2s;
+            }
+            .auth-button:hover {
+                transform: scale(1.05);
+                background-color: $colorHover;
+            }
+            .auth-button:active {
+                transform: scale(1);
+                background-color: $colorCard;
+            }
+        }
+        .auth-message {
+            user-select: none;
+            font-size: 12px;
+            line-height: 14px;
+            margin: 10px 0;
+        }
+        .auth-without-reg {
+            font-size: 12px;
+            line-height: 14px;
+            background-color: $colorCard;
+            cursor: pointer;
+            padding: 5px 0px;
+            border-radius: 5px;
+        }
+    }
+    .auth-card:hover {
+        transform: scale(1.1);
+    }
 }
 
 // first pages
@@ -42,6 +123,10 @@ body {
 // header
 .header-wrapper {
     .header-logo {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 50%;
         svg {
             width: 100px;
             height: 100px;
@@ -78,37 +163,6 @@ body {
         }
     }
 
-    nav {
-        ul {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            li {
-                margin: 8px;
-                padding: 2px;
-                cursor: pointer;
-                a {
-                    text-decoration: none;
-                    color: $colorLink;
-                    font-size: 16px;
-                    line-height: 19px;
-                    text-transform: capitalize;
-                    font-weight: 400;
-                }
-            }
-            li:hover {
-                transition: all 0.2s;
-                border-bottom: 3px solid $colorHover;
-            }
-            .active {
-                border-bottom: 3px solid $colorHover;
-            }
-        }
-    }
-
     .language-wrapper {
         position: relative;
 
@@ -132,38 +186,75 @@ body {
         }
     }
 
-    .search-wrapper {
+    .header-user-wrapper {
         display: flex;
-        justify-content: flex-start;
+        flex-direction: row-reverse;
         align-items: center;
-        border: 1px solid $colorBlack;
-        border-radius: 5px;
-        padding: 5px;
+        justify-content: space-between;
+        width: 50%;
+        height: 60px;
 
-        background-color: $colorHeaderFooter;
-
-        .search {
-            width: 200px;
-            height: 40px;
+        .search-wrapper {
             display: flex;
+            justify-content: flex-start;
             align-items: center;
-            justify-content: center;
+            border: 1px solid $colorBlack;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 0 auto;
 
-            background-color: transparent;
-            outline: none;
-            margin: 0;
-            padding: 0;
-            border: none;
+            background-color: $colorHeaderFooter;
+
+            .search {
+                width: 200px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                background-color: transparent;
+                outline: none;
+                margin: 0;
+                padding: 0;
+                border: none;
+            }
+
+            .search-button {
+                width: 30px;
+                height: 30px;
+                background-image: url(../assets/img/search.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                cursor: pointer;
+            }
         }
-
-        .search-button {
-            width: 30px;
-            height: 30px;
-            background-image: url(../assets/img/search.png);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            cursor: pointer;
+        .login-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin: 0 50px;
+            height: 100%;
+            .header-logout {
+                width: 70px;
+                height: 25px;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: $colorCard;
+                box-shadow: 0 0 3px $colorWhite;
+                transition: all 0.2s;
+            }
+            .header-logout:hover {
+                background-color: $colorHover;
+                transform: scale(1.05);
+            }
+            .header-logout:active {
+                transform: scale(1);
+                background-color: $colorWidjets;
+            }
         }
     }
 }
@@ -181,13 +272,27 @@ body {
     background-attachment: fixed;
     background-position: bottom;
 
-    margin: 20px auto;
+    margin: 50px auto;
     h3 {
         font-size: 34px;
         line-height: 36px;
         opacity: 0.6;
         color: $colorHover;
     }
+}
+.quote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    height: 150px;
+    font-size: 20px;
+    line-height: 23px;
+    color: $colorHover;
+    background-color: $colorCard;
+    margin: 50px auto;
+    user-select: none;
+    cursor: pointer;
 }
 
 // heme-wrapper
@@ -196,7 +301,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 50px auto 0px;
     max-width: 1200px;
 
     .home-title {
@@ -208,6 +313,7 @@ body {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        margin: 50px auto;
 
         .card-wrapper {
             width: 288px;
@@ -265,6 +371,9 @@ body {
             color: $colorHover;
         }
     }
+    .footer-year {
+        cursor: default;
+    }
 }
 
 // second pages
@@ -277,7 +386,7 @@ body {
 
     // about-text
     .country-about-wrapper {
-        max-width: 1000px;
+        max-width: 1100px;
         margin: 0 auto;
         display: flex;
 
@@ -390,23 +499,35 @@ body {
     // media
     .country-media-wrapper {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: space-around;
         max-width: 1000px;
         padding: 5px;
-        margin: 50px auto;
+        margin: 50px auto 0px;
         // gallery
         .country-gallery-wrapper {
-            width: 300px;
+            background-color: $colorCard;
+            padding: 10px;
+            width: 100%;
+            .image-gallery-description {
+                display: none;
+            }
         }
         // video & map
         .video-map {
             display: flex;
-            flex-direction: column;
             justify-content: space-around;
-            height: 320px;
+            align-items: center;
+            width: 100%;
+            margin: 50px 0;
             .video-wrapper {
                 display: flex;
+                transition: all 0.2s;
+                cursor: pointer;
+            }
+            .video-wrapper:hover {
+                transform: scale(1.05);
             }
             .map-wrapper {
                 width: 300px;
@@ -414,8 +535,12 @@ body {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                margin: 0 auto;
-                background-color: $colorWhite;
+                background-color: $colorWidjets;
+                transition: all 0.2s;
+                cursor: pointer;
+            }
+            .map-wrapper:hover {
+                transform: scale(1.05);
             }
         }
     }
