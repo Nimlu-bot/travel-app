@@ -6,7 +6,7 @@ import { PageTitle } from '../components/PageTitle';
 import PhotoGallery from '../components/PhotoGalery';
 import Reaction from '../components/Reaction';
 import Video from '../components/Video';
-import Wether from '../components/Weather';
+import Weather from '../components/Weather';
 import CountryAbout from './../components/CountryAbout';
 import Footer from './../components/Footer';
 import Header from './../components/Header';
@@ -29,7 +29,7 @@ export const CountryPage = () => {
                 <PageTitle title={title} />
                 <CountryAbout country={countryParams.country} lang={lang} />
                 <div className='country-widjets-wrapper'>
-                    <Wether country={countryParams.country} lang={lang} />
+                    <Weather country={countryParams.country} lang={lang} />
                     <Currency
                         iso={countryParams.country.currency.iso}
                         currency={countryParams.country.currency.name[lang]}

@@ -6,7 +6,7 @@ import { PageTitle } from '../components/PageTitle';
 import Parallax from '../components/Parallax';
 
 const title = {
-    en: 'Country Page',
+    en: 'Home Page',
     ru: 'Главная Страница',
     ua: 'Головна Сторінка',
 };
