@@ -1,12 +1,14 @@
 import { useState, useCallback, useEffect } from 'react';
 
 const storageName = 'userData';
+const anonimStorData = 'anonim';
 
 export const useAuth = () => {
     const [name, setName] = useState(null);
     const [token, setToken] = useState(null);
     const [ready, setReady] = useState(false);
     const [userId, setUserId] = useState(null);
+    const [anonim, setAnonim] = useState(false);
 
     const login = useCallback((name, jwtToken, id) => {
         setName(name);
@@ -23,11 +25,19 @@ export const useAuth = () => {
         );
     }, []);
 
+    const withoutLogin = useCallback(() => {
+        setAnonim(true);
+
+        localStorage.setItem(anonimStorData, JSON.stringify(true));
+    }, []);
+
     const logout = useCallback(() => {
         setName(null);
         setToken(null);
         setUserId(null);
+        setAnonim(false);
         localStorage.removeItem(storageName);
+        localStorage.removeItem(anonimStorData);
     }, []);
 
     useEffect(() => {
@@ -39,5 +49,5 @@ export const useAuth = () => {
         setReady(true);
     }, [login]);
 
-    return { login, logout, token, name, userId, ready };
+    return { login, logout, withoutLogin, token, name, userId, ready, anonim };
 };

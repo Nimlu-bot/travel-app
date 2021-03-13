@@ -39,6 +39,9 @@ export const AuthPage = () => {
             console.log('error');
         }
     };
+    const wthoutRegHandler = () => {
+        auth.withoutLogin(true);
+    };
 
     const changeHandler = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -80,7 +83,9 @@ export const AuthPage = () => {
                         </button>
                     </div>
                     <span className='auth-message'>1{message}</span>
-                    <span className='auth-without-reg'>Продолжить без регистрации</span>
+                    <span className='auth-without-reg' onClick={wthoutRegHandler}>
+                        Продолжить без регистрации
+                    </span>
                 </div>
             </div>
         );
