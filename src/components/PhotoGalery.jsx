@@ -10,7 +10,7 @@ function PhotoGallery(props) {
         {
             original: country[0].thumbnail.url,
             thumbnail: country[0].thumbnail.url,
-            description: country[0].summary[lang],
+            description: 'dsdjshdjhsjhs', // country[0].summary[lang],
         },
         {
             original: country[1].thumbnail.url,
@@ -40,7 +40,7 @@ function PhotoGallery(props) {
     ];
     return (
         <div className='photo-wrapper'>
-            <ImageGallery items={images} />
+            <ImageGallery items={images} thumbnailPosition='left' />
         </div>
     );
 }
