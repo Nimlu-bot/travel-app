@@ -192,7 +192,7 @@ body {
         align-items: center;
         justify-content: space-between;
         width: 50%;
-        height: 60px;
+        height: 100%;
 
         .search-wrapper {
             display: flex;
@@ -236,6 +236,13 @@ body {
             justify-content: space-around;
             margin: 0 50px;
             height: 100%;
+            .header-image {
+                width: 80px;
+                height: 80px;
+                overflow: hidden;
+                background-size: cover;
+                margin-bottom: 5px;
+            }
             .header-logout {
                 width: 70px;
                 height: 25px;

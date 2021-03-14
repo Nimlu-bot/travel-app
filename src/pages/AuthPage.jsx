@@ -9,12 +9,16 @@ export const AuthPage = () => {
     const [message, setMessage] = useState();
     const auth = useContext(AuthContext);
     const { loading, request, error, clearError } = useHttp();
+    const [photo, setPhoto] = useState(null);
     const [form, setForm] = useState({
         name: '',
         email: '',
         password: '',
+        image: '',
     });
     const lang = useLanguage().language;
+
+    //const [data, setData] = useState();
 
     useEffect(() => {
         setMessage(error);
@@ -23,18 +27,47 @@ export const AuthPage = () => {
 
     const registerHandler = async () => {
         try {
+            const image = await uploadHandler();
+            console.log(image);
+            // setForm({ ...form, image: image });
             const data = await request('http://localhost:4000/api/auth/register', 'POST', { ...form });
-
+            //const dataPhoto = await request('http://localhost:4000/api/image', 'POST', photo);
             setMessage(data.message);
+            //console.log(dataPhoto);
         } catch (e) {
             console.log('error');
+        }
+    };
+    const uploadHandler = async () => {
+        try {
+            const formData = new FormData();
+            formData.append('file', photo);
+            formData.append('upload_preset', 'tsb1hppc');
+            const options = {
+                method: 'POST',
+                body: formData,
+            };
+            fetch('https://api.Cloudinary.com/v1_1/nimlu/image/upload', options)
+                .then((res) => res.json())
+                .then((res) => {
+                    setForm({ ...form, image: res.secure_url });
+                    return res.secure_url;
+                });
+        } catch (e) {
+            console.log('error');
+        }
+    };
+
+    const onPhotoSelect = (event) => {
+        if (event.target.files.length) {
+            setPhoto(event.target.files[0]);
         }
     };
 
     const loginHandler = async () => {
         try {
             const data = await request('http://localhost:4000/api/auth/login', 'POST', { ...form });
-            auth.login(data.name, data.token, data.userId);
+            auth.login(data.name, data.token, data.userId, data.image);
         } catch (e) {
             console.log('error');
         }
@@ -47,7 +80,12 @@ export const AuthPage = () => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
-    console.log(sign);
+    // useEffect(() => {
+    //     registerHandler();
+    // }, [form]);
+
+    //console.log(sign);
+    //console.log(data);
     if (!sign) {
         return (
             <div className='auth-wrapper wrapper'>
@@ -73,6 +111,7 @@ export const AuthPage = () => {
                         required
                         onChange={changeHandler}
                     />
+
                     <span className='auth-password-length'>Мин длинна 6 символов</span>
                     <div className='auth-buttons-wrapper'>
                         <button className='auth-button login' disabled={loading} onClick={loginHandler}>
@@ -124,6 +163,11 @@ export const AuthPage = () => {
                     required
                     onChange={changeHandler}
                 />
+                <input type='file' accept='image/*' onChange={onPhotoSelect} />
+                <button className='auth-button login' onClick={uploadHandler} disabled={loading}>
+                    upLoad
+                </button>
+
                 <span className='auth-password-length'>Мин длинна 6 символов</span>
                 <div className='auth-buttons-wrapper'>
                     <button className='auth-button login' onClick={registerHandler} disabled={loading}>

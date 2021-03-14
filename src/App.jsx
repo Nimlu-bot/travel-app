@@ -9,7 +9,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import { SearchProvider } from './context/SearchContext';
 
 function App() {
-    const { token, login, logout, withoutLogin, name, userId, anonim } = useAuth();
+    const { token, login, logout, withoutLogin, name, userId, anonim, image } = useAuth();
 
     const isAuthenticated = !!token;
 
@@ -25,6 +25,7 @@ function App() {
                     name,
                     userId,
                     anonim,
+                    image,
                     isAuthenticated,
                 }}
             >

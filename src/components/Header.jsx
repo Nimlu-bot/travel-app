@@ -60,6 +60,7 @@ export default function Header() {
             <div className='header-user-wrapper'>
                 <div className='login-wrapper'>
                     <div className='header-user'>{name} </div>
+                    <div className='header-image' style={{ backgroundImage: `url(${auth.image})` }}></div>
                     <button className='header-logout' onClick={logoutHandler}>
                         {logOutName[lang]}
                     </button>
