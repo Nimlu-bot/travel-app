@@ -18,22 +18,17 @@ export const AuthPage = () => {
     });
     const lang = useLanguage().language;
 
-    //const [data, setData] = useState();
-
     useEffect(() => {
         setMessage(error);
-        setTimeout(() => clearError(), 5000);
+        setTimeout(() => clearError(), 15000);
     }, [error, message, clearError]);
 
     const registerHandler = async () => {
         try {
             const image = await uploadHandler();
-            console.log(image);
-            // setForm({ ...form, image: image });
-            const data = await request('http://localhost:4000/api/auth/register', 'POST', { ...form });
-            //const dataPhoto = await request('http://localhost:4000/api/image', 'POST', photo);
+            const data = await request('http://localhost:4000/api/auth/register', 'POST', { ...form, image: image });
+            setSign((prevState) => !prevState);
             setMessage(data.message);
-            //console.log(dataPhoto);
         } catch (e) {
             console.log('error');
         }
@@ -47,14 +42,13 @@ export const AuthPage = () => {
                 method: 'POST',
                 body: formData,
             };
-            fetch('https://api.Cloudinary.com/v1_1/nimlu/image/upload', options)
-                .then((res) => res.json())
-                .then((res) => {
-                    setForm({ ...form, image: res.secure_url });
-                    return res.secure_url;
-                });
+            const data = await fetch('https://api.Cloudinary.com/v1_1/nimlu/image/upload', options).then((res) =>
+                res.json(),
+            );
+            setForm({ ...form, image: data.secure_url });
+            return data.secure_url;
         } catch (e) {
-            console.log('error');
+            console.log('error upload');
         }
     };
 
@@ -80,12 +74,6 @@ export const AuthPage = () => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
-    // useEffect(() => {
-    //     registerHandler();
-    // }, [form]);
-
-    //console.log(sign);
-    //console.log(data);
     if (!sign) {
         return (
             <div className='auth-wrapper wrapper'>
@@ -164,9 +152,10 @@ export const AuthPage = () => {
                     onChange={changeHandler}
                 />
                 <input type='file' accept='image/*' onChange={onPhotoSelect} />
-                <button className='auth-button login' onClick={uploadHandler} disabled={loading}>
-                    upLoad
-                </button>
+
+                {/* <button className='auth-button login' onClick={uploadHandler} disabled={loading}>
+									upLoad
+							</button> */}
 
                 <span className='auth-password-length'>Мин длинна 6 символов</span>
                 <div className='auth-buttons-wrapper'>
