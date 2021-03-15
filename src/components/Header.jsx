@@ -16,6 +16,8 @@ export default function Header() {
         auth.logout();
         history.push('/');
     };
+
+    const name = auth.name || 'Аnonim';
     const lang = useLanguage().language;
 
     const logOutName = {
@@ -23,20 +25,15 @@ export default function Header() {
         ru: 'выход',
         ua: 'вихід',
     };
+
     let [toggle, setToggle] = useState('');
     let [toggleHeader, setToggleHeader] = useState('');
-    let [style, setStyle] = useState('none');
 
     const burgerBtn = () => {
         console.log(toggle);
         setToggle(toggle === '' ? 'toggle' : '');
         setToggleHeader(toggleHeader === '' ? 'toggleHeader' : '');
-        setStyle(style === 'none' ? 'flex' : 'none');
     };
-
-    // let styles = {
-    //     display: style,
-    // };
 
     return (
         <slot>
@@ -97,7 +94,8 @@ export default function Header() {
 
                 <div className='header-user-wrapper'>
                     <div className='login-wrapper'>
-                        <div className='header-user'>User </div>
+                        <div className='header-user'>{name} </div>
+                        <div className='header-image' style={{ backgroundImage: `url(${auth.image})` }}></div>
                         <button className='header-logout' onClick={logoutHandler}>
                             {logOutName[lang]}
                         </button>

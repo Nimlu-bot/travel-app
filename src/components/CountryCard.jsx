@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export const CountryCard = ({ name, /*capital,*/ imageUrl, handleClick }) => {
+export const CountryCard = ({ name, capital, imageUrl, handleClick }) => {
     return (
         <div className='card-wrapper card' style={{ backgroundImage: `url(${imageUrl})` }} onClick={handleClick}>
             <div className='card-description'>{name}</div>
-            {/* <div className='card-description'>{capital}</div> */}
+            <div className='card-description'>{capital}</div>
         </div>
     );
 };

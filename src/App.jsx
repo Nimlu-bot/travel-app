@@ -9,10 +9,11 @@ import { LanguageProvider } from './context/LanguageContext';
 import { SearchProvider } from './context/SearchContext';
 
 function App() {
-    const { token, login, logout, name, userId } = useAuth();
+    const { token, login, logout, withoutLogin, name, userId, anonim, image } = useAuth();
 
     const isAuthenticated = !!token;
-    const routes = useRouts(isAuthenticated);
+
+    const routes = useRouts(isAuthenticated || anonim);
     return (
         <LanguageProvider>
             <AuthContext.Provider
@@ -20,8 +21,11 @@ function App() {
                     token,
                     login,
                     logout,
+                    withoutLogin,
                     name,
                     userId,
+                    anonim,
+                    image,
                     isAuthenticated,
                 }}
             >
