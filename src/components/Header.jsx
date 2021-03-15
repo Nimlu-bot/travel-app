@@ -26,6 +26,9 @@ export default function Header() {
         ua: 'вихід',
     };
 
+    const avatar =
+        auth.image || 'https://res.cloudinary.com/nimlu/image/upload/v1615815415/travel-app/avatar_nxcw4a.png';
+
     return (
         <div className='header-wrapper'>
             <div className='header-logo'>
@@ -60,7 +63,7 @@ export default function Header() {
             <div className='header-user-wrapper'>
                 <div className='login-wrapper'>
                     <div className='header-user'>{name} </div>
-                    <div className='header-image' style={{ backgroundImage: `url(${auth.image})` }}></div>
+                    <div className='header-image' style={{ backgroundImage: `url(${avatar})` }}></div>
                     <button className='header-logout' onClick={logoutHandler}>
                         {logOutName[lang]}
                     </button>
