@@ -1,8 +1,8 @@
 @import '~react-image-gallery/styles/scss/image-gallery.scss';
 @import '../assets/owfont-regular.css';
 
-$colorBody: #262626f1;
-$colorHeaderFooter: #524848;
+$colorBody: black;
+$colorHeaderFooter: #3a3a3a;
 $colorCard: #524848;
 $colorHover: rgb(255, 153, 0);
 $colorBlack: #000;
@@ -17,7 +17,9 @@ html {
 }
 
 body {
-    background-color: $colorBody;
+    background: -webkit-linear-gradient(135deg, rgb(0, 0, 0), rgb(169, 98, 4));
+    background: -moz-linear-gradient(135deg, rgb(0, 0, 0), rgb(169, 98, 4));
+    background: linear-gradient(135deg, rgb(0, 0, 0), rgb(169, 98, 4));
 }
 
 // registration form
@@ -120,6 +122,74 @@ body {
     line-height: 19px;
 }
 
+// header burger-btn
+.burger-btn {
+    width: 60px;
+    height: 60px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 15px;
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
+    span {
+        width: 80%;
+        height: 4px;
+        display: flex;
+        border-radius: 2px;
+        background-color: $colorWhite;
+        position: relative;
+        transition-delay: 0.15s;
+        transition-property: background-color;
+    }
+    span:before,
+    span:after {
+        width: 100%;
+        height: 4px;
+        content: '';
+        border-radius: 2px;
+        position: absolute;
+        background-color: $colorWhite;
+        transition: all 0.2s;
+    }
+    span:before {
+        transition-delay: 0.1s;
+        transition-property: top;
+        top: 10px;
+    }
+    span:after {
+        transition-delay: 0.1s;
+        transition-property: bottom;
+        bottom: 10px;
+    }
+}
+.toggle span {
+    transition-delay: 0.1s;
+    transition-property: background-color;
+    background-color: transparent;
+}
+
+.toggle span:before {
+    transition-delay: 0.1s, 0.3s;
+    transition-property: top, transform;
+    top: 0;
+    transform: rotate(-45deg);
+}
+.toggle span:after {
+    transition-delay: 0.1s, 0.3s;
+    transition-property: bottom, transform;
+    bottom: 0;
+    transform: rotate(45deg);
+}
+
+.toggleHeader {
+    display: flex !important;
+    opacity: 1 !important;
+    padding: 10px;
+}
+
 // header
 .header-wrapper {
     .header-logo {
@@ -174,6 +244,7 @@ body {
             border: none;
             font-size: 18px;
             line-height: 21px;
+            transition: all 0.2s;
             cursor: pointer;
             option {
                 outline: none;
@@ -182,7 +253,7 @@ body {
             }
         }
         select:hover {
-            text-shadow: 0 0 1px $colorSelectHover;
+            color: $colorHover;
         }
     }
 
@@ -198,12 +269,11 @@ body {
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            border: 1px solid $colorBlack;
             border-radius: 5px;
             padding: 5px;
             margin: 0 auto;
 
-            background-color: $colorHeaderFooter;
+            background-color: $colorCard;
 
             .search {
                 width: 200px;
@@ -236,6 +306,11 @@ body {
             justify-content: space-around;
             margin: 0 50px;
             height: 100%;
+            cursor: default;
+
+            .header-user {
+                margin: 10px 0;
+            }
             .header-logout {
                 width: 70px;
                 height: 25px;
@@ -285,12 +360,11 @@ body {
     align-items: center;
     justify-content: center;
     max-width: 1200px;
-    height: 150px;
+    height: 250px;
     font-size: 20px;
     line-height: 23px;
     color: $colorHover;
     background-color: $colorCard;
-    margin: 50px auto;
     user-select: none;
     cursor: pointer;
 }
@@ -301,12 +375,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 50px auto 0px;
     max-width: 1200px;
 
     .home-title {
-        margin-top: 5px;
+        margin-top: 50px;
         font-size: 2rem;
+        color: $colorHover;
+        cursor: default;
     }
 
     .cards-wrapper {
@@ -314,6 +389,7 @@ body {
         flex-wrap: wrap;
         justify-content: center;
         margin: 50px auto;
+        min-height: 800px;
 
         .card-wrapper {
             width: 288px;
@@ -325,6 +401,7 @@ body {
             position: relative;
             background-color: $colorCard;
             cursor: pointer;
+            border-radius: 10px;
 
             &:hover {
                 //border: 1px solid red;
@@ -380,15 +457,21 @@ body {
 .country-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    margin-top: 10px;
     position: relative;
     overflow: hidden;
 
+    .home-title {
+        margin-top: 5px;
+        font-size: 2rem;
+        color: $colorHover;
+        cursor: default;
+    }
     // about-text
     .country-about-wrapper {
         max-width: 1100px;
-        margin: 0 auto;
+        margin: 50px auto 0;
         display: flex;
+        padding: 5px;
 
         .country-photo-wrapper {
             flex-shrink: 0;
@@ -398,7 +481,6 @@ body {
             background-color: $colorCard;
         }
         .country-about {
-            margin-left: 10px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -411,6 +493,7 @@ body {
             }
             p {
                 color: rgb(226, 226, 226);
+                padding: 0 10px;
             }
         }
     }
@@ -430,7 +513,7 @@ body {
 
         position: absolute;
         top: -252px;
-        right: 200px;
+        right: 0px;
         transition: all 0.3s;
 
         .weather-wrapper {
@@ -543,5 +626,74 @@ body {
                 transform: scale(1.05);
             }
         }
+    }
+}
+
+@media all and (max-width: 768px) {
+    .burger-btn {
+        display: flex;
+    }
+
+    .header-wrapper {
+        display: none;
+        opacity: 0;
+        flex-direction: column;
+
+        .header-logo {
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+        }
+        .header-user-wrapper {
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            .search-wrapper {
+                margin: 10px 0;
+            }
+        }
+    }
+
+    .country-about-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .country-widjets-wrapper {
+        right: -190px !important;
+        top: 5px !important;
+    }
+
+    .country-widjets-wrapper:after {
+        content: '';
+        transform: rotate(-90deg) !important;
+        top: 25% !important;
+        left: -50px !important;
+    }
+    .country-widjets-wrapper:hover {
+        right: 10px !important;
+    }
+
+    .video-map {
+        flex-direction: column;
+        .video-wrapper {
+            margin: 10px 0;
+        }
+        .map-wrapper {
+            margin: 10px 0;
+        }
+    }
+
+    .footer-wrapper {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+}
+
+@media all and (max-width: 420px) {
+    .burger-btn {
+        margin: 0px;
     }
 }

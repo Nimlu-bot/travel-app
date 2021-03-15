@@ -10,7 +10,6 @@ const useLanguage = () => {
 
 const LanguageProvider = ({ children }) => {
     const [language, setLanguage] = useLocalStorage('lang', 'en');
-
     return <LanguageContext.Provider value={{ language, setLanguage }}>{children}</LanguageContext.Provider>;
 };
 
