@@ -19,6 +19,11 @@ const capitals = {
     AT: [48.20849, 16.37208],
     ES: [40.4165, -3.70256],
 };
+const fullscr = {
+    en: 'Enter fullscreen',
+    ru: 'Во весь экран',
+    ua: 'На весь екран',
+};
 
 export default function Map(props) {
     const countryName = props.countryShort;
@@ -26,7 +31,7 @@ export default function Map(props) {
     const position = capitals[countryName];
     const url = `https://nominatim.openstreetmap.org/search.php?q=${countryName}&polygon_geojson=1&format=geojson`;
     const [coordinates, setCoordinates] = useState([]);
-    const purpleOptions = { color: 'purple' };
+    const purpleOptions = { color: '#573b7a' };
 
     const getPoligon = async () => {
         try {
@@ -53,7 +58,7 @@ export default function Map(props) {
     return (
         <div>
             <button className='map-fullscr-button' onClick={handle.enter}>
-                Enter fullscreen
+                {fullscr[props.lang]}
             </button>
             <FullScreen className='map-wrapper' handle={handle}>
                 <MapContainer className='map-container' center={position} zoom={5} scrollWheelZoom={false}>
