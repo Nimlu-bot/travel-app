@@ -56,7 +56,7 @@ export default function Map(props) {
     const handle = useFullScreenHandle(); // fulscr
 
     return (
-        <div>
+        <div className='map-wrapper'>
             <button className='map-fullscr-button' onClick={handle.enter}>
                 {fullscr[props.lang]}
             </button>
