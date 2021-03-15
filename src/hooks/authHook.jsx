@@ -9,18 +9,21 @@ export const useAuth = () => {
     const [ready, setReady] = useState(false);
     const [userId, setUserId] = useState(null);
     const [anonim, setAnonim] = useState(false);
+    const [image, setImage] = useState(null);
 
-    const login = useCallback((name, jwtToken, id) => {
+    const login = useCallback((name, jwtToken, id, image) => {
         setName(name);
         setToken(jwtToken);
         setUserId(id);
+        setImage(image);
 
         localStorage.setItem(
             storageName,
             JSON.stringify({
-                userName: name,
+                name,
                 userId: id,
                 token: jwtToken,
+                image,
             }),
         );
     }, []);
@@ -36,6 +39,7 @@ export const useAuth = () => {
         setToken(null);
         setUserId(null);
         setAnonim(false);
+        setImage(null);
         localStorage.removeItem(storageName);
         localStorage.removeItem(anonimStorData);
     }, []);
@@ -44,10 +48,10 @@ export const useAuth = () => {
         const data = JSON.parse(localStorage.getItem(storageName));
 
         if (data && data.token) {
-            login(data.name, data.token, data.userId);
+            login(data.name, data.token, data.userId, data.image);
         }
         setReady(true);
     }, [login]);
 
-    return { login, logout, withoutLogin, token, name, userId, ready, anonim };
+    return { login, logout, withoutLogin, token, name, userId, ready, image, anonim };
 };
