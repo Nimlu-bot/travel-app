@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polygon, Tooltip } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polygon /*, Tooltip */ } from 'react-leaflet';
 import { useHttp } from './../hooks/httpHook';
 // import MapboxLanguageControl from 'react-mapbox-gl-language';
 // import MapboxLanguage from '@mapbox/mapbox-gl-language';
 import PropTypes from 'prop-types';
+import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 // import ReactMapboxGl from 'react-mapbox-gl';
 // import MapboxLanguageControl from 'react-mapbox-gl-language';
 // import React, {Component, useEffect, useState} from 'react';
@@ -25,8 +26,8 @@ export default function Map(props) {
     const position = capitals[countryName];
     const url = `https://nominatim.openstreetmap.org/search.php?q=${countryName}&polygon_geojson=1&format=geojson`;
     const [coordinates, setCoordinates] = useState([]);
-
     const purpleOptions = { color: 'purple' };
+
     const getPoligon = async () => {
         try {
             const data = await request(url, 'GET');
@@ -47,22 +48,32 @@ export default function Map(props) {
     useEffect(() => {
         getPoligon();
     }, []);
+
+    const handle = useFullScreenHandle(); // fulscr
+
     return (
-        <MapContainer className='map-wrapper' center={position} zoom={5} scrollWheelZoom={false}>
-            <TileLayer
-                attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
-                url='https://api.mapbox.com/styles/v1/tone4ka/ckm4wl17kditc17ptbx8aq0rx/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidG9uZTRrYSIsImEiOiJja2l1NGxnZXMydjQ5MnlsYnJjMGtmdnA3In0.5ldaiECa7ofK34QR7SjPIQ'
-            />
-            <Marker position={position}>
-                <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker>
-            <Polygon pathOptions={purpleOptions} positions={coordinates}>
-                <Tooltip sticky>sticky Tooltip for Polygon</Tooltip>
-            </Polygon>
-            {/* <MapboxLanguageControl/> */}
-        </MapContainer>
+        <div>
+            <FullScreen className='map-wrapper' handle={handle}>
+                <button className='map-fullscr-button' onClick={handle.enter}>
+                    Enter fullscreen
+                </button>
+                <MapContainer className='map-container' center={position} zoom={5} scrollWheelZoom={false}>
+                    <TileLayer
+                        attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
+                        url='https://api.mapbox.com/styles/v1/tone4ka/ckm4wl17kditc17ptbx8aq0rx/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidG9uZTRrYSIsImEiOiJja2l1NGxnZXMydjQ5MnlsYnJjMGtmdnA3In0.5ldaiECa7ofK34QR7SjPIQ'
+                    />
+                    <Marker position={position}>
+                        <Popup>
+                            A pretty CSS3 popup. <br /> Easily customizable.
+                        </Popup>
+                    </Marker>
+                    <Polygon pathOptions={purpleOptions} positions={coordinates} />
+                    {/* <Tooltip sticky>ПОМЕНЯТЬ НА НАЗВАНИЕ СТРАНЫ!!!!!!!!!!!!</Tooltip>
+                    </Polygon> */}
+                    {/* <MapboxLanguageControl/> */}
+                </MapContainer>
+            </FullScreen>
+        </div>
     );
 }
 
