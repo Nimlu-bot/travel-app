@@ -22,7 +22,7 @@ export const CountryPage = () => {
         ua: 'Cторінка країни',
     };
     return (
-        <div>
+        <>
             <Header />
             <div className='country-wrapper wrapper'>
                 <PageTitle title={title} />
@@ -48,6 +48,6 @@ export const CountryPage = () => {
             </div>
 
             <Footer />
-        </div>
+        </>
     );
 };
