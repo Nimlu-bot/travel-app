@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polygon /*, Tooltip */ } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker /*, Popup*/, Polygon, Tooltip } from 'react-leaflet';
 import { useHttp } from './../hooks/httpHook';
 // import MapboxLanguageControl from 'react-mapbox-gl-language';
 // import MapboxLanguage from '@mapbox/mapbox-gl-language';
@@ -38,7 +38,6 @@ export default function Map(props) {
             } else {
                 x = y[0].map((i) => i.reverse());
             }
-
             setCoordinates(x);
         } catch (e) {
             console.log('ошибка запроса полигонов');
@@ -62,14 +61,10 @@ export default function Map(props) {
                         attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
                         url='https://api.mapbox.com/styles/v1/tone4ka/ckm4wl17kditc17ptbx8aq0rx/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidG9uZTRrYSIsImEiOiJja2l1NGxnZXMydjQ5MnlsYnJjMGtmdnA3In0.5ldaiECa7ofK34QR7SjPIQ'
                     />
-                    <Marker position={position}>
-                        <Popup>
-                            A pretty CSS3 popup. <br /> Easily customizable.
-                        </Popup>
+                    <Marker className='capitalMarker' position={position}>
+                        <Tooltip>{props.capital}</Tooltip>
                     </Marker>
                     <Polygon pathOptions={purpleOptions} positions={coordinates} />
-                    {/* <Tooltip sticky>ПОМЕНЯТЬ НА НАЗВАНИЕ СТРАНЫ!!!!!!!!!!!!</Tooltip>
-                    </Polygon> */}
                     {/* <MapboxLanguageControl/> */}
                 </MapContainer>
             </FullScreen>
@@ -80,6 +75,7 @@ export default function Map(props) {
 Map.propTypes = {
     lang: PropTypes.string,
     countryShort: PropTypes.string,
+    capital: PropTypes.string,
 };
 
 // class MapboxLanguageControl extends Component {

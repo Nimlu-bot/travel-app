@@ -42,7 +42,11 @@ export const CountryPage = () => {
                     </div>
                     <div className='video-map'>
                         <Video video={countryParams.country.video.url} />
-                        <Map countryShort={countryParams.country.iso} lang={lang} />
+                        <Map
+                            countryShort={countryParams.country.iso}
+                            capital={countryParams.country.capital.name[lang]}
+                            lang={lang}
+                        />
                     </div>
                 </div>
             </div>
