@@ -31,7 +31,7 @@ router.post(
                 });
             }
 
-            const { name, email, password } = req.body;
+            const { name, email, password, image } = req.body;
 
             const candidate = await User.findOne({ email });
 
@@ -41,7 +41,7 @@ router.post(
             }
 
             const hashedPassword = await bcrypt.hash(password, 12);
-            const user = new User({ name, email, password: hashedPassword });
+            const user = new User({ name, email, password: hashedPassword, image });
 
             await user.save();
             console.log(`${now} user ${user.email} creater`);
@@ -91,7 +91,7 @@ router.post(
                 expiresIn: '10h',
             });
 
-            res.json({ name: user.name, token, userId: user.id });
+            res.json({ name: user.name, token, userId: user.id, image: user.image });
             console.log(`${now} user ${email} logged in`);
         } catch (e) {
             res.status(500).json({ message: 'SomethingWentWrongTryAgain' }); // Что-то пошло не так, попробуйте снова

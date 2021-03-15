@@ -1,49 +1,55 @@
 import React from 'react';
-import Header from './../components/Header';
-import Footer from './../components/Footer';
-import CountryAbout from './../components/CountryAbout';
-import Wether from '../components/Weather';
 import Currency from '../components/Currency';
 import DateTime from '../components/DateTime';
+import Map from '../components/Map';
+import { PageTitle } from '../components/PageTitle';
 import PhotoGallery from '../components/PhotoGalery';
 import Reaction from '../components/Reaction';
 import Video from '../components/Video';
-import Map from '../components/Map';
-// import { useParams } from 'react-router-dom';
+import Weather from '../components/Weather';
+import CountryAbout from './../components/CountryAbout';
+import Footer from './../components/Footer';
+import Header from './../components/Header';
 import { useCountry } from './../context/CountryContext';
 import { useLanguage } from './../context/LanguageContext';
 
 export const CountryPage = () => {
-    //const { id } = useParams();
     const countryParams = useCountry();
+    console.log(countryParams.country);
     const lang = useLanguage().language;
-    //countryParams.setCountry(id);
-    //const country = countryParams.country;
-    // const [country, setCountry] = useState();
-    // setCountry(countryParams.country);
-    // console.log(countryParams.country.currency);
+    // console.log(countryParams.country);
+    const title = {
+        en: 'Country Page',
+        ru: 'Страница страны',
+        ua: 'Cторінка країни',
+    };
     return (
-        <>
+        <div>
             <Header />
             <div className='country-wrapper wrapper'>
-                <div className='country-title title'> Country Page {lang}</div>
-                <CountryAbout country={countryParams.country} />
+                <PageTitle title={title} />
+                <CountryAbout country={countryParams.country} lang={lang} />
                 <div className='country-widjets-wrapper'>
-                    <Wether country={countryParams.country} lang={lang} />
-                    <Currency currency={countryParams.country.currency} />
-                    <DateTime timeZone={countryParams.country.timeZone} lang={lang} />
+                    <Weather country={countryParams.country} lang={lang} />
+                    <Currency
+                        iso={countryParams.country.currency.iso}
+                        currency={countryParams.country.currency.name[lang]}
+                    />
+                    <DateTime timeZone={countryParams.country.capital.timezone.standard} lang={lang} />
                 </div>
                 <div className='country-media-wrapper'>
                     <div className='country-gallery-wrapper'>
-                        <PhotoGallery />
+                        <PhotoGallery countryShort={countryParams.country.iso} lang={lang} />
                         <Reaction />
                     </div>
-                    <Video />
+                    <div className='video-map'>
+                        <Video video={countryParams.country.video.url} />
+                        <Map countryShort={countryParams.country.iso} lang={lang} />
+                    </div>
                 </div>
-                <Map country={countryParams.country} lang={lang} />
             </div>
 
             <Footer />
-        </>
+        </div>
     );
 };

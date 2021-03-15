@@ -5,8 +5,10 @@ import { AuthContext } from './../context/AuthContext';
 import { useHistory } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { useLanguage } from './../context/LanguageContext';
+import { useParams } from 'react-router-dom';
 
 export default function Header() {
+    const { id } = useParams();
     const auth = useContext(AuthContext);
     const history = useHistory();
     const logoutHandler = (e) => {
@@ -14,7 +16,15 @@ export default function Header() {
         auth.logout();
         history.push('/');
     };
+
+    const name = auth.name || 'Аnonim';
     const lang = useLanguage().language;
+
+    const logOutName = {
+        en: 'LogOut',
+        ru: 'выход',
+        ua: 'вихід',
+    };
 
     return (
         <div className='header-wrapper'>
@@ -44,29 +54,18 @@ export default function Header() {
                         <path d='m5 57c-1.654 0-3 1.346-3 3s1.346 3 3 3c1.302 0 2.402-.839 2.816-2h9.184v-2h-9.184c-.414-1.161-1.514-2-2.816-2zm0 4c-.552 0-1-.449-1-1s.448-1 1-1 1 .449 1 1-.448 1-1 1z' />
                     </svg>
                 </NavLink>
+                <Language />
             </div>
-            <nav>
-                <ul>
-                    <li className='active'>
-                        <a href='/#'>home page</a>
-                    </li>
-                    <li>
-                        <a href='#country'>country</a>
-                    </li>
-                    <li>
-                        <a href='#footer'>contacts</a>
-                    </li>
-                </ul>
-            </nav>
 
-            <Language />
-            <SearchField />
-
-            <div>
-                <div className='header-user'>User {lang} </div>
-                <button className='header-logout' onClick={logoutHandler}>
-                    LogOut
-                </button>
+            <div className='header-user-wrapper'>
+                <div className='login-wrapper'>
+                    <div className='header-user'>{name} </div>
+                    <div className='header-image' style={{ backgroundImage: `url(${auth.image})` }}></div>
+                    <button className='header-logout' onClick={logoutHandler}>
+                        {logOutName[lang]}
+                    </button>
+                </div>
+                {!id && <SearchField />}
             </div>
         </div>
     );

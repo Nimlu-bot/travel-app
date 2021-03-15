@@ -1,58 +1,53 @@
 import React from 'react';
 import ImageGallery from 'react-image-gallery';
-import * as img from './GBImages';
+import { sortAttr } from './attractionImages';
+import PropTypes from 'prop-types';
 
-const PREFIX = 'GB';
-const PU = '../assets/img/GB-';
-
-const getimages = function getStaticImages() {
-    let images = [];
-    for (let i = 1; i < 7; i++) {
-        images.push({
-            //original: img[`${PREFIX}${i}`],
-            original: `${PU}${i}.jpg`,
-            thumbnail: img[`${PREFIX}${i}t`],
-        });
-    }
-
-    return images;
-};
-
-const sliderImages = getimages();
-//console.log(sliderImages);
-// const images = [
-//     {
-//         original: img.GB1,
-//         thumbnail: 'https://picsum.photos/id/1018/250/150/',
-//         originalTitle: 'gjfdhkgjdfh fsdjkshkj h',
-//         description: 'fjhskjdghkfjghjk',
-//     },
-//     {
-//         original: img.GB2,
-//         thumbnail: 'https://picsum.photos/id/1015/250/150/',
-//     },
-//     {
-//         original: img.GB3,
-//         thumbnail: 'https://picsum.photos/id/1019/250/150/',
-//     },
-//     {
-//         original: img.GB4,
-//         thumbnail: 'https://picsum.photos/id/1019/250/150/',
-//     },
-//     {
-//         original: img.GB5,
-//         thumbnail: 'https://picsum.photos/id/1019/250/150/',
-//     },
-//     {
-//         original: img.GB6,
-//         thumbnail: 'https://picsum.photos/id/1019/250/150/',
-//     },
-// ];
-
-export default function PhotoGallery() {
+function PhotoGallery(props) {
+    const country = sortAttr(props.countryShort);
+    const lang = props.lang;
+    const images = [
+        {
+            original: country[0].thumbnail.url,
+            thumbnail: country[0].thumbnail.url,
+            description: 'dsdjshdjhsjhs', // country[0].summary[lang],
+        },
+        {
+            original: country[1].thumbnail.url,
+            thumbnail: country[1].thumbnail.url,
+            description: country[1].summary[lang],
+        },
+        {
+            original: country[2].thumbnail.url,
+            thumbnail: country[2].thumbnail.url,
+            description: country[2].summary[lang],
+        },
+        {
+            original: country[3].thumbnail.url,
+            thumbnail: country[3].thumbnail.url,
+            description: country[3].summary[lang],
+        },
+        {
+            original: country[4].thumbnail.url,
+            thumbnail: country[4].thumbnail.url,
+            description: country[4].summary[lang],
+        },
+        {
+            original: country[5].thumbnail.url,
+            thumbnail: country[5].thumbnail.url,
+            description: country[5].summary[lang],
+        },
+    ];
     return (
         <div className='photo-wrapper'>
-            <ImageGallery items={sliderImages} />
+            <ImageGallery items={images} thumbnailPosition='left' />
         </div>
     );
 }
+
+PhotoGallery.propTypes = {
+    lang: PropTypes.string,
+    countryShort: PropTypes.string,
+};
+
+export default PhotoGallery;

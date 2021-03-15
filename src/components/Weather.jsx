@@ -4,8 +4,6 @@ import { useHttp } from './../hooks/httpHook';
 import PropTypes from 'prop-types';
 
 function Weather(props) {
-    // const [city] = useState('london');
-    //const [lang] = useState('en');
     const [weather, setWeather] = useState({
         icon: null,
         temp: null,
@@ -13,7 +11,7 @@ function Weather(props) {
     });
 
     const { request } = useHttp();
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${props.country.capital}&lang=${props.lang}&appid=7c599ba528ac05000344261f5479e8de&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${props.country.capital.name.en}&lang=${props.lang}&appid=7c599ba528ac05000344261f5479e8de&units=metric`;
 
     const weatherHandler = useCallback(async () => {
         try {
@@ -30,8 +28,6 @@ function Weather(props) {
 
     useEffect(() => {
         weatherHandler();
-        //setCity(countryParams.capital);
-        //console.log(countryParams.capital);
     }, [weatherHandler]);
     return (
         <div className='weather-wrapper'>

@@ -1,42 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { CountryList } from '../components/CountryList';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { CountryCard } from './../components/CountryCard';
+import { PageTitle } from '../components/PageTitle';
 import Parallax from '../components/Parallax';
+import Quote from '../components/Quote';
 
-import { useHttp } from './../hooks/httpHook'; //потом удалить
-import { useLanguage } from '../context/LanguageContext';
+const title = {
+    en: 'Home Page',
+    ru: 'Главная Страница',
+    ua: 'Головна Сторінка',
+};
 
 export const HomePage = () => {
-    const [cards] = useState(['GB', 'FR', 'IT', 'UA', 'DE', 'CZ', 'AT', 'ES']);
-    const { request } = useHttp(); // потом удалить
-    const lang = useLanguage().language;
-    //console.log(lang.language);
-    const regHandler = async () => {
-        //потом удалить
-        try {
-            const data = await request('http://localhost:4000/api/country/generate', 'POST', { ...cards });
-            console.log(data);
-        } catch (e) {
-            console.log('error');
-        }
-    };
     return (
         <>
             <Header />
-            <Parallax />
 
             <div className='home-wrapper wrapper'>
-                <div className='home-title title'> Home Page {lang}</div>
-                <div id='country' className='cards-wrapper'>
-                    {cards.map((el, i) => {
-                        return <CountryCard key={i} text={el} />;
-                    })}
-                </div>
+                <PageTitle title={title} />
+                <CountryList />
             </div>
-            <button className='reg' onClick={regHandler}>
-                reg
-            </button>
+            <Parallax />
+            <Quote />
             <Footer />
         </>
     );
