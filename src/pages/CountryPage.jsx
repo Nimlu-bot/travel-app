@@ -16,7 +16,6 @@ import { useLanguage } from './../context/LanguageContext';
 export const CountryPage = () => {
     const countryParams = useCountry();
     const lang = useLanguage().language;
-    // console.log(countryParams.country);
     const title = {
         en: 'Country Page',
         ru: 'Страница страны',
@@ -43,7 +42,11 @@ export const CountryPage = () => {
                     </div>
                     <div className='video-map'>
                         <Video video={countryParams.country.video.url} />
-                        <Map />
+                        <Map
+                            countryShort={countryParams.country.iso}
+                            capital={countryParams.country.capital.name[lang]}
+                            lang={lang}
+                        />
                     </div>
                 </div>
             </div>

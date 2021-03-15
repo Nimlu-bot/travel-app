@@ -10,7 +10,7 @@ function PhotoGallery(props) {
         {
             original: country[0].thumbnail.url,
             thumbnail: country[0].thumbnail.url,
-            description: 'dsdjshdjhsjhs', // country[0].summary[lang],
+            description: country[0].summary[lang],
         },
         {
             original: country[1].thumbnail.url,
