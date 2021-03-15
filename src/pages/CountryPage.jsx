@@ -15,9 +15,7 @@ import { useLanguage } from './../context/LanguageContext';
 
 export const CountryPage = () => {
     const countryParams = useCountry();
-    console.log(countryParams.country);
     const lang = useLanguage().language;
-    // console.log(countryParams.country);
     const title = {
         en: 'Country Page',
         ru: 'Страница страны',

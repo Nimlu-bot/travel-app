@@ -21,7 +21,7 @@ const capitals = {
 };
 
 export default function Map(props) {
-    const countryName = props.country.countryShort;
+    const countryName = props.countryShort;
     const { request } = useHttp();
     const position = capitals[countryName];
     const url = `https://nominatim.openstreetmap.org/search.php?q=${countryName}&polygon_geojson=1&format=geojson`;
@@ -53,10 +53,10 @@ export default function Map(props) {
 
     return (
         <div>
+            <button className='map-fullscr-button' onClick={handle.enter}>
+                Enter fullscreen
+            </button>
             <FullScreen className='map-wrapper' handle={handle}>
-                <button className='map-fullscr-button' onClick={handle.enter}>
-                    Enter fullscreen
-                </button>
                 <MapContainer className='map-container' center={position} zoom={5} scrollWheelZoom={false}>
                     <TileLayer
                         attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
@@ -79,7 +79,7 @@ export default function Map(props) {
 
 Map.propTypes = {
     lang: PropTypes.string,
-    country: PropTypes.object,
+    countryShort: PropTypes.string,
 };
 
 // class MapboxLanguageControl extends Component {
