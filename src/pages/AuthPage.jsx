@@ -18,6 +18,9 @@ export const AuthPage = () => {
     });
     const lang = useLanguage().language;
 
+    //const url = 'http://localhost:4000';
+    const url = 'https://nimlu-bot-travel-app.herokuapp.com';
+
     useEffect(() => {
         setMessage(error);
         //setTimeout(() => clearError(), 15000);
@@ -30,7 +33,7 @@ export const AuthPage = () => {
                 setMessage('image upload error');
                 return;
             }
-            const data = await request('http://localhost:4000/api/auth/register', 'POST', {
+            const data = await request(`${url}/api/auth/register`, 'POST', {
                 ...form,
                 image: image || '',
             });
@@ -71,7 +74,7 @@ export const AuthPage = () => {
 
     const loginHandler = async () => {
         try {
-            const data = await request('http://localhost:4000/api/auth/login', 'POST', { ...form });
+            const data = await request(`${url}/api/auth/login`, 'POST', { ...form });
             auth.login(data.name, data.token, data.userId, data.image);
         } catch (e) {
             console.log('error');
