@@ -1,0 +1,1043 @@
+openapi: 3.0.2
+info:
+  description: Travel app API
+  license:
+    name: GNU AGPLv3
+    url: https://www.gnu.org/licenses/agpl.txt
+  title: Travel App
+  version: 1.0.0
+servers:
+- description: Travel app API dev server
+  url: http:localhost:5005
+tags:
+- description: Everything about countries
+  name: country
+- description: Everything about countries
+  name: attraction
+- description: Everything about users
+  name: user
+- description: All about authentication
+  name: auth
+- description: All about attraction reviews
+  name: attraction-review
+paths:
+  /countries:
+    description: The REST endpoint/path used to list and create zero or more `Country`
+      entities.  This path contains a `GET` and `POST` operation to perform the list
+      and create tasks, respectively.
+    get:
+      description: Gets a list of all `Country` entities.
+      operationId: getCountries
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Country'
+                type: array
+          description: Successful response - returns an array of `Country` entities.
+      summary: List All Countries
+      tags:
+      - country
+      x-eov-operation-handler: controllers/CountryController
+    post:
+      description: Creates a new instance of a `Country`.
+      operationId: createCountry
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Country'
+        description: A new `Country` to be created.
+        required: true
+      responses:
+        "201":
+          description: Successful response.
+      security:
+      - bearerAuth: []
+      summary: Create a Country
+      tags:
+      - country
+      x-eov-operation-handler: controllers/CountryController
+    summary: Path used to manage the list of countries.
+  /countries/{countryId}:
+    delete:
+      description: Deletes an existing `Country`.
+      operationId: deleteCountry
+      parameters:
+      - description: A unique identifier for a `Country`.
+        explode: false
+        in: path
+        name: countryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Successful response.
+      security:
+      - bearerAuth: []
+      summary: Delete the Country
+      tags:
+      - country
+      x-eov-operation-handler: controllers/CountryController
+    description: The REST endpoint/path used to get, update, and delete single instances
+      of an `Country`.  This path contains `GET`, `PUT`, and `DELETE` operations used
+      to perform the get, update, and delete tasks, respectively.
+    get:
+      description: Gets the details of a single instance of a `Country`.
+      operationId: getCountry
+      parameters:
+      - description: A unique identifier for a `Country`.
+        explode: false
+        in: path
+        name: countryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country'
+          description: Successful response - returns a single `Country`.
+      summary: Get the Country
+      tags:
+      - country
+      x-eov-operation-handler: controllers/CountryController
+    put:
+      description: Updates an existing `Country`.
+      operationId: updateCountry
+      parameters:
+      - description: A unique identifier for a `Country`.
+        explode: false
+        in: path
+        name: countryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Country'
+        description: Updated `Country` information.
+        required: true
+      responses:
+        "202":
+          description: Successful response.
+      security:
+      - bearerAuth: []
+      summary: Update the Country
+      tags:
+      - country
+      x-eov-operation-handler: controllers/CountryController
+    summary: Path used to manage a single Country.
+  /attractions:
+    description: The REST endpoint/path used to list and create zero or more `Attraction`
+      entities.  This path contains a `GET` and `POST` operation to perform the list
+      and create tasks, respectively.
+    get:
+      description: Gets a list of all `Attraction` entities.
+      operationId: getAttractions
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Attraction'
+                type: array
+          description: Successful response - returns an array of `Attraction` entities.
+      summary: List All Attractions
+      tags:
+      - attraction
+      x-eov-operation-handler: controllers/AttractionController
+    post:
+      description: Creates a new instance of a `Attraction`.
+      operationId: createAttraction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Attraction'
+        description: A new `Attraction` to be created.
+        required: true
+      responses:
+        "201":
+          description: Successful response.
+      security:
+      - bearerAuth: []
+      summary: Create a Attraction
+      tags:
+      - attraction
+      x-eov-operation-handler: controllers/AttractionController
+    summary: Path used to manage the list of attractions.
+  /attractions/{attractionId}:
+    delete:
+      description: Deletes an existing `Attraction`.
+      operationId: deleteAttraction
+      parameters:
+      - description: A unique identifier for a `Attraction`.
+        explode: false
+        in: path
+        name: attractionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Successful response.
+      security:
+      - bearerAuth: []
+      summary: Delete a Attraction
+      tags:
+      - attraction
+      x-eov-operation-handler: controllers/AttractionController
+    description: The REST endpoint/path used to get, update, and delete single instances
+      of an `Attraction`.  This path contains `GET`, `PUT`, and `DELETE` operations
+      used to perform the get, update, and delete tasks, respectively.
+    get:
+      description: Gets the details of a single instance of a `Attraction`.
+      operationId: getAttraction
+      parameters:
+      - description: A unique identifier for a `Attraction`.
+        examples:
+          AttractionId example:
+            value: '"d4f79342-6809-487f-a5b8-58e6b4036cce"'
+        explode: false
+        in: path
+        name: attractionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attraction'
+          description: Successful response - returns a single `Attraction`.
+      summary: Get a Attraction
+      tags:
+      - attraction
+      x-eov-operation-handler: controllers/AttractionController
+    put:
+      description: Updates an existing `Attraction`.
+      operationId: updateAttraction
+      parameters:
+      - description: A unique identifier for a `Attraction`.
+        explode: false
+        in: path
+        name: attractionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Attraction'
+        description: Updated `Attraction` information.
+        required: true
+      responses:
+        "202":
+          description: Successful response.
+      security:
+      - bearerAuth: []
+      summary: Update a Attraction
+      tags:
+      - attraction
+      x-eov-operation-handler: controllers/AttractionController
+    summary: Path used to manage a single Attraction.
+  /users:
+    description: The REST endpoint/path used to list and create zero or more `Users`
+      entities.  This path contains a `GET` and `POST` operation to perform the list
+      and create tasks, respectively.
+    get:
+      description: Gets a list of all `Users` entities.
+      operationId: getUsers
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: Successful response - returns an array of `Users` entities.
+      security:
+      - bearerAuth: []
+      summary: List All Users
+      tags:
+      - user
+      x-eov-operation-handler: controllers/UserController
+    post:
+      description: Creates a new instance of a `Users`.
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: A new `Users` to be created.
+        required: true
+      responses:
+        "201":
+          description: Successful response.
+      summary: Create a User
+      tags:
+      - user
+      x-eov-operation-handler: controllers/UserController
+    summary: Path used to manage the list of users.
+  /users/{usersId}:
+    delete:
+      description: Deletes an existing `Users`.
+      operationId: deleteUser
+      parameters:
+      - description: A unique identifier for a `Users`.
+        explode: false
+        in: path
+        name: usersId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Successful response.
+      security:
+      - bearerAuth: []
+      summary: Delete the User
+      tags:
+      - user
+      x-eov-operation-handler: controllers/UserController
+    description: The REST endpoint/path used to get, update, and delete single instances
+      of an `Users`.  This path contains `GET`, `PUT`, and `DELETE` operations used
+      to perform the get, update, and delete tasks, respectively.
+    get:
+      description: Gets the details of a single instance of a `Users`.
+      operationId: getUser
+      parameters:
+      - description: A unique identifier for a `Users`.
+        explode: false
+        in: path
+        name: usersId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Successful response - returns a single `Users`.
+      security:
+      - bearerAuth: []
+      summary: Get the User
+      tags:
+      - user
+      x-eov-operation-handler: controllers/UserController
+    put:
+      description: Updates an existing `Users`.
+      operationId: updateUser
+      parameters:
+      - description: A unique identifier for a `Users`.
+        explode: false
+        in: path
+        name: usersId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Updated `Users` information.
+        required: true
+      responses:
+        "202":
+          description: Successful response.
+      security:
+      - bearerAuth: []
+      summary: Update the User
+      tags:
+      - user
+      x-eov-operation-handler: controllers/UserController
+    summary: Path used to manage a single Users.
+  /attraction-reviews:
+    description: The REST endpoint/path used to list and create zero or more `Attraction-review`
+      entities.  This path contains a `GET` and `POST` operation to perform the list
+      and create tasks, respectively.
+    get:
+      description: Gets a list of all `Attraction-review` entities.
+      operationId: getAttraction-reviews
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Attraction-review'
+                type: array
+          description: Successful response - returns an array of `Attraction-review`
+            entities.
+      summary: List All Attraction reviews
+      tags:
+      - attraction-review
+      x-eov-operation-handler: controllers/AttractionReviewController
+    post:
+      description: Creates a new instance of a `Attraction-review`.
+      operationId: createAttraction-review
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Attraction-review'
+        description: A new `Attraction-review` to be created.
+        required: true
+      responses:
+        "201":
+          description: Successful response.
+      security:
+      - bearerAuth: []
+      summary: Create an Attraction-review
+      tags:
+      - attraction-review
+      x-eov-operation-handler: controllers/AttractionReviewController
+    summary: Path used to manage the list of attraction-reviews.
+  /attraction-reviews/{attraction-reviewId}:
+    delete:
+      description: Deletes an existing `Attraction-review`.
+      operationId: deleteAttraction-review
+      parameters:
+      - description: A unique identifier for a `Attraction-review`.
+        examples:
+          AttractionId example:
+            value: '"7beafc5a-790c-4431-91a9-b38ca04fd565"'
+        explode: false
+        in: path
+        name: attraction-reviewId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Successful response.
+      security:
+      - bearerAuth: []
+      summary: Delete the specific Attraction-review
+      tags:
+      - attraction-review
+      x-eov-operation-handler: controllers/AttractionReviewController
+    description: The REST endpoint/path used to get, update, and delete single instances
+      of an `Attraction-review`.  This path contains `GET`, `PUT`, and `DELETE` operations
+      used to perform the get, update, and delete tasks, respectively.
+    get:
+      description: Gets the details of a single instance of a `Attraction-review`.
+      operationId: getAttraction-review
+      parameters:
+      - description: A unique identifier for a `Attraction-review`.
+        examples:
+          Attraction review exampe:
+            value: '"7beafc5a-790c-4431-91a9-b38ca04fd565"'
+        explode: false
+        in: path
+        name: attraction-reviewId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attraction-review'
+          description: Successful response - returns a single `Attraction-review`.
+      summary: Get the specific Attraction-review
+      tags:
+      - attraction-review
+      x-eov-operation-handler: controllers/AttractionReviewController
+    put:
+      description: Updates an existing `Attraction-review`.
+      operationId: updateAttraction-review
+      parameters:
+      - description: A unique identifier for a `Attraction-review`.
+        examples:
+          AttractionId example:
+            value: '"7beafc5a-790c-4431-91a9-b38ca04fd565"'
+        explode: false
+        in: path
+        name: attraction-reviewId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Attraction-review'
+        description: Updated `Attraction-review` information.
+        required: true
+      responses:
+        "202":
+          description: Successful response.
+      security:
+      - bearerAuth: []
+      summary: Update the specific Attraction-review
+      tags:
+      - attraction-review
+      x-eov-operation-handler: controllers/AttractionReviewController
+    summary: Path used to manage a single Attraction-review.
+  /auth/login:
+    post:
+      description: Return JWT token
+      operationId: userLogin
+      requestBody:
+        content:
+          application/json:
+            examples:
+              User credentials payload example:
+                value:
+                  email: test@example.com
+                  password: varyStr0ng+p@55w0rd!
+            schema:
+              $ref: '#/components/schemas/UserCredentials'
+        description: User credentials
+        required: true
+      responses:
+        "200":
+          content:
+            application/json: {}
+          description: Success login
+        "400":
+          description: Bad request
+      summary: User Login
+      tags:
+      - auth
+      x-eov-operation-handler: controllers/AuthController
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    Success:
+      description: Success
+  schemas:
+    Country:
+      description: Country data type description
+      example:
+        countyrId: 6e904621-4185-4357-8140-17198979f524
+        iso: uk
+        name:
+          en: United Kingdom of Great Britain and Northern Ireland
+          ru: Соединённое Королевство Великобритании и Северной Ирландии
+          ua: Сполучене Королівство Великої Британії та Північної Ірландії
+        capital:
+          name:
+            en: London
+            ru: Лондон
+            ua: Лондон
+          coords:
+          - 51.509865
+          - -0.118092
+          timezone:
+            standard: UTC+00
+            dst:
+              type: northern
+              value: UTC+01
+              start: 2021-03-28T01:00:00Z
+              end: 2021-10-31T01:00:00Z
+        currency:
+          iso: GBP
+          name:
+            en: Pound sterling
+            ru: Фунт стерлингов
+            ua: Фунт стерлінгів
+          symbol: £
+        thumbnail:
+          url: https://example.com/photo/gb.png
+          alt:
+            en: United Kingdom of Great Britain and Northern Ireland
+            ru: Соединённое Королевство Великобритании и Северной Ирландии
+            ua: Сполучене Королівство Великої Британії та Північної Ірландії
+          width: 100
+          height: 100
+        summary:
+          by:
+          - 'Вялі́кабрыта́нія (англ.: Great Britain), Злу́чанае Карале́ўства Вялі́кабрыта́ніі
+            і Паўно́чнай Ірла́ндыі (англ.: United Kingdom of Great Britain and Northern
+            Ireland) — астраўная дзяржава на паўночным захадзе Еўропы. Плошча 242,5
+            тыс.кв.км. Размешчана на востраве Вялікабрытанія, паўночным усходзе Ірландыі
+            і шэрагу меншых астравоў і архіпелагаў. Мяжуе па сушы з Ірландыяй. Пралівам
+            Ла-Манш аддзяляецца ад Францыі, з якой мае марскую мяжу. Геаграфічна адносіцца
+            да рэгіёна Паўночнай Еўропы, таксама лічыцца часткай Заходняй Еўропы.
+            Сталіца — горад Лондан — глабальны горад і фінансавы цэнтр. Афіцыйныя
+            мовы: англійская (дэ-факта), ва Уэльсе — валійская.'
+          en:
+          - The United Kingdom of Great Britain and Northern Ireland, commonly known
+            as the United Kingdom (UK or U.K.), or Britain, is a sovereign country
+            in north-western Europe, off the north-­western coast of the European
+            mainland. The United Kingdom includes the island of Great Britain, the
+            north-­eastern part of the island of Ireland, and many smaller islands
+            within the British Isles. Northern Ireland shares a land border with the
+            Republic of Ireland. Otherwise, the United Kingdom is surrounded by the
+            Atlantic Ocean, with the North Sea to the east, the English Channel to
+            the south and the Celtic Sea to the south-west, giving it the 12th-longest
+            coastline in the world. The Irish Sea separates Great Britain and Ireland.
+            The total area of the United Kingdom is 94,000 square miles (240,000 km2).
+          ru:
+          - 'Великобрита́ния (русское название происходит от англ. Great Britain [ˌɡreɪt
+            ˈbrɪtn]), или Соединённое Короле́вство (United Kingdom [jʊnaɪtɪd kɪŋdəm],
+            сокращённо: UK), полная официальная форма — Соединённое Короле́вство Великобрита́нии
+            и Се́верной Ирла́ндии (англ. The United Kingdom of Great Britain and Northern
+            Ireland), — островное государство на северо-западе от континентальной
+            Европы.'
+          - Единое Королевство Великобритания образовалось в 1707 году вследствие
+            политического объединения королевств Шотландии и Англии; но ещё ранее,
+            в 1603 году, король Шотландии Яков VI унаследовал престолы Англии и Ирландии
+            в порядке личной унии (Яков I). В 1800 году Королевство Великобритания
+            и Королевство Ирландия объединились, образовав Соединённое Королевство
+            Великобритании и Ирландии, которое после отделения от него в 1922 году
+            Ирландского Свободного государства стало именоваться Соединённым Королевством
+            Великобритании и Северной Ирландии
+        video:
+          url: https://youtube.me/sdfsdfsdfsdfsdf
+      properties:
+        id:
+          type: string
+        iso:
+          description: 'Country ISO code (2 chars). Example: "ru"'
+          type: string
+        name:
+          $ref: '#/components/schemas/LocalName'
+        capital:
+          $ref: '#/components/schemas/City'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        thumbnail:
+          $ref: '#/components/schemas/Photo'
+        summary:
+          $ref: '#/components/schemas/LocalText'
+        video:
+          $ref: '#/components/schemas/Country_video'
+      required:
+      - iso
+      - name
+      title: Root Type for Country
+      type: object
+    Attraction:
+      example:
+        attractionId: 863949e4-0be7-4390-acd7-e24b4ddd6e72
+        name:
+          by: Стоўнхендж
+          en: Stonehenge
+          ru: Стоунхендж
+        coutryId: 6e904621-4185-4357-8140-17198979f524
+        thumbnail:
+          url: https://example.com/photo/stonehenge.png
+          alt:
+            by: Стоўнхендж
+            en: Stonehenge
+            ru: Стоунхендж
+          width: 100
+          height: 100
+        summary:
+          by:
+          - Стоўнхендж (анг. Stonehenge, літар. «Каменны хендж») — занесенае ў спіс
+            Сусветнай спадчыны каменнае мегалітычнае збудаванне (кромлех) на Солсберыйскай
+            раўніне ў графстве Уілтшыр (Англія). Прыкладна за 130 км на паўднёвы захад
+            ад Лондана.
+          en:
+          - Stonehenge is a prehistoric monument on Salisbury Plain in Wiltshire,
+            England, two miles (3 km) west of Amesbury. It consists of an outer ring
+            of vertical Sarsen standing stones, each around 13 feet (4.0 m) high,
+            seven feet (2.1 m) wide, and weighing around 25 tons, topped by connecting
+            horizontal lintel stones. Inside is a ring of smaller bluestones. Inside
+            these are free-standing trilithons, two bulkier vertical Sarsens joined
+            by one lintel. The whole monument, now ruinous, is oriented towards the
+            sunrise on the summer solstice. The stones are set within earthworks in
+            the middle of the most dense complex of Neolithic and Bronze Age monuments
+            in England, including several hundred tumuli (burial mounds).
+          - Archaeologists believe it was constructed from 3000 BC to 2000 BC. The
+            surrounding circular earth bank and ditch, which constitute the earliest
+            phase of the monument, have been dated to about 3100 BC. Radiocarbon dating
+            suggests that the first bluestones were raised between 2400 and 2200 BC,
+            although they may have been at the site as early as 3000 BC.
+          - One of the most famous landmarks in the United Kingdom, Stonehenge is
+            regarded as a British cultural icon. It has been a legally protected Scheduled
+            Ancient Monument since 1882, when legislation to protect historic monuments
+            was first successfully introduced in Britain. The site and its surroundings
+            were added to UNESCO's list of World Heritage Sites in 1986. Stonehenge
+            is owned by the Crown and managed by English Heritage; the surrounding
+            land is owned by the National Trust.
+          - Stonehenge could have been a burial ground from its earliest beginnings.
+            Deposits containing human bone date from as early as 3000 BC, when the
+            ditch and bank were first dug, and continued for at least another 500
+            years.
+          ru:
+          - Стоунхендж, Стонхендж (англ. Stonehenge [ˈstəʊnˌhendʒ]) — внесённое в
+            список Всемирного наследия каменное мегалитическое сооружение (кромлех)
+            в графстве Уилтшир (Англия). Находится примерно в 130 км к юго-западу
+            от Лондона, примерно в 3,2 км к западу от Эймсбери и в 13 км к северу
+            от Солсбери.
+          - Один из самых знаменитых археологических памятников в мире, Стоунхендж
+            состоит из кольцевых и подковообразных сооружений, построенных из больших
+            менгиров. Он находится в центре самого плотного комплекса памятников неолита
+            и бронзового века в Англии. Сам памятник и его окрестности были включены
+            в список Всемирного наследия ЮНЕСКО в 1986 г. вместе с Эйвбери. Стоунхендж
+            передан британской короной в управление «Английскому наследию», тогда
+            как ближайшие окрестности принадлежат Национальному трасту.
+      properties:
+        id:
+          type: string
+        name:
+          $ref: '#/components/schemas/Attraction_name'
+        coutryId:
+          type: string
+        thumbnail:
+          $ref: '#/components/schemas/Attraction_thumbnail'
+        summary:
+          $ref: '#/components/schemas/Attraction_summary'
+      title: Root Type for Attraction
+      type: object
+    City:
+      example:
+        name:
+          by: Лондан
+          en: London
+          ru: Лондон
+        coords:
+        - 51.509865
+        - -0.118092
+        timezone:
+          standard: UTC+00
+          dst:
+            type: northern
+            value: UTC+01
+            start: 2021-03-28T01:00:00Z
+            end: 2021-10-31T01:00:00Z
+      properties:
+        name:
+          $ref: '#/components/schemas/LocalName'
+        coords:
+          description: Coordinates of the city location
+          items:
+            format: double
+            type: number
+          type: array
+        timezone:
+          $ref: '#/components/schemas/Timezone'
+      required:
+      - timezone
+      title: Root Type for Cities
+      type: object
+    User:
+      example:
+        userId: 444199d3-09ca-4e4b-8304-1d812b5f2583
+        name: Leanne Graham
+        email: Sincere@april.biz
+        password: '************'
+        avatar:
+          url: https://example.com/photo/user.png
+          width: 100
+          height: 100
+      properties:
+        id:
+          description: User Id
+          type: string
+        name:
+          description: User name
+          type: string
+        email:
+          description: User email. Used as user's uniq identifier (login)
+          type: string
+        password:
+          description: User password
+          type: string
+        avatar:
+          $ref: '#/components/schemas/Photo'
+        isactive:
+          type: boolean
+      required:
+      - email
+      - id
+      - password
+      title: Root Type for Users
+      type: object
+    Currency:
+      example:
+        iso: GBP
+        name:
+          ua: Фунт стерлінгів
+          en: Pound sterling
+          ru: Фунт стерлингов
+        symbol: £
+      properties:
+        iso:
+          description: Currency ISO code
+          type: string
+        name:
+          $ref: '#/components/schemas/LocalName'
+        symbol:
+          type: string
+      required:
+      - iso
+      title: Root Type for Currency
+      type: object
+    Photo:
+      example:
+        url: https://example.com/photo/gb.png
+        alt:
+          en: United Kingdom of Great Britain and Northern Ireland
+          ru: Соединённое Королевство Великобритании и Северной Ирландии
+          ua: Сполучене Королівство Великої Британії та Північної Ірландії
+        width: 100
+        height: 100
+      properties:
+        url:
+          type: string
+        alt:
+          $ref: '#/components/schemas/LocalName'
+        width:
+          format: int32
+          type: integer
+        height:
+          format: int32
+          type: integer
+      title: Root Type for Photo
+      type: object
+    Timezone:
+      example:
+        standard: UTC+00
+        dst:
+          type: northern
+          value: UTC+01
+          start: 2021-03-28T01:00:00Z
+          end: 2021-10-31T01:00:00Z
+      properties:
+        standard:
+          description: Standart time
+          type: string
+        dst:
+          $ref: '#/components/schemas/Timezone_dst'
+      title: Root Type for Timezone
+      type: object
+    LocalName:
+      example:
+        en: London
+        ru: Лондон
+        ua: Лондон
+      properties:
+        en:
+          description: Name of the resource (attribute) in English
+          type: string
+        ru:
+          description: Name of the resource (attribute) in Russian
+          type: string
+        ua:
+          description: Name of the resource (attribute) in Ukrainian
+          type: string
+      title: Root Type for Localizations
+      type: object
+    LocalText:
+      example:
+        by:
+        - 'Вялі́кабрыта́нія (англ.: Great Britain), Злу́чанае Карале́ўства Вялі́кабрыта́ніі
+          і Паўно́чнай Ірла́ндыі (англ.: United Kingdom of Great Britain and Northern
+          Ireland) — астраўная дзяржава на паўночным захадзе Еўропы. Плошча 242,5
+          тыс.кв.км. Размешчана на востраве Вялікабрытанія, паўночным усходзе Ірландыі
+          і шэрагу меншых астравоў і архіпелагаў. Мяжуе па сушы з Ірландыяй. Пралівам
+          Ла-Манш аддзяляецца ад Францыі, з якой мае марскую мяжу. Геаграфічна адносіцца
+          да рэгіёна Паўночнай Еўропы, таксама лічыцца часткай Заходняй Еўропы. Сталіца
+          — горад Лондан — глабальны горад і фінансавы цэнтр. Афіцыйныя мовы: англійская
+          (дэ-факта), ва Уэльсе — валійская.'
+        en:
+        - The United Kingdom of Great Britain and Northern Ireland, commonly known
+          as the United Kingdom (UK or U.K.), or Britain, is a sovereign country in
+          north-western Europe, off the north-­western coast of the European mainland.
+          The United Kingdom includes the island of Great Britain, the north-­eastern
+          part of the island of Ireland, and many smaller islands within the British
+          Isles. Northern Ireland shares a land border with the Republic of Ireland.
+          Otherwise, the United Kingdom is surrounded by the Atlantic Ocean, with
+          the North Sea to the east, the English Channel to the south and the Celtic
+          Sea to the south-west, giving it the 12th-longest coastline in the world.
+          The Irish Sea separates Great Britain and Ireland. The total area of the
+          United Kingdom is 94,000 square miles (240,000 km2).
+        ru:
+        - 'Великобрита́ния (русское название происходит от англ. Great Britain [ˌɡreɪt
+          ˈbrɪtn]), или Соединённое Короле́вство (United Kingdom [jʊnaɪtɪd kɪŋdəm],
+          сокращённо: UK), полная официальная форма — Соединённое Короле́вство Великобрита́нии
+          и Се́верной Ирла́ндии (англ. The United Kingdom of Great Britain and Northern
+          Ireland), — островное государство на северо-западе от континентальной Европы.'
+        - Единое Королевство Великобритания образовалось в 1707 году вследствие политического
+          объединения королевств Шотландии и Англии; но ещё ранее, в 1603 году, король
+          Шотландии Яков VI унаследовал престолы Англии и Ирландии в порядке личной
+          унии (Яков I). В 1800 году Королевство Великобритания и Королевство Ирландия
+          объединились, образовав Соединённое Королевство Великобритании и Ирландии,
+          которое после отделения от него в 1922 году Ирландского Свободного государства
+          стало именоваться Соединённым Королевством Великобритании и Северной Ирландии
+      properties:
+        en:
+          description: Text content in English. Each paragraph as a separate string
+          items:
+            type: string
+          type: array
+        ru:
+          description: Text content in Russian. Each paragraph as a separate string
+          items:
+            type: string
+          type: array
+        ua:
+          description: Text content in Ukrainian. Each paragraph as a separate string
+          items:
+            type: string
+          type: array
+      title: Root Type for LocalText
+      type: object
+    Attraction-review:
+      example:
+        attraction-reviewId: f0311415-4065-4d18-8efa-089ed7daff7d
+        attractionId: fa7ff424-e5b5-4471-9a1b-4f7e8cbeea6f
+        userId: eace1b03-c0fe-4549-8a23-46325875d903
+        score: 5
+        datetime: 2021-03-11T17:32:28Z
+        comment: What a nice place!
+      properties:
+        attractionId:
+          type: string
+        userId:
+          type: string
+        score:
+          format: int32
+          type: integer
+        datetime:
+          format: date-time
+          type: string
+        comment:
+          type: string
+      title: Root Type for Attraction-review
+      type: object
+    PhotoGallery:
+      example:
+      - url: https://example.com/photo/1.png
+        alt:
+          en: Some description in English
+          ru: Какое-то описание на русском языке
+          ua: Опис на українській мові
+        width: 100
+        height: 100
+      - url: https://example.com/photo/2.png
+        alt:
+          en: Some description in English
+          ru: Какое-то описание на русском языке
+          ua: Опис на українській мові
+        width: 100
+        height: 100
+      - url: https://example.com/photo/3.png
+        alt:
+          en: Some description in English
+          ru: Какое-то описание на русском языке
+          ua: Опис на українській мові
+        width: 100
+        height: 100
+      - url: https://example.com/photo/4.png
+        alt:
+          en: Some description in English
+          ru: Какое-то описание на русском языке
+          ua: Опис на українській мові
+        width: 100
+        height: 100
+      items:
+        $ref: '#/components/schemas/Photo'
+      title: Root Type for PhotoGallery
+      type: array
+    UserCredentials:
+      description: User credentials
+      example:
+        email: test@example.com
+        password: varyStr0ng+p@55w0rd!
+      properties:
+        email:
+          description: User email
+          type: string
+        password:
+          description: User password
+          type: string
+      title: Root Type for UserCredentials
+      type: object
+    Country_video:
+      description: Link to the video with information about the country
+      properties:
+        url:
+          type: string
+      type: object
+    Attraction_name:
+      properties:
+        by:
+          type: string
+        en:
+          type: string
+        ru:
+          type: string
+      type: object
+    Attraction_thumbnail:
+      properties:
+        url:
+          type: string
+        alt:
+          $ref: '#/components/schemas/Attraction_name'
+        width:
+          format: int32
+          type: integer
+        height:
+          format: int32
+          type: integer
+      type: object
+    Attraction_summary:
+      properties:
+        by:
+          items:
+            type: string
+          type: array
+        en:
+          items:
+            type: string
+          type: array
+        ru:
+          items:
+            type: string
+          type: array
+      type: object
+    Timezone_dst:
+      description: Daylight saving time
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+        start:
+          format: date-time
+          type: string
+        end:
+          format: date-time
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

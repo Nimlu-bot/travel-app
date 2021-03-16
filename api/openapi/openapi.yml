@@ -1,0 +1,1132 @@
+openapi: 3.0.2
+info:
+    title: Travel App
+    version: 1.0.0
+    description: Travel app API
+    license:
+        name: GNU AGPLv3
+        url: 'https://www.gnu.org/licenses/agpl.txt'
+servers:
+    - url: 'http:localhost:5005'
+      description: Travel app API dev server
+paths:
+    /countries:
+        summary: Path used to manage the list of countries.
+        description: >-
+            The REST endpoint/path used to list and create zero or more `Country` entities.  This path
+            contains a `GET` and `POST` operation to perform the list and create tasks, respectively.
+        get:
+            tags:
+                - country
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Country'
+                    description: Successful response - returns an array of `Country` entities.
+            operationId: getCountries
+            summary: List All Countries
+            description: Gets a list of all `Country` entities.
+        post:
+            requestBody:
+                description: A new `Country` to be created.
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Country'
+                required: true
+            tags:
+                - country
+            responses:
+                '201':
+                    description: Successful response.
+            security:
+                - bearerAuth: []
+            operationId: createCountry
+            summary: Create a Country
+            description: Creates a new instance of a `Country`.
+    '/countries/{countryId}':
+        summary: Path used to manage a single Country.
+        description: >-
+            The REST endpoint/path used to get, update, and delete single instances of an `Country`.  This
+            path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete
+            tasks, respectively.
+        get:
+            tags:
+                - country
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Country'
+                    description: Successful response - returns a single `Country`.
+            operationId: getCountry
+            summary: Get the Country
+            description: Gets the details of a single instance of a `Country`.
+        put:
+            requestBody:
+                description: Updated `Country` information.
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Country'
+                required: true
+            tags:
+                - country
+            responses:
+                '202':
+                    description: Successful response.
+            security:
+                - bearerAuth: []
+            operationId: updateCountry
+            summary: Update the Country
+            description: Updates an existing `Country`.
+        delete:
+            tags:
+                - country
+            responses:
+                '204':
+                    description: Successful response.
+            security:
+                - bearerAuth: []
+            operationId: deleteCountry
+            summary: Delete the Country
+            description: Deletes an existing `Country`.
+        parameters:
+            - name: countryId
+              description: A unique identifier for a `Country`.
+              schema:
+                  type: string
+              in: path
+              required: true
+    /attractions:
+        summary: Path used to manage the list of attractions.
+        description: >-
+            The REST endpoint/path used to list and create zero or more `Attraction` entities.  This path
+            contains a `GET` and `POST` operation to perform the list and create tasks, respectively.
+        get:
+            tags:
+                - attraction
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Attraction'
+                    description: Successful response - returns an array of `Attraction` entities.
+            operationId: getAttractions
+            summary: List All Attractions
+            description: Gets a list of all `Attraction` entities.
+        post:
+            requestBody:
+                description: A new `Attraction` to be created.
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Attraction'
+                required: true
+            tags:
+                - attraction
+            responses:
+                '201':
+                    description: Successful response.
+            security:
+                - bearerAuth: []
+            operationId: createAttraction
+            summary: Create a Attraction
+            description: Creates a new instance of a `Attraction`.
+    '/attractions/{attractionId}':
+        summary: Path used to manage a single Attraction.
+        description: >-
+            The REST endpoint/path used to get, update, and delete single instances of an `Attraction`.  This
+            path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete
+            tasks, respectively.
+        get:
+            tags:
+                - attraction
+            parameters:
+                - examples:
+                      AttractionId example:
+                          value: '"d4f79342-6809-487f-a5b8-58e6b4036cce"'
+                  name: attractionId
+                  description: A unique identifier for a `Attraction`.
+                  schema:
+                      type: string
+                  in: path
+                  required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Attraction'
+                    description: Successful response - returns a single `Attraction`.
+            operationId: getAttraction
+            summary: Get a Attraction
+            description: Gets the details of a single instance of a `Attraction`.
+        put:
+            requestBody:
+                description: Updated `Attraction` information.
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Attraction'
+                required: true
+            tags:
+                - attraction
+            responses:
+                '202':
+                    description: Successful response.
+            security:
+                - bearerAuth: []
+            operationId: updateAttraction
+            summary: Update a Attraction
+            description: Updates an existing `Attraction`.
+        delete:
+            tags:
+                - attraction
+            responses:
+                '204':
+                    description: Successful response.
+            security:
+                - bearerAuth: []
+            operationId: deleteAttraction
+            summary: Delete a Attraction
+            description: Deletes an existing `Attraction`.
+        parameters:
+            - name: attractionId
+              description: A unique identifier for a `Attraction`.
+              schema:
+                  type: string
+              in: path
+              required: true
+    /users:
+        summary: Path used to manage the list of users.
+        description: >-
+            The REST endpoint/path used to list and create zero or more `Users` entities.  This path contains
+            a `GET` and `POST` operation to perform the list and create tasks, respectively.
+        get:
+            tags:
+                - user
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/User'
+                    description: Successful response - returns an array of `Users` entities.
+            security:
+                - bearerAuth: []
+            operationId: getUsers
+            summary: List All Users
+            description: Gets a list of all `Users` entities.
+        post:
+            requestBody:
+                description: A new `Users` to be created.
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/User'
+                required: true
+            tags:
+                - user
+            responses:
+                '201':
+                    description: Successful response.
+            operationId: createUser
+            summary: Create a User
+            description: Creates a new instance of a `Users`.
+    '/users/{usersId}':
+        summary: Path used to manage a single Users.
+        description: >-
+            The REST endpoint/path used to get, update, and delete single instances of an `Users`.  This path
+            contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks,
+            respectively.
+        get:
+            tags:
+                - user
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/User'
+                    description: Successful response - returns a single `Users`.
+            security:
+                - bearerAuth: []
+            operationId: getUser
+            summary: Get the User
+            description: Gets the details of a single instance of a `Users`.
+        put:
+            requestBody:
+                description: Updated `Users` information.
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/User'
+                required: true
+            tags:
+                - user
+            responses:
+                '202':
+                    description: Successful response.
+            security:
+                - bearerAuth: []
+            operationId: updateUser
+            summary: Update the User
+            description: Updates an existing `Users`.
+        delete:
+            tags:
+                - user
+            responses:
+                '204':
+                    description: Successful response.
+            security:
+                - bearerAuth: []
+            operationId: deleteUser
+            summary: Delete the User
+            description: Deletes an existing `Users`.
+        parameters:
+            - name: usersId
+              description: A unique identifier for a `Users`.
+              schema:
+                  type: string
+              in: path
+              required: true
+    /attraction-reviews:
+        summary: Path used to manage the list of attraction-reviews.
+        description: >-
+            The REST endpoint/path used to list and create zero or more `Attraction-review` entities.  This
+            path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.
+        get:
+            tags:
+                - attraction-review
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Attraction-review'
+                    description: Successful response - returns an array of `Attraction-review` entities.
+            operationId: getAttraction-reviews
+            summary: List All Attraction reviews
+            description: Gets a list of all `Attraction-review` entities.
+        post:
+            requestBody:
+                description: A new `Attraction-review` to be created.
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Attraction-review'
+                required: true
+            tags:
+                - attraction-review
+            responses:
+                '201':
+                    description: Successful response.
+            security:
+                - bearerAuth: []
+            operationId: createAttraction-review
+            summary: Create an Attraction-review
+            description: Creates a new instance of a `Attraction-review`.
+    '/attraction-reviews/{attraction-reviewId}':
+        summary: Path used to manage a single Attraction-review.
+        description: >-
+            The REST endpoint/path used to get, update, and delete single instances of an
+            `Attraction-review`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the
+            get, update, and delete tasks, respectively.
+        get:
+            tags:
+                - attraction-review
+            parameters:
+                - examples:
+                      Attraction review exampe:
+                          value: '"7beafc5a-790c-4431-91a9-b38ca04fd565"'
+                  name: attraction-reviewId
+                  description: A unique identifier for a `Attraction-review`.
+                  schema:
+                      type: string
+                  in: path
+                  required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Attraction-review'
+                    description: Successful response - returns a single `Attraction-review`.
+            operationId: getAttraction-review
+            summary: Get the specific Attraction-review
+            description: Gets the details of a single instance of a `Attraction-review`.
+        put:
+            requestBody:
+                description: Updated `Attraction-review` information.
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Attraction-review'
+                required: true
+            tags:
+                - attraction-review
+            parameters:
+                - examples:
+                      AttractionId example:
+                          value: '"7beafc5a-790c-4431-91a9-b38ca04fd565"'
+                  name: attraction-reviewId
+                  description: A unique identifier for a `Attraction-review`.
+                  schema:
+                      type: string
+                  in: path
+                  required: true
+            responses:
+                '202':
+                    description: Successful response.
+            security:
+                - bearerAuth: []
+            operationId: updateAttraction-review
+            summary: Update the specific Attraction-review
+            description: Updates an existing `Attraction-review`.
+        delete:
+            tags:
+                - attraction-review
+            parameters:
+                - examples:
+                      AttractionId example:
+                          value: '"7beafc5a-790c-4431-91a9-b38ca04fd565"'
+                  name: attraction-reviewId
+                  description: A unique identifier for a `Attraction-review`.
+                  schema:
+                      type: string
+                  in: path
+                  required: true
+            responses:
+                '204':
+                    description: Successful response.
+            security:
+                - bearerAuth: []
+            operationId: deleteAttraction-review
+            summary: Delete the specific Attraction-review
+            description: Deletes an existing `Attraction-review`.
+        parameters:
+            - name: attraction-reviewId
+              description: A unique identifier for a `Attraction-review`.
+              schema:
+                  type: string
+              in: path
+              required: true
+    /auth/login:
+        post:
+            requestBody:
+                description: User credentials
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UserCredentials'
+                        examples:
+                            User credentials payload example:
+                                value:
+                                    email: test@example.com
+                                    password: varyStr0ng+p@55w0rd!
+                required: true
+            tags:
+                - auth
+            responses:
+                '200':
+                    content:
+                        application/json: {}
+                    description: Success login
+                '400':
+                    description: Bad request
+            operationId: userLogin
+            summary: User Login
+            description: Return JWT token
+components:
+    schemas:
+        Country:
+            title: Root Type for Country
+            description: Country data type description
+            required:
+                - name
+                - iso
+            type: object
+            properties:
+                id:
+                    type: string
+                iso:
+                    description: 'Country ISO code (2 chars). Example: "ru"'
+                    type: string
+                name:
+                    $ref: '#/components/schemas/LocalName'
+                    description: Name of the country in different languages
+                    properties:
+                        by:
+                            type: string
+                        en:
+                            type: string
+                        ru:
+                            type: string
+                capital:
+                    $ref: '#/components/schemas/City'
+                    description: Capital of the country
+                    properties:
+                        name:
+                            type: object
+                            properties:
+                                by:
+                                    type: string
+                                en:
+                                    type: string
+                                ru:
+                                    type: string
+                        coords:
+                            type: array
+                            items:
+                                format: double
+                                type: number
+                        timezone:
+                            type: object
+                            properties:
+                                standard:
+                                    type: string
+                                dst:
+                                    type: object
+                                    properties:
+                                        type:
+                                            type: string
+                                        value:
+                                            type: string
+                                        start:
+                                            format: date-time
+                                            type: string
+                                        end:
+                                            format: date-time
+                                            type: string
+                currency:
+                    $ref: '#/components/schemas/Currency'
+                    description: Currency of the country
+                    properties:
+                        iso:
+                            type: string
+                        name:
+                            type: object
+                            properties:
+                                by:
+                                    type: string
+                                en:
+                                    type: string
+                                ru:
+                                    type: string
+                        symbol:
+                            type: string
+                thumbnail:
+                    $ref: '#/components/schemas/Photo'
+                    description: Main illustration (picture) of the country
+                    properties:
+                        url:
+                            type: string
+                        alt:
+                            type: object
+                            properties:
+                                by:
+                                    type: string
+                                en:
+                                    type: string
+                                ru:
+                                    type: string
+                        width:
+                            format: int32
+                            type: integer
+                        height:
+                            format: int32
+                            type: integer
+                summary:
+                    $ref: '#/components/schemas/LocalText'
+                    description: >-
+                        A brief description of the country in different languages. Each paragraph as a
+                        separate string (an array of strings is used)
+                    properties:
+                        by:
+                            type: array
+                            items:
+                                type: string
+                        en:
+                            type: array
+                            items:
+                                type: string
+                        ru:
+                            type: array
+                            items:
+                                type: string
+                video:
+                    description: Link to the video with information about the country
+                    type: object
+                    properties:
+                        url:
+                            type: string
+            example:
+                countyrId: 6e904621-4185-4357-8140-17198979f524
+                iso: uk
+                name:
+                    en: United Kingdom of Great Britain and Northern Ireland
+                    ru: Соединённое Королевство Великобритании и Северной Ирландии
+                    ua: Сполучене Королівство Великої Британії та Північної Ірландії
+                capital:
+                    name:
+                        en: London
+                        ru: Лондон
+                        ua: Лондон
+                    coords:
+                        - 51.509865
+                        - -0.118092
+                    timezone:
+                        standard: UTC+00
+                        dst:
+                            type: northern
+                            value: UTC+01
+                            start: '2021-03-28T01:00:00Z'
+                            end: '2021-10-31T01:00:00Z'
+                currency:
+                    iso: GBP
+                    name:
+                        en: Pound sterling
+                        ru: Фунт стерлингов
+                        ua: Фунт стерлінгів
+                    symbol: £
+                thumbnail:
+                    url: 'https://example.com/photo/gb.png'
+                    alt:
+                        en: United Kingdom of Great Britain and Northern Ireland
+                        ru: Соединённое Королевство Великобритании и Северной Ирландии
+                        ua: Сполучене Королівство Великої Британії та Північної Ірландії
+                    width: 100
+                    height: 100
+                summary:
+                    by:
+                        - >-
+                            Вялі́кабрыта́нія (англ.: Great Britain), Злу́чанае Карале́ўства Вялі́кабрыта́ніі і
+                            Паўно́чнай Ірла́ндыі (англ.: United Kingdom of Great Britain and Northern Ireland)
+                            — астраўная дзяржава на паўночным захадзе Еўропы. Плошча 242,5 тыс.кв.км.
+                            Размешчана на востраве Вялікабрытанія, паўночным усходзе Ірландыі і шэрагу меншых
+                            астравоў і архіпелагаў. Мяжуе па сушы з Ірландыяй. Пралівам Ла-Манш аддзяляецца ад
+                            Францыі, з якой мае марскую мяжу. Геаграфічна адносіцца да рэгіёна Паўночнай
+                            Еўропы, таксама лічыцца часткай Заходняй Еўропы. Сталіца — горад Лондан —
+                            глабальны горад і фінансавы цэнтр. Афіцыйныя мовы: англійская (дэ-факта), ва
+                            Уэльсе — валійская.
+                    en:
+                        - >-
+                            The United Kingdom of Great Britain and Northern Ireland, commonly known as the
+                            United Kingdom (UK or U.K.), or Britain, is a sovereign country in north-western
+                            Europe, off the north-­western coast of the European mainland. The United Kingdom
+                            includes the island of Great Britain, the north-­eastern part of the island of
+                            Ireland, and many smaller islands within the British Isles. Northern Ireland
+                            shares a land border with the Republic of Ireland. Otherwise, the United Kingdom
+                            is surrounded by the Atlantic Ocean, with the North Sea to the east, the English
+                            Channel to the south and the Celtic Sea to the south-west, giving it the
+                            12th-longest coastline in the world. The Irish Sea separates Great Britain and
+                            Ireland. The total area of the United Kingdom is 94,000 square miles (240,000
+                            km2).
+                    ru:
+                        - >-
+                            Великобрита́ния (русское название происходит от англ. Great Britain [ˌɡreɪt
+                            ˈbrɪtn]), или Соединённое Короле́вство (United Kingdom [jʊnaɪtɪd kɪŋdəm],
+                            сокращённо: UK), полная официальная форма — Соединённое Короле́вство
+                            Великобрита́нии и Се́верной Ирла́ндии (англ. The United Kingdom of Great Britain
+                            and Northern Ireland), — островное государство на северо-западе от континентальной
+                            Европы.
+                        - >-
+                            Единое Королевство Великобритания образовалось в 1707 году вследствие
+                            политического объединения королевств Шотландии и Англии; но ещё ранее, в 1603
+                            году, король Шотландии Яков VI унаследовал престолы Англии и Ирландии в порядке
+                            личной унии (Яков I). В 1800 году Королевство Великобритания и Королевство
+                            Ирландия объединились, образовав Соединённое Королевство Великобритании и
+                            Ирландии, которое после отделения от него в 1922 году Ирландского Свободного
+                            государства стало именоваться Соединённым Королевством Великобритании и Северной
+                            Ирландии
+                video:
+                    url: 'https://youtube.me/sdfsdfsdfsdfsdf'
+        Attraction:
+            title: Root Type for Attraction
+            description: ''
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: object
+                    properties:
+                        by:
+                            type: string
+                        en:
+                            type: string
+                        ru:
+                            type: string
+                coutryId:
+                    type: string
+                thumbnail:
+                    type: object
+                    properties:
+                        url:
+                            type: string
+                        alt:
+                            type: object
+                            properties:
+                                by:
+                                    type: string
+                                en:
+                                    type: string
+                                ru:
+                                    type: string
+                        width:
+                            format: int32
+                            type: integer
+                        height:
+                            format: int32
+                            type: integer
+                summary:
+                    type: object
+                    properties:
+                        by:
+                            type: array
+                            items:
+                                type: string
+                        en:
+                            type: array
+                            items:
+                                type: string
+                        ru:
+                            type: array
+                            items:
+                                type: string
+            example:
+                attractionId: 863949e4-0be7-4390-acd7-e24b4ddd6e72
+                name:
+                    by: Стоўнхендж
+                    en: Stonehenge
+                    ru: Стоунхендж
+                coutryId: 6e904621-4185-4357-8140-17198979f524
+                thumbnail:
+                    url: 'https://example.com/photo/stonehenge.png'
+                    alt:
+                        by: Стоўнхендж
+                        en: Stonehenge
+                        ru: Стоунхендж
+                    width: 100
+                    height: 100
+                summary:
+                    by:
+                        - >-
+                            Стоўнхендж (анг. Stonehenge, літар. «Каменны хендж») — занесенае ў спіс Сусветнай
+                            спадчыны каменнае мегалітычнае збудаванне (кромлех) на Солсберыйскай раўніне ў
+                            графстве Уілтшыр (Англія). Прыкладна за 130 км на паўднёвы захад ад Лондана.
+                    en:
+                        - >-
+                            Stonehenge is a prehistoric monument on Salisbury Plain in Wiltshire, England, two
+                            miles (3 km) west of Amesbury. It consists of an outer ring of vertical Sarsen
+                            standing stones, each around 13 feet (4.0 m) high, seven feet (2.1 m) wide, and
+                            weighing around 25 tons, topped by connecting horizontal lintel stones. Inside is
+                            a ring of smaller bluestones. Inside these are free-standing trilithons, two
+                            bulkier vertical Sarsens joined by one lintel. The whole monument, now ruinous, is
+                            oriented towards the sunrise on the summer solstice. The stones are set within
+                            earthworks in the middle of the most dense complex of Neolithic and Bronze Age
+                            monuments in England, including several hundred tumuli (burial mounds).
+                        - >-
+                            Archaeologists believe it was constructed from 3000 BC to 2000 BC. The surrounding
+                            circular earth bank and ditch, which constitute the earliest phase of the
+                            monument, have been dated to about 3100 BC. Radiocarbon dating suggests that the
+                            first bluestones were raised between 2400 and 2200 BC, although they may have been
+                            at the site as early as 3000 BC.
+                        - >-
+                            One of the most famous landmarks in the United Kingdom, Stonehenge is regarded as
+                            a British cultural icon. It has been a legally protected Scheduled Ancient
+                            Monument since 1882, when legislation to protect historic monuments was first
+                            successfully introduced in Britain. The site and its surroundings were added to
+                            UNESCO's list of World Heritage Sites in 1986. Stonehenge is owned by the Crown
+                            and managed by English Heritage; the surrounding land is owned by the National
+                            Trust.
+                        - >-
+                            Stonehenge could have been a burial ground from its earliest beginnings. Deposits
+                            containing human bone date from as early as 3000 BC, when the ditch and bank were
+                            first dug, and continued for at least another 500 years.
+                    ru:
+                        - >-
+                            Стоунхендж, Стонхендж (англ. Stonehenge [ˈstəʊnˌhendʒ]) — внесённое в список
+                            Всемирного наследия каменное мегалитическое сооружение (кромлех) в графстве
+                            Уилтшир (Англия). Находится примерно в 130 км к юго-западу от Лондона, примерно в
+                            3,2 км к западу от Эймсбери и в 13 км к северу от Солсбери.
+                        - >-
+                            Один из самых знаменитых археологических памятников в мире, Стоунхендж состоит из
+                            кольцевых и подковообразных сооружений, построенных из больших менгиров. Он
+                            находится в центре самого плотного комплекса памятников неолита и бронзового века
+                            в Англии. Сам памятник и его окрестности были включены в список Всемирного
+                            наследия ЮНЕСКО в 1986 г. вместе с Эйвбери. Стоунхендж передан британской короной
+                            в управление «Английскому наследию», тогда как ближайшие окрестности принадлежат
+                            Национальному трасту.
+        City:
+            title: Root Type for Cities
+            description: ''
+            required:
+                - timezone
+            type: object
+            properties:
+                name:
+                    $ref: '#/components/schemas/LocalName'
+                    description: City name on the different languages
+                    properties:
+                        by:
+                            type: string
+                        en:
+                            type: string
+                        ru:
+                            type: string
+                coords:
+                    description: Coordinates of the city location
+                    type: array
+                    items:
+                        format: double
+                        type: number
+                timezone:
+                    $ref: '#/components/schemas/Timezone'
+                    description: Timezone
+                    properties:
+                        standard:
+                            type: string
+                        dst:
+                            type: object
+                            properties:
+                                type:
+                                    type: string
+                                value:
+                                    type: string
+                                start:
+                                    format: date-time
+                                    type: string
+                                end:
+                                    format: date-time
+                                    type: string
+            example:
+                name:
+                    by: Лондан
+                    en: London
+                    ru: Лондон
+                coords:
+                    - 51.509865
+                    - -0.118092
+                timezone:
+                    standard: UTC+00
+                    dst:
+                        type: northern
+                        value: UTC+01
+                        start: '2021-03-28T01:00:00Z'
+                        end: '2021-10-31T01:00:00Z'
+        User:
+            title: Root Type for Users
+            description: ''
+            required:
+                - id
+                - email
+                - password
+            type: object
+            properties:
+                id:
+                    description: User Id
+                    type: string
+                name:
+                    description: User name
+                    type: string
+                email:
+                    description: User email. Used as user's uniq identifier (login)
+                    type: string
+                password:
+                    description: User password
+                    type: string
+                avatar:
+                    $ref: '#/components/schemas/Photo'
+                    description: User avatar
+                    properties:
+                        url:
+                            type: string
+                        width:
+                            format: int32
+                            type: integer
+                        height:
+                            format: int32
+                            type: integer
+                isactive:
+                    description: ''
+                    type: boolean
+            example:
+                userId: 444199d3-09ca-4e4b-8304-1d812b5f2583
+                name: Leanne Graham
+                email: Sincere@april.biz
+                password: '************'
+                avatar:
+                    url: 'https://example.com/photo/user.png'
+                    width: 100
+                    height: 100
+        Currency:
+            title: Root Type for Currency
+            description: ''
+            required:
+                - iso
+            type: object
+            properties:
+                iso:
+                    description: Currency ISO code
+                    type: string
+                name:
+                    $ref: '#/components/schemas/LocalName'
+                    description: Currency name in different languages
+                    properties:
+                        by:
+                            type: string
+                        en:
+                            type: string
+                        ru:
+                            type: string
+                symbol:
+                    type: string
+            example:
+                iso: GBP
+                name:
+                    ua: Фунт стерлінгів
+                    en: Pound sterling
+                    ru: Фунт стерлингов
+                symbol: £
+        Photo:
+            title: Root Type for Photo
+            description: ''
+            type: object
+            properties:
+                url:
+                    type: string
+                alt:
+                    $ref: '#/components/schemas/LocalName'
+                    properties:
+                        en:
+                            type: string
+                        ru:
+                            type: string
+                        ua:
+                            type: string
+                width:
+                    format: int32
+                    type: integer
+                height:
+                    format: int32
+                    type: integer
+            example:
+                url: 'https://example.com/photo/gb.png'
+                alt:
+                    en: United Kingdom of Great Britain and Northern Ireland
+                    ru: Соединённое Королевство Великобритании и Северной Ирландии
+                    ua: Сполучене Королівство Великої Британії та Північної Ірландії
+                width: 100
+                height: 100
+        Timezone:
+            title: Root Type for Timezone
+            description: ''
+            type: object
+            properties:
+                standard:
+                    description: Standart time
+                    type: string
+                dst:
+                    description: Daylight saving time
+                    type: object
+                    properties:
+                        type:
+                            type: string
+                        value:
+                            type: string
+                        start:
+                            format: date-time
+                            type: string
+                        end:
+                            format: date-time
+                            type: string
+            example:
+                standard: UTC+00
+                dst:
+                    type: northern
+                    value: UTC+01
+                    start: '2021-03-28T01:00:00Z'
+                    end: '2021-10-31T01:00:00Z'
+        LocalName:
+            title: Root Type for Localizations
+            description: ''
+            type: object
+            properties:
+                en:
+                    description: Name of the resource (attribute) in English
+                    type: string
+                ru:
+                    description: Name of the resource (attribute) in Russian
+                    type: string
+                ua:
+                    description: Name of the resource (attribute) in Ukrainian
+                    type: string
+            example:
+                en: London
+                ru: Лондон
+                ua: Лондон
+        LocalText:
+            title: Root Type for LocalText
+            description: ''
+            type: object
+            properties:
+                en:
+                    description: Text content in English. Each paragraph as a separate string
+                    type: array
+                    items:
+                        type: string
+                ru:
+                    description: Text content in Russian. Each paragraph as a separate string
+                    type: array
+                    items:
+                        type: string
+                ua:
+                    description: Text content in Ukrainian. Each paragraph as a separate string
+                    type: array
+                    items:
+                        type: string
+            example:
+                by:
+                    - >-
+                        Вялі́кабрыта́нія (англ.: Great Britain), Злу́чанае Карале́ўства Вялі́кабрыта́ніі і
+                        Паўно́чнай Ірла́ндыі (англ.: United Kingdom of Great Britain and Northern Ireland) —
+                        астраўная дзяржава на паўночным захадзе Еўропы. Плошча 242,5 тыс.кв.км. Размешчана на
+                        востраве Вялікабрытанія, паўночным усходзе Ірландыі і шэрагу меншых астравоў і
+                        архіпелагаў. Мяжуе па сушы з Ірландыяй. Пралівам Ла-Манш аддзяляецца ад Францыі, з
+                        якой мае марскую мяжу. Геаграфічна адносіцца да рэгіёна Паўночнай Еўропы, таксама
+                        лічыцца часткай Заходняй Еўропы. Сталіца — горад Лондан — глабальны горад і фінансавы
+                        цэнтр. Афіцыйныя мовы: англійская (дэ-факта), ва Уэльсе — валійская.
+                en:
+                    - >-
+                        The United Kingdom of Great Britain and Northern Ireland, commonly known as the United
+                        Kingdom (UK or U.K.), or Britain, is a sovereign country in north-western Europe, off
+                        the north-­western coast of the European mainland. The United Kingdom includes the
+                        island of Great Britain, the north-­eastern part of the island of Ireland, and many
+                        smaller islands within the British Isles. Northern Ireland shares a land border with
+                        the Republic of Ireland. Otherwise, the United Kingdom is surrounded by the Atlantic
+                        Ocean, with the North Sea to the east, the English Channel to the south and the Celtic
+                        Sea to the south-west, giving it the 12th-longest coastline in the world. The Irish
+                        Sea separates Great Britain and Ireland. The total area of the United Kingdom is
+                        94,000 square miles (240,000 km2).
+                ru:
+                    - >-
+                        Великобрита́ния (русское название происходит от англ. Great Britain [ˌɡreɪt ˈbrɪtn]),
+                        или Соединённое Короле́вство (United Kingdom [jʊnaɪtɪd kɪŋdəm], сокращённо: UK),
+                        полная официальная форма — Соединённое Короле́вство Великобрита́нии и Се́верной
+                        Ирла́ндии (англ. The United Kingdom of Great Britain and Northern Ireland), —
+                        островное государство на северо-западе от континентальной Европы.
+                    - >-
+                        Единое Королевство Великобритания образовалось в 1707 году вследствие политического
+                        объединения королевств Шотландии и Англии; но ещё ранее, в 1603 году, король Шотландии
+                        Яков VI унаследовал престолы Англии и Ирландии в порядке личной унии (Яков I). В 1800
+                        году Королевство Великобритания и Королевство Ирландия объединились, образовав
+                        Соединённое Королевство Великобритании и Ирландии, которое после отделения от него в
+                        1922 году Ирландского Свободного государства стало именоваться Соединённым
+                        Королевством Великобритании и Северной Ирландии
+        Attraction-review:
+            title: Root Type for Attraction-review
+            description: ''
+            type: object
+            properties:
+                attractionId:
+                    type: string
+                userId:
+                    type: string
+                score:
+                    format: int32
+                    type: integer
+                datetime:
+                    format: date-time
+                    type: string
+                comment:
+                    type: string
+            example:
+                attraction-reviewId: f0311415-4065-4d18-8efa-089ed7daff7d
+                attractionId: fa7ff424-e5b5-4471-9a1b-4f7e8cbeea6f
+                userId: eace1b03-c0fe-4549-8a23-46325875d903
+                score: 5
+                datetime: '2021-03-11T17:32:28Z'
+                comment: What a nice place!
+        PhotoGallery:
+            title: Root Type for PhotoGallery
+            description: ''
+            type: array
+            items:
+                $ref: '#/components/schemas/Photo'
+            example:
+                - url: 'https://example.com/photo/1.png'
+                  alt:
+                      en: Some description in English
+                      ru: Какое-то описание на русском языке
+                      ua: Опис на українській мові
+                  width: 100
+                  height: 100
+                - url: 'https://example.com/photo/2.png'
+                  alt:
+                      en: Some description in English
+                      ru: Какое-то описание на русском языке
+                      ua: Опис на українській мові
+                  width: 100
+                  height: 100
+                - url: 'https://example.com/photo/3.png'
+                  alt:
+                      en: Some description in English
+                      ru: Какое-то описание на русском языке
+                      ua: Опис на українській мові
+                  width: 100
+                  height: 100
+                - url: 'https://example.com/photo/4.png'
+                  alt:
+                      en: Some description in English
+                      ru: Какое-то описание на русском языке
+                      ua: Опис на українській мові
+                  width: 100
+                  height: 100
+        UserCredentials:
+            title: Root Type for UserCredentials
+            description: User credentials
+            type: object
+            properties:
+                email:
+                    description: User email
+                    type: string
+                password:
+                    description: User password
+                    type: string
+            example:
+                email: test@example.com
+                password: varyStr0ng+p@55w0rd!
+    responses:
+        UnauthorizedError:
+            description: Access token is missing or invalid
+        Success:
+            description: Success
+    securitySchemes:
+        bearerAuth:
+            scheme: bearer
+            type: http
+tags:
+    - name: country
+      description: Everything about countries
+    - name: attraction
+      description: Everything about countries
+    - name: user
+      description: Everything about users
+    - name: auth
+      description: All about authentication
+    - name: attraction-review
+      description: All about attraction reviews
