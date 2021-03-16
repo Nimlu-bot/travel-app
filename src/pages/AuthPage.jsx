@@ -8,7 +8,7 @@ export const AuthPage = () => {
     const [sign, setSign] = useState(false);
     const [message, setMessage] = useState();
     const auth = useContext(AuthContext);
-    const { loading, request, error, clearError } = useHttp();
+    const { loading, request, error } = useHttp();
     const [photo, setPhoto] = useState(null);
     const [form, setForm] = useState({
         name: '',
@@ -20,13 +20,20 @@ export const AuthPage = () => {
 
     useEffect(() => {
         setMessage(error);
-        setTimeout(() => clearError(), 15000);
-    }, [error, message, clearError]);
+        //setTimeout(() => clearError(), 15000);
+    }, [error]);
 
     const registerHandler = async () => {
         try {
             const image = await uploadHandler();
-            const data = await request('http://localhost:4000/api/auth/register', 'POST', { ...form, image: image });
+            if (image === 'error') {
+                setMessage('image upload error');
+                return;
+            }
+            const data = await request('http://localhost:4000/api/auth/register', 'POST', {
+                ...form,
+                image: image || '',
+            });
             setSign((prevState) => !prevState);
             setMessage(data.message);
         } catch (e) {
@@ -35,20 +42,24 @@ export const AuthPage = () => {
     };
     const uploadHandler = async () => {
         try {
-            const formData = new FormData();
-            formData.append('file', photo);
-            formData.append('upload_preset', 'tsb1hppc');
-            const options = {
-                method: 'POST',
-                body: formData,
-            };
-            const data = await fetch('https://api.Cloudinary.com/v1_1/nimlu/image/upload', options).then((res) =>
-                res.json(),
-            );
-            setForm({ ...form, image: data.secure_url });
-            return data.secure_url;
+            if (photo) {
+                const formData = new FormData();
+                formData.append('file', photo);
+                formData.append('upload_preset', 'tsb1hppc');
+                const options = {
+                    method: 'POST',
+                    body: formData,
+                };
+                const data = await fetch('https://api.Cloudinary.com/v1_1/nimlu/image/upload', options).then((res) =>
+                    res.json(),
+                );
+                setForm({ ...form, image: data.secure_url });
+                return data.secure_url;
+            }
+            return null;
         } catch (e) {
-            console.log('error upload');
+            //console.log('error upload');
+            return 'error';
         }
     };
 
@@ -151,13 +162,8 @@ export const AuthPage = () => {
                     required
                     onChange={changeHandler}
                 />
-                <input type='file' accept='image/*' onChange={onPhotoSelect} />
-
-                {/* <button className='auth-button login' onClick={uploadHandler} disabled={loading}>
-									upLoad
-							</button> */}
-
                 <span className='auth-password-length'>Мин длинна 6 символов</span>
+                <input type='file' accept='image/*' onChange={onPhotoSelect} />
                 <div className='auth-buttons-wrapper'>
                     <button className='auth-button login' onClick={registerHandler} disabled={loading}>
                         Signup

@@ -5,14 +5,16 @@ import Header from '../components/Header';
 import { PageTitle } from '../components/PageTitle';
 import Parallax from '../components/Parallax';
 import Quote from '../components/Quote';
+import { useLanguage } from './../context/LanguageContext';
 
 const title = {
     en: 'Home Page',
     ru: 'Главная Страница',
     ua: 'Головна Сторінка',
 };
-
+//const lang = useLanguage().language;
 export const HomePage = () => {
+    const { language } = useLanguage();
     return (
         <>
             <Header />
@@ -22,7 +24,7 @@ export const HomePage = () => {
                 <CountryList />
             </div>
             <Parallax />
-            <Quote />
+            <Quote language={language} />
             <Footer />
         </>
     );

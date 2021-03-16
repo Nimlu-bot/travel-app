@@ -326,7 +326,7 @@ export const countries = [
             iso: 'czk',
             name: {
                 en: 'Czech koruna',
-                ru: 'Фунт стерлингов',
+                ru: 'Чешская крона',
                 ua: 'Чеська крона',
             },
             symbol: '',
