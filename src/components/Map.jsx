@@ -8,6 +8,8 @@ import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 // import ReactMapboxGl from 'react-mapbox-gl';
 // import MapboxLanguageControl from 'react-mapbox-gl-language';
 // import React, {Component, useEffect, useState} from 'react';
+// import ReactMapboxGl from 'react-mapbox-gl';
+// import MapboxLanguageControl from 'react-mapbox-gl-language';
 
 const capitals = {
     GB: [51.509865, -0.118092],
@@ -59,8 +61,10 @@ export default function Map(props) {
                 <MapContainer className='map-container' center={position} zoom={5} scrollWheelZoom={false}>
                     <TileLayer
                         attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
-                        url='https://api.mapbox.com/styles/v1/tone4ka/ckm4wl17kditc17ptbx8aq0rx/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidG9uZTRrYSIsImEiOiJja2l1NGxnZXMydjQ5MnlsYnJjMGtmdnA3In0.5ldaiECa7ofK34QR7SjPIQ'
+                        url='https://api.mapbox.com/styles/v1/tone4ka/ckmbvsjkj95yv17pg1vgri8ig/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidG9uZTRrYSIsImEiOiJja2l1NGxnZXMydjQ5MnlsYnJjMGtmdnA3In0.5ldaiECa7ofK34QR7SjPIQ'
                     />
+                    {/* mapbox://styles/tone4ka/ckmbvsjkj95yv17pg1vgri8ig */}
+                    {/* mapbox://styles/tone4ka/ckm4wl17kditc17ptbx8aq0rx */}
                     <Marker className='capitalMarker' position={position}>
                         <Tooltip>{props.capital}</Tooltip>
                     </Marker>
