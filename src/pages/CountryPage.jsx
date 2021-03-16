@@ -32,6 +32,7 @@ export const CountryPage = () => {
                     <Currency
                         iso={countryParams.country.currency.iso}
                         currency={countryParams.country.currency.name[lang]}
+                        lang={lang}
                     />
                     <DateTime timeZone={countryParams.country.capital.timezone.standard} lang={lang} />
                 </div>

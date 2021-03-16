@@ -10,5 +10,6 @@ export const AuthContext = createContext({
     logout: noop,
     withoutLogin: noop,
     anonim: false,
+    image: null,
     isAuthenticated: false,
 });
