@@ -13,8 +13,8 @@ function CountryAbout(props) {
                 style={{ backgroundImage: `url(${images[props.country.iso]})` }}
             ></div>
             <div className='country-about'>
-                <p className='country-name'>{props.country.name[lang]}</p>
-                <p className='country-capital-name'>{props.country.capital.name[lang]}</p>
+                <h2 className='country-name'>{props.country.name[lang]}</h2>
+                <h3 className='country-capital-name'>{props.country.capital.name[lang]}</h3>
                 <p className='country-about-text'>{props.country.summary[lang]}</p>
             </div>
         </div>

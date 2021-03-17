@@ -2,54 +2,98 @@ import React, { useState, useEffect, useContext } from 'react';
 import './pages.scss';
 import { useHttp } from './../hooks/httpHook';
 import { AuthContext } from '../context/AuthContext';
-import { useLanguage } from './../context/LanguageContext';
 
 export const AuthPage = () => {
     const [sign, setSign] = useState(false);
     const [message, setMessage] = useState();
     const auth = useContext(AuthContext);
     const { loading, request, error, clearError } = useHttp();
+    const [photo, setPhoto] = useState(null);
     const [form, setForm] = useState({
         name: '',
         email: '',
         password: '',
+        image: '',
     });
-    const lang = useLanguage().language;
+
+    //const url = 'http://localhost:4000';
+    const url = 'https://nimlu-bot-travel-app.herokuapp.com';
 
     useEffect(() => {
         setMessage(error);
-        setTimeout(() => clearError(), 5000);
-    }, [error, message, clearError]);
+        //setTimeout(() => clearError(), 15000);
+    }, [error]);
 
     const registerHandler = async () => {
         try {
-            const data = await request('http://localhost:4000/api/auth/register', 'POST', { ...form });
-
+            const image = await uploadHandler();
+            if (image === 'error') {
+                setMessage('image upload error');
+                return;
+            }
+            const data = await request(`${url}/api/auth/register`, 'POST', {
+                ...form,
+                image: image || '',
+            });
+            setSign((prevState) => !prevState);
             setMessage(data.message);
         } catch (e) {
             console.log('error');
         }
     };
+    const uploadHandler = async () => {
+        try {
+            if (photo) {
+                const formData = new FormData();
+                formData.append('file', photo);
+                formData.append('upload_preset', 'tsb1hppc');
+                const options = {
+                    method: 'POST',
+                    body: formData,
+                };
+                const data = await fetch('https://api.Cloudinary.com/v1_1/nimlu/image/upload', options).then((res) =>
+                    res.json(),
+                );
+                setForm({ ...form, image: data.secure_url });
+                return data.secure_url;
+            }
+            return null;
+        } catch (e) {
+            return 'error';
+        }
+    };
+
+    const onPhotoSelect = (event) => {
+        if (event.target.files.length) {
+            setPhoto(event.target.files[0]);
+        }
+    };
 
     const loginHandler = async () => {
         try {
-            const data = await request('http://localhost:4000/api/auth/login', 'POST', { ...form });
-            auth.login(data.name, data.token, data.userId);
+            const data = await request(`${url}/api/auth/login`, 'POST', { ...form });
+            auth.login(data.name, data.token, data.userId, data.image);
         } catch (e) {
             console.log('error');
         }
+    };
+    const wthoutRegHandler = () => {
+        auth.withoutLogin(true);
     };
 
     const changeHandler = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
+    const cancelHandler = () => {
+        setSign((prevState) => !prevState);
+        clearError();
+    };
 
-    console.log(sign);
     if (!sign) {
         return (
             <div className='auth-wrapper wrapper'>
                 <div className='auth-card card'>
-                    <span className='auth-card-title'>Auth {lang}</span>
+                    <span className='auth-card-title'>Auth</span>
                     <input
                         className='auth-card-email auth-input'
                         autoComplete='off'
@@ -70,7 +114,8 @@ export const AuthPage = () => {
                         required
                         onChange={changeHandler}
                     />
-                    <span className='auth-password-length'>Мин длинна 6 символов</span>
+
+                    <span className='auth-password-length'>Min is 6 characters long</span>
                     <div className='auth-buttons-wrapper'>
                         <button className='auth-button login' disabled={loading} onClick={loginHandler}>
                             Login
@@ -79,8 +124,10 @@ export const AuthPage = () => {
                             SignUp
                         </button>
                     </div>
-                    <span className='auth-message'>1{message}</span>
-                    <span className='auth-without-reg'>Продолжить без регистрации</span>
+                    <span className='auth-message'>{message}</span>
+                    <span className='auth-without-reg' onClick={wthoutRegHandler}>
+                        Continue without registration
+                    </span>
                 </div>
             </div>
         );
@@ -119,13 +166,17 @@ export const AuthPage = () => {
                     required
                     onChange={changeHandler}
                 />
-                <span className='auth-password-length'>Мин длинна 6 символов</span>
+                <span className='auth-password-length'>Min is 6 characters long</span>
+                <div className='auth-file-wrapper'>
+                    <div className='auth-file-placeholder'>pleace select photo</div>
+                    <input className='auth-file' type='file' accept='image/*' onChange={onPhotoSelect} />
+                </div>
                 <div className='auth-buttons-wrapper'>
                     <button className='auth-button login' onClick={registerHandler} disabled={loading}>
                         Signup
                     </button>
-                    <button className='auth-button cancel' onClick={() => setSign((prevState) => !prevState)}>
-                        Cansel
+                    <button className='auth-button cancel' onClick={cancelHandler}>
+                        Cancel
                     </button>
                 </div>
                 <span className='auth-message'>{message}</span>
