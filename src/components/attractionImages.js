@@ -1443,9 +1443,9 @@ const attractions = [
             url: ES6,
             urlt: ES6t,
             alt: {
-                ru: 'Стоўнхендж',
-                en: 'Pompeii',
-                uk: 'Помпеї',
+                ru: 'Триумфальная арка',
+                en: 'The Arc de Triomphe',
+                uk: 'Тріумфальна арка ',
             },
             width: 100,
             height: 100,

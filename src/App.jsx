@@ -7,6 +7,7 @@ import { AuthContext } from './context/AuthContext';
 import { CountryProvider } from './context/CountryContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { SearchProvider } from './context/SearchContext';
+import ScrollToTop from './components/ScrolToTop';
 
 function App() {
     const { token, login, logout, withoutLogin, name, userId, anonim, image } = useAuth();
@@ -32,6 +33,7 @@ function App() {
                 <CountryProvider>
                     <SearchProvider>
                         <Router>
+                            <ScrollToTop />
                             <div className='App'>{routes}</div>
                         </Router>
                     </SearchProvider>

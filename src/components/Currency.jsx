@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useHttp } from './../hooks/httpHook';
 import PropTypes from 'prop-types';
+import { calcEchangRate } from './functions';
 
 function Currency({ iso, currency, lang }) {
     // const curencies = ['usd', 'eur', 'czk', 'gbp', 'uah'];
@@ -49,7 +50,8 @@ function Currency({ iso, currency, lang }) {
             try {
                 const data = await request(url, 'GET');
 
-                return parseFloat((data.Cur_OfficialRate / data.Cur_Scale).toFixed(4));
+                return calcEchangRate(data.Cur_OfficialRate, data.Cur_Scale);
+                //parseFloat((data.Cur_OfficialRate / data.Cur_Scale).toFixed(4));
             } catch (e) {
                 console.log('error');
             }
