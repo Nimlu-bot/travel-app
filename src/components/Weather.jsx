@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useHttp } from './../hooks/httpHook';
-//import { useCountry } from './../context/codeContext';
 import PropTypes from 'prop-types';
 
 function Weather(props) {

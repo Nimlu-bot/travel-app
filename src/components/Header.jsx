@@ -37,7 +37,6 @@ export default function Header() {
     let [toggleHeader, setToggleHeader] = useState('');
 
     const burgerBtn = () => {
-        console.log(toggle);
         setToggle(toggle === '' ? 'toggle' : '');
         setToggleHeader(toggleHeader === '' ? 'toggleHeader' : '');
     };

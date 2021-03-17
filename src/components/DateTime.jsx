@@ -4,7 +4,6 @@ import moment from 'moment';
 import 'moment/locale/fr';
 import 'moment/locale/ru';
 import 'moment/locale/uk';
-//import 'moment-timezone';
 import PropTypes from 'prop-types';
 
 function DateTime(props) {
@@ -27,8 +26,6 @@ function DateTime(props) {
             <span>{date[0]}</span>
             <span>{date[1]}</span>
             <span>{date[2]}</span>
-            {/* <p>{date.date}</p>
-            <p>{`${date.hour}:${date.min}:${date.sec}`}</p> */}
         </div>
     );
 }

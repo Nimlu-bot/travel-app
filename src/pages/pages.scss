@@ -10,7 +10,6 @@ $colorWhite: #fff;
 $colorLink: #000;
 $colorSelect: #524848;
 $colorSelectHover: #fff;
-//$colorWidjets: rgb(58, 174, 143);
 $colorWidjets: rgb(255, 153, 0);
 
 html {
@@ -23,7 +22,6 @@ body {
     background: linear-gradient(135deg, rgb(0, 0, 0), rgb(169, 98, 4));
 }
 
-// registration form
 .auth-wrapper {
     display: flex;
     align-items: center;
@@ -68,7 +66,6 @@ body {
             display: flex;
             flex-direction: column;
             margin-bottom: 40px;
-            //justify-content: center;
             .auth-file-placeholder {
                 position: absolute;
                 padding: 2px 4px;
@@ -145,8 +142,6 @@ body {
     }
 }
 
-// first pages
-// header & footer
 .header-wrapper,
 .footer-wrapper {
     display: flex;
@@ -165,7 +160,6 @@ body {
     padding: 10px;
 }
 
-// header burger-btn
 .burger-btn {
     width: 60px;
     height: 60px;
@@ -233,7 +227,6 @@ body {
     padding: 10px;
 }
 
-// header
 .header-wrapper {
     .header-logo {
         display: flex;
@@ -284,7 +277,6 @@ body {
             background: none;
             appearance: none;
             outline: none;
-            //border: none;
             font-size: 18px;
             line-height: 21px;
             transition: all 0.2s;
@@ -407,7 +399,6 @@ body {
     }
 }
 
-// parallax
 .parallax {
     border-radius: 5px;
     display: flex;
@@ -444,7 +435,6 @@ body {
     cursor: pointer;
 }
 
-// heme-wrapper
 .home-wrapper {
     display: flex;
     flex-direction: column;
@@ -494,7 +484,6 @@ body {
     }
 }
 
-//footer
 .footer-wrapper {
     .footer-rs-logo {
         height: 30px;
@@ -530,7 +519,6 @@ body {
     }
 }
 
-// second pages
 .country-wrapper {
     max-width: 1200px;
     margin: 0 auto;
@@ -543,7 +531,7 @@ body {
         color: $colorHover;
         cursor: default;
     }
-    // about-text
+
     .country-about-wrapper {
         max-width: 1100px;
         margin: 50px auto 0;
@@ -577,7 +565,6 @@ body {
         }
     }
 
-    // widjets
     .country-widjets-wrapper {
         width: 180px;
         height: 250px;
@@ -658,7 +645,6 @@ body {
         top: 0px;
     }
 
-    // media
     .country-media-wrapper {
         display: flex;
         flex-direction: column;
@@ -667,17 +653,14 @@ body {
         max-width: 1000px;
         padding: 5px;
         margin: 50px auto 0px;
-        // gallery
+
         .country-gallery-wrapper {
             background-color: $colorCard;
             border-radius: 5px;
             padding: 10px;
             width: 100%;
-            // .image-gallery-description {
-            //     // display: none;
-            // }
         }
-        // video & map
+
         .video-map {
             display: flex;
             justify-content: space-around;
@@ -701,7 +684,6 @@ body {
                 align-items: center;
                 justify-content: center;
                 background-color: $colorWidjets;
-                // transition: all 0.2s;
                 cursor: pointer;
                 position: relative;
                 z-index: 2;
@@ -794,12 +776,18 @@ body {
         flex-direction: column;
         .video-wrapper {
             margin: 10px 0;
+            margin-bottom: 100px;
         }
         .map-wrapper {
             margin: 10px 0;
         }
     }
-
+    .country-wrapper .country-media-wrapper .video-map .map-wrapper {
+        width: 90%;
+    }
+    .country-wrapper .country-media-wrapper .video-map .video-wrapper {
+        width: 90%;
+    }
     .footer-wrapper {
         flex-direction: column;
         padding: 10px 0;
@@ -821,5 +809,12 @@ body {
 @media all and (max-width: 420px) {
     .burger-btn {
         margin: 0px;
+    }
+    .country-wrapper .home-title {
+        padding-top: 40px;
+    }
+    .country-wrapper .country-media-wrapper .video-map .video-wrapper {
+        height: 180px;
+        margin: 10px 0;
     }
 }

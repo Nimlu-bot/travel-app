@@ -36,7 +36,6 @@ export default function Map(props) {
     const [coordinates, setCoordinates] = useState([]);
     const purpleOptions = { color: '#573b7a' };
 
-    //динамическое изменение размера
     const targetRef = useRef();
     const [dimensions, setDimensions] = useState({});
 
@@ -58,8 +57,6 @@ export default function Map(props) {
         clearInterval(movement_timer);
         movement_timer = setTimeout(test_dimensions, RESET_TIMEOUT);
     });
-    //динамическое изменение размера
-
     const getPoligon = async () => {
         try {
             const data = await request(url, 'GET');
@@ -78,7 +75,7 @@ export default function Map(props) {
 
     useEffect(() => {
         getPoligon();
-    }, props.lang);
+    }, [props.lang]);
 
     const handle = useFullScreenHandle();
 
@@ -93,7 +90,7 @@ export default function Map(props) {
                     center={position}
                     zoom={5}
                     scrollWheelZoom={false}
-                    ref={targetRef}
+                    //ref={targetRef}
                     width={dimensions.width}
                     height={((dimensions.width / 16) * 9).toString()}
                 >

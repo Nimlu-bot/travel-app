@@ -16,12 +16,10 @@ export const AuthPage = () => {
         image: '',
     });
 
-    //const url = 'http://localhost:4000';
     const url = 'https://nimlu-bot-travel-app.herokuapp.com';
 
     useEffect(() => {
         setMessage(error);
-        //setTimeout(() => clearError(), 15000);
     }, [error]);
 
     const registerHandler = async () => {
@@ -168,7 +166,7 @@ export const AuthPage = () => {
                 />
                 <span className='auth-password-length'>Min is 6 characters long</span>
                 <div className='auth-file-wrapper'>
-                    <div className='auth-file-placeholder'>pleace select photo</div>
+                    <div className='auth-file-placeholder'>{!photo ? `pleace select photo` : `${photo.name}`}</div>
                     <input className='auth-file' type='file' accept='image/*' onChange={onPhotoSelect} />
                 </div>
                 <div className='auth-buttons-wrapper'>

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { calcEchangRate } from './functions';
 
 function Currency({ iso, currency, lang }) {
-    // const curencies = ['usd', 'eur', 'czk', 'gbp', 'uah'];
     const [exchangeRate, setExchangeRate] = useState({
         rate: null,
         usd: null,
@@ -51,7 +50,6 @@ function Currency({ iso, currency, lang }) {
                 const data = await request(url, 'GET');
 
                 return calcEchangRate(data.Cur_OfficialRate, data.Cur_Scale);
-                //parseFloat((data.Cur_OfficialRate / data.Cur_Scale).toFixed(4));
             } catch (e) {
                 console.log('error');
             }

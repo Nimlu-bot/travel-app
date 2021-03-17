@@ -1,7 +1,5 @@
 import React from 'react';
-//import { useCountry } from '../context/codeContext';
 import * as images from './countryImаges';
-//import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function CountryAbout(props) {

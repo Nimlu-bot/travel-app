@@ -12,7 +12,6 @@ const title = {
     ru: 'Главная Страница',
     ua: 'Головна Сторінка',
 };
-//const lang = useLanguage().language;
 export const HomePage = () => {
     const { language } = useLanguage();
     return (
