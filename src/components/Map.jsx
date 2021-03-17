@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useLayoutEffect, useRef } from 'react';
-import { MapContainer, TileLayer, Marker /*, Popup*/, Polygon, Tooltip } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Polygon, Tooltip } from 'react-leaflet';
 import { useHttp } from './../hooks/httpHook';
 import PropTypes from 'prop-types';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
