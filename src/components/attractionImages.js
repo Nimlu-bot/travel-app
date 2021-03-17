@@ -54,6 +54,62 @@ import ES4 from '../assets/img/es/piram-guimar.jpg';
 import ES5 from '../assets/img/es/stadion-kamp-nou.jpg';
 import ES6 from '../assets/img/es/triumf-arka.jpg';
 
+import IT1t from '../assets/img/it/pompei_3_t.jpg';
+import IT2t from '../assets/img/it/rimskiy_forum_3_t.jpg';
+import IT3t from '../assets/img/it/rimskiy_panteon_3_t.jpg';
+import IT4t from '../assets/img/it/kolizei_t.jpg';
+import IT5t from '../assets/img/it/pizanskaya_bashnya_2_t.jpg';
+import IT6t from '../assets/img/it/sobor_sviatogo_marka_t.jpg';
+
+import UA1t from '../assets/img/ua/hotinskaya-krep_t.jpg';
+import UA2t from '../assets/img/ua/kamenec-podolskaya-krepost_t.jpg';
+import UA3t from '../assets/img/ua/kievo-pech_lavra_t.jpg';
+import UA4t from '../assets/img/ua/sofiyski-sobor_t.jpg';
+import UA5t from '../assets/img/ua/sviat-nikol_t.jpg';
+import UA6t from '../assets/img/ua/zapor-sech_t.jpg';
+
+import GB1t from '../assets/img/gb/GB-1_t.jpg';
+import GB2t from '../assets/img/gb/GB-2_t.jpg';
+import GB3t from '../assets/img/gb/GB-3_t.jpg';
+import GB4t from '../assets/img/gb/GB-4_t.jpg';
+import GB5t from '../assets/img/gb/GB-5_t.jpg';
+import GB6t from '../assets/img/gb/GB-6_t.jpg';
+
+import DE1t from '../assets/img/de/mos-oberbaum_t.jpg';
+import DE2t from '../assets/img/de/opera-zempera_t.jpg';
+import DE3t from '../assets/img/de/reixstag_t.jpg';
+import DE4t from '../assets/img/de/zam-moricburg_t.jpg';
+import DE5t from '../assets/img/de/zam-naishvaish_t.jpg';
+import DE6t from '../assets/img/de/zam-xoenswain_t.jpg';
+
+import FR1t from '../assets/img/fr/efeleva-bashnya_t.jpg';
+import FR2t from '../assets/img/fr/karkason_t.jpg';
+import FR3t from '../assets/img/fr/reimsky-sobor_t.jpg';
+import FR4t from '../assets/img/fr/sen-beneze_t.jpg';
+import FR5t from '../assets/img/fr/zamok-anger_t.jpg';
+import FR6t from '../assets/img/fr/zamok-shantiy_t.jpg';
+
+import CZ1t from '../assets/img/cz/karlov-most_t.jpg';
+import CZ2t from '../assets/img/cz/kornepruskie-pesceri_t.jpg';
+import CZ3t from '../assets/img/cz/poroh-bashnia_t.jpg';
+import CZ4t from '../assets/img/cz/sobor-sviat-vita_t.jpg';
+import CZ5t from '../assets/img/cz/zam-karlstein_t.jpg';
+import CZ6t from '../assets/img/cz/zam-lednice_t.jpg';
+
+import AT1t from '../assets/img/at/dom-mozarda_t.jpg';
+import AT2t from '../assets/img/at/dvorec-belveder_t.jpg';
+import AT3t from '../assets/img/at/dvorec-hofburg_t.jpg';
+import AT4t from '../assets/img/at/pescher-led-gigantov_t.jpg';
+import AT5t from '../assets/img/at/zamok-herberstain_t.jpg';
+import AT6t from '../assets/img/at/zamok-hoenzalcburg_t.jpg';
+
+import ES1t from '../assets/img/es/alxaferia-v-saragose_t.jpg';
+import ES2t from '../assets/img/es/dom-terrades_t.jpg';
+import ES3t from '../assets/img/es/palma-de-malork_t.jpg';
+import ES4t from '../assets/img/es/piram-guimar_t.jpg';
+import ES5t from '../assets/img/es/stadion-kamp-nou_t.jpg';
+import ES6t from '../assets/img/es/triumf-arka_t.jpg';
+
 // import UA1 from '../assets/img/ua/Каменец-Подольская-крепость.jpg'
 // Хотинская крепость.jpg
 // Киево-Печерская Лавра.jpg
@@ -72,6 +128,7 @@ const attractions = [
         coutryId: 'IT',
         thumbnail: {
             url: IT1,
+            urlt: IT1t,
             alt: {
                 ru: 'Помпеи',
                 en: 'Pompeii',
@@ -99,6 +156,7 @@ const attractions = [
         coutryId: 'IT',
         thumbnail: {
             url: IT2,
+            urlt: IT2t,
             alt: {
                 ru: 'Ри́мский фо́рум',
                 en: 'The Roman Forum',
@@ -126,6 +184,7 @@ const attractions = [
         coutryId: 'IT',
         thumbnail: {
             url: IT3,
+            urlt: IT3t,
             alt: {
                 ru: 'Пантео́н',
                 en: 'Pantheon',
@@ -153,6 +212,7 @@ const attractions = [
         coutryId: 'IT',
         thumbnail: {
             url: IT4,
+            urlt: IT4t,
             alt: {
                 ru: 'Колизей',
                 en: 'Colosseum',
@@ -180,6 +240,7 @@ const attractions = [
         coutryId: 'IT',
         thumbnail: {
             url: IT5,
+            urlt: IT5t,
             alt: {
                 ru: 'Пиза́нская башня',
                 en: 'The Pisa Tower',
@@ -207,6 +268,7 @@ const attractions = [
         coutryId: 'IT',
         thumbnail: {
             url: IT6,
+            urlt: IT6t,
             alt: {
                 ru: 'Патриарший собор Базилика Святого Марка',
                 en: 'The Patriarchal Cathedral Basilica of Saint Mark',
@@ -234,6 +296,7 @@ const attractions = [
         coutryId: 'UA',
         thumbnail: {
             url: UA1,
+            urlt: UA1t,
             alt: {
                 ru: 'Хоти́нская крепость',
                 en: 'Khotyn fortress',
@@ -261,6 +324,7 @@ const attractions = [
         coutryId: 'UA',
         thumbnail: {
             url: UA2,
+            urlt: UA2t,
             alt: {
                 ru: 'Старый замок Каменца-Подольского',
                 en: 'The old castle of Kamenets-Podolsk',
@@ -288,6 +352,7 @@ const attractions = [
         coutryId: 'UA',
         thumbnail: {
             url: UA3,
+            urlt: UA3t,
             alt: {
                 ru: 'Свя́то-Успе́нская Ки́ево-Пече́рская ла́вра',
                 en: 'The Holy Dormition Kiev-Pechersk Lavra',
@@ -315,6 +380,7 @@ const attractions = [
         coutryId: 'UA',
         thumbnail: {
             url: UA4,
+            urlt: UA4t,
             alt: {
                 ru: 'Стоўнхендж',
                 en: 'Pompeii',
@@ -342,6 +408,7 @@ const attractions = [
         coutryId: 'UA',
         thumbnail: {
             url: UA5,
+            urlt: UA5t,
             alt: {
                 ru: 'Национальный природный парк Святые горы',
                 en: 'Holy Mountains National Nature Park',
@@ -369,6 +436,7 @@ const attractions = [
         coutryId: 'UA',
         thumbnail: {
             url: UA6,
+            urlt: UA6t,
             alt: {
                 ru: 'Хо́ртица',
                 en: 'Khortitsa',
@@ -396,6 +464,7 @@ const attractions = [
         coutryId: 'FR',
         thumbnail: {
             url: FR1,
+            urlt: FR1t,
             alt: {
                 ru: 'Э́йфелева ба́шня',
                 en: 'Eiffel Tower',
@@ -423,6 +492,7 @@ const attractions = [
         coutryId: 'FR',
         thumbnail: {
             url: FR2,
+            urlt: FR2t,
             alt: {
                 ru: 'Крепость Каркасон',
                 en: 'Fortress Carcassonne',
@@ -450,6 +520,7 @@ const attractions = [
         coutryId: 'FR',
         thumbnail: {
             url: FR3,
+            urlt: FR3t,
             alt: {
                 ru: 'Нотр-Дам де Пари',
                 en: 'Notre Dame de Paris',
@@ -474,6 +545,7 @@ const attractions = [
         coutryId: 'FR',
         thumbnail: {
             url: FR4,
+            urlt: FR4t,
             alt: {
                 ru: 'Папский дворец',
                 en: 'The Palais des Papes',
@@ -501,6 +573,7 @@ const attractions = [
         coutryId: 'FR',
         thumbnail: {
             url: FR5,
+            urlt: FR5t,
             alt: {
                 ru: 'Анжерский замок',
                 en: 'Anzher castle',
@@ -528,6 +601,7 @@ const attractions = [
         coutryId: 'FR',
         thumbnail: {
             url: FR6,
+            urlt: FR6t,
             alt: {
                 ru: 'Замок Шантильи',
                 en: 'Château de Chantilly',
@@ -555,6 +629,7 @@ const attractions = [
         coutryId: 'GB',
         thumbnail: {
             url: GB1,
+            urlt: GB1t,
             alt: {
                 ru: 'Озеро Лох-Несс',
                 en: 'Loch Ness',
@@ -582,6 +657,7 @@ const attractions = [
         coutryId: 'GB',
         thumbnail: {
             url: GB2,
+            urlt: GB2t,
             alt: {
                 ru: 'Виндзорский замок',
                 en: 'Windsor Castle',
@@ -609,6 +685,7 @@ const attractions = [
         coutryId: 'GB',
         thumbnail: {
             url: GB3,
+            urlt: GB3t,
             alt: {
                 ru: 'Тауэрский мост',
                 en: 'Tower Bridge',
@@ -636,6 +713,7 @@ const attractions = [
         coutryId: 'GB',
         thumbnail: {
             url: GB4,
+            urlt: GB4t,
             alt: {
                 ru: 'Стоўнхендж',
                 en: 'Stonehenge',
@@ -663,6 +741,7 @@ const attractions = [
         coutryId: 'GB',
         thumbnail: {
             url: GB5,
+            urlt: GB5t,
             alt: {
                 ru: 'Дуврский замок',
                 en: 'Dover castle',
@@ -690,6 +769,7 @@ const attractions = [
         coutryId: 'GB',
         thumbnail: {
             url: GB6,
+            urlt: GB6t,
             alt: {
                 ru: 'А́льберт-холл',
                 en: 'Albert Hall',
@@ -717,6 +797,7 @@ const attractions = [
         coutryId: 'DE',
         thumbnail: {
             url: DE1,
+            urlt: DE1t,
             alt: {
                 ru: 'Обербаумбрюкке',
                 en: 'Oberbaumbrücke',
@@ -744,6 +825,7 @@ const attractions = [
         coutryId: 'DE',
         thumbnail: {
             url: DE2,
+            urlt: DE2t,
             alt: {
                 ru: 'Цвингер',
                 en: 'The Zwinger',
@@ -771,6 +853,7 @@ const attractions = [
         coutryId: 'DE',
         thumbnail: {
             url: DE3,
+            urlt: DE3t,
             alt: {
                 ru: 'Площадь Республики',
                 en: '"Republic Square',
@@ -798,6 +881,7 @@ const attractions = [
         coutryId: 'DE',
         thumbnail: {
             url: DE4,
+            urlt: DE4t,
             alt: {
                 ru: 'Замок Морицбург',
                 en: 'Moritzburg Castle',
@@ -825,6 +909,7 @@ const attractions = [
         coutryId: 'DE',
         thumbnail: {
             url: DE5,
+            urlt: DE5t,
             alt: {
                 ru: 'Замок Нойшванштайн',
                 en: 'Neuschwanstein Castle',
@@ -852,6 +937,7 @@ const attractions = [
         coutryId: 'DE',
         thumbnail: {
             url: DE6,
+            urlt: DE6t,
             alt: {
                 ru: 'Замок Хоэншвангау',
                 en: 'Hohenschwangau Castle',
@@ -879,6 +965,7 @@ const attractions = [
         coutryId: 'CZ',
         thumbnail: {
             url: CZ1,
+            urlt: CZ1t,
             alt: {
                 ru: 'Ка́рлов мост',
                 en: 'Charles Bridge',
@@ -906,6 +993,7 @@ const attractions = [
         coutryId: 'CZ',
         thumbnail: {
             url: CZ2,
+            urlt: CZ2t,
             alt: {
                 ru: 'Чешский карст',
                 en: 'Bohemian Karst',
@@ -933,6 +1021,7 @@ const attractions = [
         coutryId: 'CZ',
         thumbnail: {
             url: CZ3,
+            urlt: CZ3t,
             alt: {
                 ru: 'Стоўнхендж',
                 en: 'Pompeii',
@@ -960,6 +1049,7 @@ const attractions = [
         coutryId: 'CZ',
         thumbnail: {
             url: CZ4,
+            urlt: CZ4t,
             alt: {
                 ru: 'Собор Святого Вита',
                 en: 'The Cathedral of St. Vitus',
@@ -987,6 +1077,7 @@ const attractions = [
         coutryId: 'CZ',
         thumbnail: {
             url: CZ5,
+            urlt: CZ5t,
             alt: {
                 ru: 'Замок Ка́рлштейн',
                 en: 'Karlštejn Castle',
@@ -1014,6 +1105,7 @@ const attractions = [
         coutryId: 'CZ',
         thumbnail: {
             url: CZ6,
+            urlt: CZ6t,
             alt: {
                 ru: 'Культу́рный ландша́фт Ле́днице-Ва́льтице',
                 en: 'The cultural landscape of Ladnice-Valtice',
@@ -1041,6 +1133,7 @@ const attractions = [
         coutryId: 'AT',
         thumbnail: {
             url: AT1,
+            urlt: AT1t,
             alt: {
                 ru: 'Помпеи',
                 en: 'Pompeii',
@@ -1068,6 +1161,7 @@ const attractions = [
         coutryId: 'AT',
         thumbnail: {
             url: AT2,
+            urlt: AT2t,
             alt: {
                 ru: 'Дворец Бельведер',
                 en: 'The Belvedere Palace',
@@ -1095,6 +1189,7 @@ const attractions = [
         coutryId: 'AT',
         thumbnail: {
             url: AT3,
+            urlt: AT3t,
             alt: {
                 ru: 'Хо́фбург',
                 en: 'Hofburg',
@@ -1122,6 +1217,7 @@ const attractions = [
         coutryId: 'AT',
         thumbnail: {
             url: AT4,
+            urlt: AT4t,
             alt: {
                 ru: 'А́йсризенвельт',
                 en: 'Pompeii',
@@ -1149,6 +1245,7 @@ const attractions = [
         coutryId: 'AT',
         thumbnail: {
             url: AT5,
+            urlt: AT5t,
             alt: {
                 ru: 'Замок Герберштейн',
                 en: 'Pompeii',
@@ -1176,6 +1273,7 @@ const attractions = [
         coutryId: 'AT',
         thumbnail: {
             url: AT6,
+            urlt: AT6t,
             alt: {
                 ru: 'Хоэнза́льцбург',
                 en: 'Hohensalzburg',
@@ -1203,6 +1301,7 @@ const attractions = [
         coutryId: 'ES',
         thumbnail: {
             url: ES1,
+            urlt: ES1t,
             alt: {
                 ru: 'Альхафери́я',
                 en: 'Aljafería',
@@ -1230,6 +1329,7 @@ const attractions = [
         coutryId: 'ES',
         thumbnail: {
             url: ES2,
+            urlt: ES2t,
             alt: {
                 ru: 'Дом с шипа́ми',
                 en: 'House with thorns',
@@ -1257,6 +1357,7 @@ const attractions = [
         coutryId: 'ES',
         thumbnail: {
             url: ES3,
+            urlt: ES3t,
             alt: {
                 ru: 'Кафедральный собор Санта-Мария',
                 en: 'Cathedral of Santa Maria',
@@ -1284,6 +1385,7 @@ const attractions = [
         coutryId: 'ES',
         thumbnail: {
             url: ES4,
+            urlt: ES4t,
             alt: {
                 ru: 'Атапуэрка',
                 en: 'Atapuerca',
@@ -1311,6 +1413,7 @@ const attractions = [
         coutryId: 'ES',
         thumbnail: {
             url: ES5,
+            urlt: ES5t,
             alt: {
                 ru: 'Камп Но́у',
                 en: 'Camp Nou',
@@ -1338,6 +1441,7 @@ const attractions = [
         coutryId: 'ES',
         thumbnail: {
             url: ES6,
+            urlt: ES6t,
             alt: {
                 ru: 'Стоўнхендж',
                 en: 'Pompeii',

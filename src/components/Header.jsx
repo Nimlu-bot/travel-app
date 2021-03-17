@@ -21,9 +21,14 @@ export default function Header() {
     const lang = useLanguage().language;
 
     const logOutName = {
-        en: 'LogOut',
-        ru: 'выход',
-        ua: 'вихід',
+        en: 'Logout',
+        ru: 'Выход',
+        ua: 'Вихід',
+    };
+    const loginName = {
+        en: 'Login',
+        ru: 'Войти',
+        ua: 'Увійти',
     };
 
     const avatar =
@@ -99,7 +104,7 @@ export default function Header() {
                         <div className='header-user'>{name} </div>
                         <div className='header-image' style={{ backgroundImage: `url(${avatar})` }}></div>
                         <button className='header-logout' onClick={logoutHandler}>
-                            {logOutName[lang]}
+                            {name !== 'Аnonim' ? <span>{logOutName[lang]}</span> : <span>{loginName[lang]}</span>}
                         </button>
                     </div>
                     {!id && <SearchField />}
