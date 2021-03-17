@@ -4,7 +4,6 @@ import DateTime from '../components/DateTime';
 import Map from '../components/Map';
 import { PageTitle } from '../components/PageTitle';
 import PhotoGallery from '../components/PhotoGalery';
-import Reaction from '../components/Reaction';
 import Video from '../components/Video';
 import Weather from '../components/Weather';
 import CountryAbout from './../components/CountryAbout';
@@ -39,7 +38,6 @@ export const CountryPage = () => {
                 <div className='country-media-wrapper'>
                     <div className='country-gallery-wrapper'>
                         <PhotoGallery countryShort={countryParams.country.iso} lang={lang} />
-                        <Reaction />
                     </div>
                     <div className='video-map'>
                         <Video video={countryParams.country.video.url} />

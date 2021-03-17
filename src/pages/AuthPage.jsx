@@ -2,13 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import './pages.scss';
 import { useHttp } from './../hooks/httpHook';
 import { AuthContext } from '../context/AuthContext';
-import { useLanguage } from './../context/LanguageContext';
 
 export const AuthPage = () => {
     const [sign, setSign] = useState(false);
     const [message, setMessage] = useState();
     const auth = useContext(AuthContext);
-    const { loading, request, error } = useHttp();
+    const { loading, request, error, clearError } = useHttp();
     const [photo, setPhoto] = useState(null);
     const [form, setForm] = useState({
         name: '',
@@ -16,7 +15,9 @@ export const AuthPage = () => {
         password: '',
         image: '',
     });
-    const lang = useLanguage().language;
+
+    //const url = 'http://localhost:4000';
+    const url = 'https://nimlu-bot-travel-app.herokuapp.com';
 
     useEffect(() => {
         setMessage(error);
@@ -30,7 +31,7 @@ export const AuthPage = () => {
                 setMessage('image upload error');
                 return;
             }
-            const data = await request('http://localhost:4000/api/auth/register', 'POST', {
+            const data = await request(`${url}/api/auth/register`, 'POST', {
                 ...form,
                 image: image || '',
             });
@@ -58,7 +59,6 @@ export const AuthPage = () => {
             }
             return null;
         } catch (e) {
-            //console.log('error upload');
             return 'error';
         }
     };
@@ -71,7 +71,7 @@ export const AuthPage = () => {
 
     const loginHandler = async () => {
         try {
-            const data = await request('http://localhost:4000/api/auth/login', 'POST', { ...form });
+            const data = await request(`${url}/api/auth/login`, 'POST', { ...form });
             auth.login(data.name, data.token, data.userId, data.image);
         } catch (e) {
             console.log('error');
@@ -84,12 +84,16 @@ export const AuthPage = () => {
     const changeHandler = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
+    const cancelHandler = () => {
+        setSign((prevState) => !prevState);
+        clearError();
+    };
 
     if (!sign) {
         return (
             <div className='auth-wrapper wrapper'>
                 <div className='auth-card card'>
-                    <span className='auth-card-title'>Auth {lang}</span>
+                    <span className='auth-card-title'>Auth</span>
                     <input
                         className='auth-card-email auth-input'
                         autoComplete='off'
@@ -111,7 +115,7 @@ export const AuthPage = () => {
                         onChange={changeHandler}
                     />
 
-                    <span className='auth-password-length'>Мин длинна 6 символов</span>
+                    <span className='auth-password-length'>Min is 6 characters long</span>
                     <div className='auth-buttons-wrapper'>
                         <button className='auth-button login' disabled={loading} onClick={loginHandler}>
                             Login
@@ -120,9 +124,9 @@ export const AuthPage = () => {
                             SignUp
                         </button>
                     </div>
-                    <span className='auth-message'>1{message}</span>
+                    <span className='auth-message'>{message}</span>
                     <span className='auth-without-reg' onClick={wthoutRegHandler}>
-                        Продолжить без регистрации
+                        Continue without registration
                     </span>
                 </div>
             </div>
@@ -162,14 +166,17 @@ export const AuthPage = () => {
                     required
                     onChange={changeHandler}
                 />
-                <span className='auth-password-length'>Мин длинна 6 символов</span>
-                <input type='file' accept='image/*' onChange={onPhotoSelect} />
+                <span className='auth-password-length'>Min is 6 characters long</span>
+                <div className='auth-file-wrapper'>
+                    <div className='auth-file-placeholder'>pleace select photo</div>
+                    <input className='auth-file' type='file' accept='image/*' onChange={onPhotoSelect} />
+                </div>
                 <div className='auth-buttons-wrapper'>
                     <button className='auth-button login' onClick={registerHandler} disabled={loading}>
                         Signup
                     </button>
-                    <button className='auth-button cancel' onClick={() => setSign((prevState) => !prevState)}>
-                        Cansel
+                    <button className='auth-button cancel' onClick={cancelHandler}>
+                        Cancel
                     </button>
                 </div>
                 <span className='auth-message'>{message}</span>

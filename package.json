@@ -25,6 +25,12 @@
         "video-react": "^0.14.1",
         "web-vitals": "^1.1.0"
     },
+    "author": "Nimlu-bot, Mikulich-Fedor, tone4ka, maksumov",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Nimlu-bot/travel-app.git"
+    },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",

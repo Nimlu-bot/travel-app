@@ -2,15 +2,16 @@
 @import '../assets/owfont-regular.css';
 
 $colorBody: black;
-$colorHeaderFooter: #3a3a3a;
+$colorHeaderFooter: transparent;
 $colorCard: #524848;
 $colorHover: rgb(255, 153, 0);
 $colorBlack: #000;
 $colorWhite: #fff;
 $colorLink: #000;
-$colorSelect: #433f3fa3;
+$colorSelect: #524848;
 $colorSelectHover: #fff;
-$colorWidjets: rgb(58, 174, 143);
+//$colorWidjets: rgb(58, 174, 143);
+$colorWidjets: rgb(255, 153, 0);
 
 html {
     scroll-behavior: smooth;
@@ -33,7 +34,7 @@ body {
         flex-direction: column;
         justify-content: center;
         height: 300px;
-        background-color: $colorWidjets;
+        background-color: rgb(177, 107, 2);
         padding: 10px;
         border-radius: 10px;
         box-shadow: 0 0 2px $colorWhite;
@@ -62,6 +63,38 @@ body {
             margin-bottom: 10px;
             cursor: default;
         }
+        .auth-file-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 40px;
+            //justify-content: center;
+            .auth-file-placeholder {
+                position: absolute;
+                padding: 2px 4px;
+                border-radius: 5px;
+                background-color: #fff;
+                color: grey;
+                width: 216px;
+                font-size: 18px;
+                line-height: 21px;
+                top: 0;
+                left: 0;
+                text-align: left;
+            }
+            .auth-file {
+                opacity: 0;
+                position: absolute;
+                z-index: 10;
+                top: 0;
+                left: 0;
+                ::after {
+                    content: '→';
+                    display: block;
+                }
+            }
+        }
+
         .auth-buttons-wrapper {
             margin-top: 10px;
             .auth-button {
@@ -92,7 +125,7 @@ body {
         .auth-without-reg {
             font-size: 12px;
             line-height: 14px;
-            background-color: $colorCard;
+            background-color: rgb(177, 107, 2);
             cursor: pointer;
             padding: 5px 0px;
             border-radius: 5px;
@@ -212,7 +245,7 @@ body {
             height: 100px;
             cursor: pointer;
             path {
-                stroke: $colorBlack;
+                stroke: $colorHover;
                 fill: transparent;
                 stroke-dasharray: 250;
                 stroke-dashoffset: 0;
@@ -251,18 +284,24 @@ body {
             background: none;
             appearance: none;
             outline: none;
-            border: none;
+            //border: none;
             font-size: 18px;
             line-height: 21px;
             transition: all 0.2s;
+            color: $colorHover;
+            border: 2px solid black;
+            border-radius: 5px;
+            height: 50px;
             cursor: pointer;
             option {
                 outline: none;
                 appearance: none;
                 background-color: $colorSelect;
+                border-radius: 5px;
             }
         }
         select:hover {
+            border: 2px solid $colorHover;
             color: $colorHover;
         }
     }
@@ -284,6 +323,10 @@ body {
             margin: 0 auto;
 
             background-color: $colorCard;
+            &:hover {
+                border: 2px solid $colorHover;
+                color: $colorHover;
+            }
 
             .search {
                 width: 200px;
@@ -348,6 +391,9 @@ body {
                 background-color: $colorCard;
                 box-shadow: 0 0 3px $colorWhite;
                 transition: all 0.2s;
+                span {
+                    font-size: 14px;
+                }
             }
             .header-logout:hover {
                 background-color: $colorHover;
@@ -363,6 +409,7 @@ body {
 
 // parallax
 .parallax {
+    border-radius: 5px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -386,6 +433,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 5px;
     max-width: 1200px;
     height: 250px;
     font-size: 20px;
@@ -508,6 +556,7 @@ body {
             width: 288px;
             height: 384px;
             margin: 5px;
+            border-radius: 5px;
             background-color: $colorCard;
         }
         .country-about {
@@ -621,6 +670,7 @@ body {
         // gallery
         .country-gallery-wrapper {
             background-color: $colorCard;
+            border-radius: 5px;
             padding: 10px;
             width: 100%;
             // .image-gallery-description {
