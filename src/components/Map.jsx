@@ -78,9 +78,9 @@ export default function Map(props) {
 
     useEffect(() => {
         getPoligon();
-    }, [props.lang]);
+    }, props.lang);
 
-    const handle = useFullScreenHandle(); // fulscr
+    const handle = useFullScreenHandle();
 
     return (
         <div className='map-wrapper' ref={targetRef}>
@@ -97,10 +97,18 @@ export default function Map(props) {
                     width={dimensions.width}
                     height={((dimensions.width / 16) * 9).toString()}
                 >
-                    <TileLayer
-                        attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
-                        url={layers[props.lang]}
-                    />
+                    {(props.lang === 'ru' || props.lang === 'ua') && (
+                        <TileLayer
+                            attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/%22%3EMapbox</a>'
+                            url={layers[props.lang]}
+                        />
+                    )}
+                    {props.lang === 'en' && (
+                        <TileLayer
+                            attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/%22%3EMapbox</a>'
+                            url={layers[props.lang]}
+                        />
+                    )}
                     <Marker className='capitalMarker' position={position}>
                         <Tooltip>{props.capital}</Tooltip>
                     </Marker>
