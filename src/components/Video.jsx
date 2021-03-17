@@ -27,7 +27,7 @@ function Video(props) {
         <div className='video-wrapper' ref={targetRef}>
             <iframe
                 width={dimensions.width}
-                height={dimensions.height}
+                height={((dimensions.width / 16) * 9).toString()}
                 src={props.video}
                 frameBorder='0'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'

@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker /*, Popup*/, Polygon, Tooltip } from 'react-leaflet';
+import React, { useEffect, useState, useLayoutEffect, useRef } from 'react';
+import { MapContainer, TileLayer, Marker, Polygon, Tooltip } from 'react-leaflet';
 import { useHttp } from './../hooks/httpHook';
-// import MapboxLanguageControl from 'react-mapbox-gl-language';
-// import MapboxLanguage from '@mapbox/mapbox-gl-language';
 import PropTypes from 'prop-types';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
-// import ReactMapboxGl from 'react-mapbox-gl';
-// import MapboxLanguageControl from 'react-mapbox-gl-language';
-// import React, {Component, useEffect, useState} from 'react';
 
 const capitals = {
     GB: [51.509865, -0.118092],
@@ -24,6 +19,14 @@ const fullscr = {
     ru: 'Во весь экран',
     ua: 'На весь екран',
 };
+const layers = {
+    en:
+        'https://api.mapbox.com/styles/v1/tone4ka/ckm4wl17kditc17ptbx8aq0rx/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidG9uZTRrYSIsImEiOiJja2l1NGxnZXMydjQ5MnlsYnJjMGtmdnA3In0.5ldaiECa7ofK34QR7SjPIQ',
+    ru:
+        'https://api.mapbox.com/styles/v1/tone4ka/ckmbvsjkj95yv17pg1vgri8ig/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidG9uZTRrYSIsImEiOiJja2l1NGxnZXMydjQ5MnlsYnJjMGtmdnA3In0.5ldaiECa7ofK34QR7SjPIQ',
+    ua:
+        'https://api.mapbox.com/styles/v1/tone4ka/ckmbvsjkj95yv17pg1vgri8ig/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidG9uZTRrYSIsImEiOiJja2l1NGxnZXMydjQ5MnlsYnJjMGtmdnA3In0.5ldaiECa7ofK34QR7SjPIQ',
+};
 
 export default function Map(props) {
     const countryName = props.countryShort;
@@ -32,6 +35,30 @@ export default function Map(props) {
     const url = `https://nominatim.openstreetmap.org/search.php?q=${countryName}&polygon_geojson=1&format=geojson`;
     const [coordinates, setCoordinates] = useState([]);
     const purpleOptions = { color: '#573b7a' };
+
+    //динамическое изменение размера
+    const targetRef = useRef();
+    const [dimensions, setDimensions] = useState({});
+
+    let movement_timer = null;
+    const RESET_TIMEOUT = 100;
+    const test_dimensions = () => {
+        if (targetRef.current) {
+            setDimensions({
+                width: targetRef.current.offsetWidth,
+                height: targetRef.current.offsetHeight,
+            });
+        }
+    };
+    useLayoutEffect(() => {
+        test_dimensions();
+    }, []);
+
+    window.addEventListener('resize', () => {
+        clearInterval(movement_timer);
+        movement_timer = setTimeout(test_dimensions, RESET_TIMEOUT);
+    });
+    //динамическое изменение размера
 
     const getPoligon = async () => {
         try {
@@ -51,26 +78,41 @@ export default function Map(props) {
 
     useEffect(() => {
         getPoligon();
-    }, []);
+    }, props.lang);
 
-    const handle = useFullScreenHandle(); // fulscr
+    const handle = useFullScreenHandle();
 
     return (
-        <div className='map-wrapper'>
+        <div className='map-wrapper' ref={targetRef}>
             <button className='map-fullscr-button' onClick={handle.enter}>
                 {fullscr[props.lang]}
             </button>
-            <FullScreen className='map-wrapper' handle={handle}>
-                <MapContainer className='map-container' center={position} zoom={5} scrollWheelZoom={false}>
-                    <TileLayer
-                        attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
-                        url='https://api.mapbox.com/styles/v1/tone4ka/ckm4wl17kditc17ptbx8aq0rx/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidG9uZTRrYSIsImEiOiJja2l1NGxnZXMydjQ5MnlsYnJjMGtmdnA3In0.5ldaiECa7ofK34QR7SjPIQ'
-                    />
+            <FullScreen className='map-wrapper1' handle={handle}>
+                <MapContainer
+                    className='map-container'
+                    center={position}
+                    zoom={5}
+                    scrollWheelZoom={false}
+                    ref={targetRef}
+                    width={dimensions.width}
+                    height={((dimensions.width / 16) * 9).toString()}
+                >
+                    {(props.lang === 'ru' || props.lang === 'ua') && (
+                        <TileLayer
+                            attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/%22%3EMapbox</a>'
+                            url={layers[props.lang]}
+                        />
+                    )}
+                    {props.lang === 'en' && (
+                        <TileLayer
+                            attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/%22%3EMapbox</a>'
+                            url={layers[props.lang]}
+                        />
+                    )}
                     <Marker className='capitalMarker' position={position}>
                         <Tooltip>{props.capital}</Tooltip>
                     </Marker>
                     <Polygon pathOptions={purpleOptions} positions={coordinates} />
-                    {/* <MapboxLanguageControl/> */}
                 </MapContainer>
             </FullScreen>
         </div>
@@ -82,56 +124,3 @@ Map.propTypes = {
     countryShort: PropTypes.string,
     capital: PropTypes.string,
 };
-
-// class MapboxLanguageControl extends Component {
-//   componentWillMount(){
-//     this.mapboxLanguage = new MapboxLanguage(({  defaultLanguage: 'ru'}));
-//     this.context.map.addControl(this.mapboxLanguage);
-//   }
-
-//   componentWillUnmount(){
-//     this.context.map.removeControl(this.mapboxLanguage);
-//   }
-
-//   render(){
-//     return null;
-//   }
-// }
-// MapboxLanguageControl.contextTypes = {
-//   map: PropTypes.object.isRequired
-// };
-
-// MapboxLanguageControl.mapboxLanguage = 'ru';
-
-// const MapTok = ReactMapboxGl({
-//   accessToken: 'pk.eyJ1IjoidG9uZTRrYSIsImEiOiJja2l1NGxnZXMydjQ5MnlsYnJjMGtmdnA3In0.5ldaiECa7ofK34QR7SjPIQ'
-// });
-
-// const styles = {
-//   mapContainer: {
-//     height: '100vh',
-//     width: '100vw'
-//   }
-// };
-
-// const App = () => (
-
-//   <MapTok
-//     style='mapbox://styles/mapbox/streets-v10'
-//     containerStyle={styles.mapContainer}
-//   >
-//     <MapboxLanguageControl/>
-//   </MapTok>
-// );
-
-// export default function Map() {
-//  return <App/>
-// }
-
-// const url = `https://nominatim.openstreetmap.org/search.php?q=Warsaw+Poland&polygon_geojson=1&format=geojson`;
-//  const currentRate = async () => {
-//             try {
-//                 const data = await request(url, 'GET');
-//                 return parseFloat((data.Cur_OfficialRate / data.Cur_Scale).toFixed(4));
-//             } catch (e) {}
-//         };
